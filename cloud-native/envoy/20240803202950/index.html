@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>流量高级治理 | 闫世成 SRE运维之路</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_3114978_qe0b39no76.css">
+    <link rel="stylesheet" href="/styles/index.css">
+    <noscript><meta http-equiv="refresh" content="0; url=https://www.yanshicheng.com/noscript/"><style>.theme-vdoing-content { display:none }</noscript>
+    <script src="https://cdn.staticfile.org/twikoo/1.6.7/twikoo.all.min.js"></script>
+    <script>var _hmt = _hmt || [];
+          (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?f06618722a8bed59d75788172aef88ca"; 
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+          })();
+          </script>
+    <meta name="description" content="YanShicheng Sre 运维知识库。">
+    <meta name="baidu-site-verification" content="codeva-i1I7g2e68F">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta name="闫世成 SRE架构之路" content="闫世成 个人知识库，SRE 运维知识库。">
+    <meta name="theme-color" content="#11a8cd">
+    
+    <link rel="preload" href="/assets/css/0.styles.7cedc967.css" as="style"><link rel="preload" href="/assets/js/app.4d013cf5.js" as="script"><link rel="preload" href="/assets/js/2.3e576c84.js" as="script"><link rel="preload" href="/assets/js/49.e2afdb5b.js" as="script"><link rel="preload" href="/assets/js/15.2849772b.js" as="script"><link rel="preload" href="/assets/js/7.5f97d280.js" as="script"><link rel="prefetch" href="/assets/js/10.629a24c0.js"><link rel="prefetch" href="/assets/js/11.c6c3f665.js"><link rel="prefetch" href="/assets/js/12.740f53fb.js"><link rel="prefetch" href="/assets/js/13.eb2156d1.js"><link rel="prefetch" href="/assets/js/14.c030ad4a.js"><link rel="prefetch" href="/assets/js/16.5730be72.js"><link rel="prefetch" href="/assets/js/17.6bb4d7d1.js"><link rel="prefetch" href="/assets/js/18.00d9bff5.js"><link rel="prefetch" href="/assets/js/19.dfa3593d.js"><link rel="prefetch" href="/assets/js/20.aeaa192e.js"><link rel="prefetch" href="/assets/js/21.8c18908b.js"><link rel="prefetch" href="/assets/js/22.2c3bba86.js"><link rel="prefetch" href="/assets/js/23.acc6a830.js"><link rel="prefetch" href="/assets/js/24.8bc85191.js"><link rel="prefetch" href="/assets/js/25.fe10ea4c.js"><link rel="prefetch" href="/assets/js/26.d93473bf.js"><link rel="prefetch" href="/assets/js/27.178d3a65.js"><link rel="prefetch" href="/assets/js/28.a3005ae1.js"><link rel="prefetch" href="/assets/js/29.4dfc98b4.js"><link rel="prefetch" href="/assets/js/3.54b040a5.js"><link rel="prefetch" href="/assets/js/30.d434609d.js"><link rel="prefetch" href="/assets/js/31.e451eb8d.js"><link rel="prefetch" href="/assets/js/32.90c9e75a.js"><link rel="prefetch" href="/assets/js/33.d28d715a.js"><link rel="prefetch" href="/assets/js/34.b0ee9706.js"><link rel="prefetch" href="/assets/js/35.31c6edef.js"><link rel="prefetch" href="/assets/js/36.7a4290f9.js"><link rel="prefetch" href="/assets/js/37.be852255.js"><link rel="prefetch" href="/assets/js/38.55f8d6b2.js"><link rel="prefetch" href="/assets/js/39.66beb064.js"><link rel="prefetch" href="/assets/js/4.7b5de6ae.js"><link rel="prefetch" href="/assets/js/40.26d244d2.js"><link rel="prefetch" href="/assets/js/41.065fd559.js"><link rel="prefetch" href="/assets/js/42.619efcfd.js"><link rel="prefetch" href="/assets/js/43.0c61546e.js"><link rel="prefetch" href="/assets/js/44.7bc12009.js"><link rel="prefetch" href="/assets/js/45.eee015f7.js"><link rel="prefetch" href="/assets/js/46.ff6d2497.js"><link rel="prefetch" href="/assets/js/47.ee68f6e1.js"><link rel="prefetch" href="/assets/js/48.aecb8d93.js"><link rel="prefetch" href="/assets/js/5.a4edadfa.js"><link rel="prefetch" href="/assets/js/50.101e28ba.js"><link rel="prefetch" href="/assets/js/51.5137341b.js"><link rel="prefetch" href="/assets/js/52.13502e23.js"><link rel="prefetch" href="/assets/js/53.5fe6f75e.js"><link rel="prefetch" href="/assets/js/54.5696bc5c.js"><link rel="prefetch" href="/assets/js/55.bed2c041.js"><link rel="prefetch" href="/assets/js/56.c13079ee.js"><link rel="prefetch" href="/assets/js/6.38b51ba3.js"><link rel="prefetch" href="/assets/js/8.f9a959dd.js"><link rel="prefetch" href="/assets/js/9.8d4c65ae.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.7cedc967.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/img/index/logo.png" alt="闫世成 SRE运维之路" class="logo"> <span class="site-name can-hide">闫世成 SRE运维之路</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="linux" class="dropdown-title"><a href="/linux/" class="link-title">linux</a> <span class="title" style="display:none;">linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>基础</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/linux/basic/" class="nav-link">基础</a></li><li class="dropdown-subitem"><a href="/linux/iptables/" class="nav-link">防火墙</a></li></ul></li><li class="dropdown-item"><h4>web</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/linux/nginx/" class="nav-link">nginx</a></li><li class="dropdown-subitem"><a href="/linux/tomcat/" class="nav-link">tomcat</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="devops" class="dropdown-title"><a href="/devops/" class="link-title">devops</a> <span class="title" style="display:none;">devops</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4></h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/devops/gitlab/" class="nav-link">Gitlab</a></li><li class="dropdown-subitem"><a href="/devops/sonar/" class="nav-link">Sonar</a></li><li class="dropdown-subitem"><a href="/devops/nexus/" class="nav-link">Nexus</a></li><li class="dropdown-subitem"><a href="/devops/jenkins/" class="nav-link">Jenkins</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据库" class="dropdown-title"><a href="/database/" class="link-title">数据库</a> <span class="title" style="display:none;">数据库</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>SQL 数据库</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/database/mysql/" class="nav-link">MySQL</a></li></ul></li><li class="dropdown-item"><h4>NoSQL 数据库</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/database/redis/" class="nav-link">Redis</a></li><li class="dropdown-subitem"><a href="/database/mongodb/" class="nav-link">MongoDB</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="监控日志" class="dropdown-title"><a href="/monitoring-logging/" class="link-title">监控日志</a> <span class="title" style="display:none;">监控日志</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>监控</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/monitoring-logging/prometheus/" class="nav-link">Prometheus</a></li><li class="dropdown-subitem"><a href="/monitoring-logging/grafana/" class="nav-link">Grafana</a></li><li class="dropdown-subitem"><a href="/monitoring-logging/alertmanager/" class="nav-link">AlertManager</a></li></ul></li><li class="dropdown-item"><h4>日志</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/monitoring-logging/elk/" class="nav-link">ELK</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="kubernetes" class="dropdown-title"><a href="/kubernetes/" class="link-title">kubernetes</a> <span class="title" style="display:none;">kubernetes</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4></h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/docker/" class="nav-link">docker</a></li><li class="dropdown-subitem"><a href="/kubernetes/basic/" class="nav-link">kubernetes</a></li><li class="dropdown-subitem"><a href="/kubernetes/case/" class="nav-link">案例</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="云原生" class="dropdown-title"><a href="/cloud-native/" class="link-title router-link-active">云原生</a> <span class="title" style="display:none;">云原生</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>微服务治理</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/cloud-native/envoy/" class="nav-link router-link-active">Envoy</a></li><li class="dropdown-subitem"><a href="/cloud-native/istio/" class="nav-link">Istio</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="索引" class="dropdown-title"><a href="/archives/" class="link-title">索引</a> <span class="title" style="display:none;">索引</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>本站</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/categories/" class="nav-link">分类</a></li><li class="dropdown-subitem"><a href="/tags/" class="nav-link">标签</a></li><li class="dropdown-subitem"><a href="/archives/" class="nav-link">归档</a></li></ul></li><li class="dropdown-item"><h4>我的</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="http://www.pgoops.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  运维平台[Py]
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-subitem"><a href="https://www.yanshicheng.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  运维平台[Go]
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-subitem"><a href="https://docks.yanshicheng.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  运维知识库[Go]
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-subitem"><a href="https://coder.yanshicheng.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  开发知识库[Go]
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></li></ul></div></div><div class="nav-item"><a href="/message-area/" class="nav-link">留言区</a></div> <a href="https://github.com/yanshicheng/yanshicheng.github.io" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar-hover-trigger"></div> <aside class="sidebar" style="display:none;"><div class="blogger"><img src="https://wiki-images.yanshicheng.com/static/202407281359303.jpg"> <div class="blogger-info"><h3>YanShicheng</h3> <span>SRE运维知识库！</span></div></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="linux" class="dropdown-title"><a href="/linux/" class="link-title">linux</a> <span class="title" style="display:none;">linux</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>基础</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/linux/basic/" class="nav-link">基础</a></li><li class="dropdown-subitem"><a href="/linux/iptables/" class="nav-link">防火墙</a></li></ul></li><li class="dropdown-item"><h4>web</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/linux/nginx/" class="nav-link">nginx</a></li><li class="dropdown-subitem"><a href="/linux/tomcat/" class="nav-link">tomcat</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="devops" class="dropdown-title"><a href="/devops/" class="link-title">devops</a> <span class="title" style="display:none;">devops</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4></h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/devops/gitlab/" class="nav-link">Gitlab</a></li><li class="dropdown-subitem"><a href="/devops/sonar/" class="nav-link">Sonar</a></li><li class="dropdown-subitem"><a href="/devops/nexus/" class="nav-link">Nexus</a></li><li class="dropdown-subitem"><a href="/devops/jenkins/" class="nav-link">Jenkins</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数据库" class="dropdown-title"><a href="/database/" class="link-title">数据库</a> <span class="title" style="display:none;">数据库</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>SQL 数据库</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/database/mysql/" class="nav-link">MySQL</a></li></ul></li><li class="dropdown-item"><h4>NoSQL 数据库</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/database/redis/" class="nav-link">Redis</a></li><li class="dropdown-subitem"><a href="/database/mongodb/" class="nav-link">MongoDB</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="监控日志" class="dropdown-title"><a href="/monitoring-logging/" class="link-title">监控日志</a> <span class="title" style="display:none;">监控日志</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>监控</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/monitoring-logging/prometheus/" class="nav-link">Prometheus</a></li><li class="dropdown-subitem"><a href="/monitoring-logging/grafana/" class="nav-link">Grafana</a></li><li class="dropdown-subitem"><a href="/monitoring-logging/alertmanager/" class="nav-link">AlertManager</a></li></ul></li><li class="dropdown-item"><h4>日志</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/monitoring-logging/elk/" class="nav-link">ELK</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="kubernetes" class="dropdown-title"><a href="/kubernetes/" class="link-title">kubernetes</a> <span class="title" style="display:none;">kubernetes</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4></h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/docker/" class="nav-link">docker</a></li><li class="dropdown-subitem"><a href="/kubernetes/basic/" class="nav-link">kubernetes</a></li><li class="dropdown-subitem"><a href="/kubernetes/case/" class="nav-link">案例</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="云原生" class="dropdown-title"><a href="/cloud-native/" class="link-title router-link-active">云原生</a> <span class="title" style="display:none;">云原生</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>微服务治理</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/cloud-native/envoy/" class="nav-link router-link-active">Envoy</a></li><li class="dropdown-subitem"><a href="/cloud-native/istio/" class="nav-link">Istio</a></li></ul></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="索引" class="dropdown-title"><a href="/archives/" class="link-title">索引</a> <span class="title" style="display:none;">索引</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>本站</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/categories/" class="nav-link">分类</a></li><li class="dropdown-subitem"><a href="/tags/" class="nav-link">标签</a></li><li class="dropdown-subitem"><a href="/archives/" class="nav-link">归档</a></li></ul></li><li class="dropdown-item"><h4>我的</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="http://www.pgoops.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  运维平台[Py]
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-subitem"><a href="https://www.yanshicheng.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  运维平台[Go]
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-subitem"><a href="https://docks.yanshicheng.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  运维知识库[Go]
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-subitem"><a href="https://coder.yanshicheng.com/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  开发知识库[Go]
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></li></ul></div></div><div class="nav-item"><a href="/message-area/" class="nav-link">留言区</a></div> <a href="https://github.com/yanshicheng/yanshicheng.github.io" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>envoy</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/cloud-native/envoy/" aria-current="page" class="sidebar-link">envoy</a></li><li><a href="/cloud-native/envoy/20240804001635/" class="sidebar-link">test</a></li><li><a href="/cloud-native/envoy/20240804001641/" class="sidebar-link">test</a></li><li><a href="/cloud-native/envoy/20240804001649/" class="sidebar-link">test</a></li><li><a href="/cloud-native/envoy/20240804001656/" class="sidebar-link">test</a></li><li><a href="/cloud-native/envoy/20240804001703/" class="sidebar-link">test</a></li><li><a href="/cloud-native/envoy/20240804001722/" class="sidebar-link">test</a></li><li><a href="/cloud-native/envoy/20240804001732/" class="sidebar-link">test</a></li><li><a href="/cloud-native/envoy/20240801150921/" class="sidebar-link">HTTP 路由配置基础</a></li><li><a href="/cloud-native/envoy/20240803202950/" aria-current="page" class="active sidebar-link">流量高级治理</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level2"><a href="/cloud-native/envoy/20240803202950/#流量迁移" class="sidebar-link">流量迁移</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level3"><a href="/cloud-native/envoy/20240803202950/#envoy-配置文件" class="sidebar-link">envoy 配置文件</a></li><li class="sidebar-sub-header level3"><a href="/cloud-native/envoy/20240803202950/#docker-compose" class="sidebar-link">docker-compose</a></li><li class="sidebar-sub-header level3"><a href="/cloud-native/envoy/20240803202950/#测试逻辑" class="sidebar-link">测试逻辑</a></li></ul></li><li class="sidebar-sub-header level2"><a href="/cloud-native/envoy/20240803202950/#流量分割" class="sidebar-link">流量分割</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level3"><a href="/cloud-native/envoy/20240803202950/#envoy-配置文件-2" class="sidebar-link">envoy 配置文件</a></li><li class="sidebar-sub-header level3"><a href="/cloud-native/envoy/20240803202950/#docker-compose-2" class="sidebar-link">docker-compose</a></li><li class="sidebar-sub-header level3"><a href="/cloud-native/envoy/20240803202950/#测试逻辑-2" class="sidebar-link">测试逻辑</a></li></ul></li><li class="sidebar-sub-header level2"><a href="/cloud-native/envoy/20240803202950/#流量镜像" class="sidebar-link">流量镜像</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header level3"><a href="/cloud-native/envoy/20240803202950/#核心应用场景" class="sidebar-link">核心应用场景</a></li><li class="sidebar-sub-header level4"><a href="/cloud-native/envoy/20240803202950/#生产环境验证" class="sidebar-link">生产环境验证</a></li><li class="sidebar-sub-header level4"><a href="/cloud-native/envoy/20240803202950/#a-b-测试" class="sidebar-link">A/B 测试</a></li><li class="sidebar-sub-header level4"><a href="/cloud-native/envoy/20240803202950/#性能基准测试" class="sidebar-link">性能基准测试</a></li><li class="sidebar-sub-header level4"><a href="/cloud-native/envoy/20240803202950/#安全审计与威胁检测" class="sidebar-link">安全审计与威胁检测</a></li><li class="sidebar-sub-header level4"><a href="/cloud-native/envoy/20240803202950/#灰度发布-金丝雀发布" class="sidebar-link">灰度发布 &amp; 金丝雀发布</a></li><li class="sidebar-sub-header level4"><a href="/cloud-native/envoy/20240803202950/#机器学习模型优化" class="sidebar-link">机器学习模型优化</a></li><li class="sidebar-sub-header level4"><a href="/cloud-native/envoy/20240803202950/#隔离测试数据库" class="sidebar-link">隔离测试数据库</a></li><li class="sidebar-sub-header level3"><a href="/cloud-native/envoy/20240803202950/#测试逻辑-3" class="sidebar-link">测试逻辑</a></li></ul></li></ul></li><li><a href="/cloud-native/envoy/20240804001357/" class="sidebar-link">服务韧性-混沌工程</a></li><li><a href="/cloud-native/envoy/20240801/" class="sidebar-link">xxxx</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>istio</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper "><div class="articleInfo-wrap" data-v-06225672><div class="articleInfo" data-v-06225672><ul class="breadcrumbs" data-v-06225672><li data-v-06225672><a href="/" title="首页" class="iconfont icon-home router-link-active" data-v-06225672></a></li> <li data-v-06225672><a href="/categories/?category=cloud-native" title="分类" data-v-06225672>cloud-native</a></li><li data-v-06225672><a href="/categories/?category=envoy" title="分类" data-v-06225672>envoy</a></li></ul> <div class="info" data-v-06225672><div title="作者" class="author iconfont icon-touxiang" data-v-06225672><a href="javascript:;" data-v-06225672>Yan Shicheng</a></div> <div title="创建时间" class="date iconfont icon-riqi" data-v-06225672><a href="javascript:;" data-v-06225672>2024-08-03</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-title">目录</div> <div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABH1JREFUSA3tVl1oHFUUPmdmd2ltklqbpJDiNnXFmgbFktho7YMPNiJSSZM0+CAYSkUELVhM6YuwIPpgoOKDqOBDC0XE2CQoNtQXBUFTTcCi+Wlh1V2TQExsUzcltd3M9Tt3ZjZzZ2fT+OJTL8yeM+eee757fmeJbq//KQL8X3DUSFOcfr7cRsRtxNQMWueeVzOkaITIGqQHNg5y8+jNW9ldM7A6nTpAjuolUikAwq7CE3WcM2RRDz+XGVgN3FptU/aUSlvq9Pa3iZ1+sgAqJyyAFqkipd9dqiwHF3P65YycLWc/6sqGrvoEoIp6DOFaX5h6+dnfjkWprwqsPk0dUGq5vySwDImC10KxFHgGL1SWoc92O3eVht09qdXNH11I2SsTsJYqMWzihqGMi+A+Garf3BAuuLI5oGlULyNfyB/HYNujwktOfRrMr5t77NmevqaUopx0grnKAyvVpmwUDB4x6FPXuGvYLTDwWsejwgtgkYKPqRJg8SV6xaiZ3ZTppGneS4yfH5/66fZSDHv+QZci/+h5c5UHtpy67JUqGppM0sh0Nc1dW6/N1W5Yoqat8/TU/VnadmdeW2PLLSyh0cvxBs3KbqTmwYPpxN4do/mzE8nEpvX/UMu2Wbp74zUAK5q6WkHns7V0eWkdPbPzd3rxkTGybadYySumVzhcaJFbs5UrEkQ/+CK8gF5dnh/6ciIZ73gwQ927L1IitoxKLXYP3SjYdOrHHfTZhRRlFyrorafPk20B3HPD1y2G3qKZME5Jcf3t/HUC13/8tSd++vqFveMUTwAUxSUFI1QekR1+bIze3D9MF2aq6cPvG72CgnldWCFqyRw3lwH8ZMerjTD9ElRO7Gv44wNpC90aASqGfVlz/Rx17srQ57/UU26hkhQqUB7dBR71WmzQhHUnblGmVOEw0jhbV1n9OlXUDCIRGaNV5Jp43N516fN7JmnTHdfp7Hgy0luO4aMhtkLL8Bi3bUWYvzh5Mn1dTxrL6QmGuRhGL/TiTTxRoEdTszSaq9GR0NGA3KdkOz3hqSV3MIDhQ5IVX/Ivx3umBti2es2h4eZby7x8br1rkf7Mo90AqC8aQ3sJeNzqFRu+vSANAQe3PL7l0HGOAdwDCeZYvNKeoZp1Qfs6Aipndh86HmFRi0LAnEO47wsqM6cdfjh3jBPUzhZy7nvlUfFsamED1VQt6aISHVymXZ/B2aCtIG8AI8xfobj2d3en1wWVhOeHELKmLQ1s211s88comkv4UCwWyF787mJdYXtNfhKAXVqnKTq8QZvGAGGOfaTo5pGZ/PwbUCr5+DPr/1J92JNHr9aOl/F3iI5+O1nfybsGxoimvZ3ViWSluDITw3P37mypheDIPY0tw7+O/5ApbkYw+zpfaUVu32Pi98+defdUhEpZkRFq0aqyNh9FuL9hpYbEm6iwi0z2REd09ZmyENEbuhjDWzKvZXTqKYaBIr3tt5kuPtQBZFvEUwHt60vfCNu41XsksH9Ij1BMMz1Y0OOunHNShFIP5868g5zeXmuLwL9T4b6Q2+KejgAAAABJRU5ErkJggg==">流量高级治理<!----></h1> <!----> <div class="theme-vdoing-content content__default"><h2 id="流量迁移"><a href="#流量迁移" class="header-anchor">#</a> 流量迁移</h2> <p>通过在路由中配置运行时对象选择特定路由以及响应集群的概率的变动，从而实现降虚拟主机中特定路由的流量逐渐从一个集群迁移到另一个集群。
+在路由匹配方面，envoy 在检测到第一个匹配时终止后续检测，因而，流量迁移应该如下配置</p> <ul><li>配置两个适用相同的match条件的路由条目</li> <li>在第一个路由条目中配置 runtime_fraction 对象，并设定其流量比例。</li> <li>改流量比例之外的请求将由第二条路由接收
+用户可以不断通过 Envoy 的 admin 接口修改 runtime_fraction 对象的值完成流量迁移。
+<code>curl -X POST http://envoy_ip:port/runtime_modify?key1=val1&amp;key2=val2</code></li></ul> <h3 id="envoy-配置文件"><a href="#envoy-配置文件" class="header-anchor">#</a> envoy 配置文件</h3> <div class="language-yaml line-numbers-mode"><pre class="language-yaml"><code><span class="token key atrule">admin</span><span class="token punctuation">:</span>
+  <span class="token key atrule">profile_path</span><span class="token punctuation">:</span> /tmp/envoy.prof  <span class="token comment"># 设置 Envoy 管理接口的性能分析文件路径，用于存储性能分析数据</span>
+  <span class="token key atrule">access_log_path</span><span class="token punctuation">:</span> /dev/stdout   <span class="token comment"># 设置 Envoy 管理接口的访问日志路径，这里设置为标准输出</span>
+  <span class="token key atrule">address</span><span class="token punctuation">:</span>
+    <span class="token key atrule">socket_address</span><span class="token punctuation">:</span>
+      <span class="token key atrule">address</span><span class="token punctuation">:</span> 0.0.0.0           <span class="token comment"># 设置管理接口的监听地址，0.0.0.0 表示监听所有网络接口</span>
+      <span class="token key atrule">port_value</span><span class="token punctuation">:</span> <span class="token number">9901</span>           <span class="token comment"># 管理接口的监听端口号，这里设置为 9901</span>
+
+<span class="token key atrule">layered_runtime</span><span class="token punctuation">:</span>
+  <span class="token key atrule">layers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> admin
+    <span class="token key atrule">admin_layer</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>              <span class="token comment"># 管理层的运行时配置，可以通过此层动态更新配置，便于管理</span>
+
+<span class="token key atrule">static_resources</span><span class="token punctuation">:</span>
+  <span class="token key atrule">listeners</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> listener_0
+    <span class="token key atrule">address</span><span class="token punctuation">:</span>
+      <span class="token key atrule">socket_address</span><span class="token punctuation">:</span>
+        <span class="token key atrule">address</span><span class="token punctuation">:</span> 0.0.0.0         <span class="token comment"># 设置监听器的监听地址，0.0.0.0 表示监听所有网络接口</span>
+        <span class="token key atrule">port_value</span><span class="token punctuation">:</span> <span class="token number">80</span>           <span class="token comment"># 监听器的端口号，这里设置为 80，表示 HTTP 默认端口</span>
+    <span class="token key atrule">filter_chains</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">filters</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> envoy.filters.network.http_connection_manager
+        <span class="token key atrule">typed_config</span><span class="token punctuation">:</span>
+          <span class="token key atrule">&quot;@type&quot;</span><span class="token punctuation">:</span> type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager
+          <span class="token key atrule">stat_prefix</span><span class="token punctuation">:</span> ingress_http     <span class="token comment"># 设置统计前缀，用于标识该 HTTP 连接管理器的统计信息</span>
+          <span class="token key atrule">codec_type</span><span class="token punctuation">:</span> AUTO              <span class="token comment"># 自动选择 HTTP 编解码类型，可以是 HTTP1 或 HTTP2</span>
+          <span class="token key atrule">route_config</span><span class="token punctuation">:</span>
+            <span class="token key atrule">name</span><span class="token punctuation">:</span> local_route           <span class="token comment"># 路由配置的名称</span>
+            <span class="token key atrule">virtual_hosts</span><span class="token punctuation">:</span>
+            <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> backendApp          <span class="token comment"># 虚拟主机的名称</span>
+              <span class="token key atrule">domains</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;*&quot;</span><span class="token punctuation">]</span>            <span class="token comment"># 该虚拟主机匹配的域名，* 表示匹配所有域名</span>
+              <span class="token key atrule">routes</span><span class="token punctuation">:</span>
+              <span class="token punctuation">-</span> <span class="token key atrule">match</span><span class="token punctuation">:</span>
+                  <span class="token key atrule">prefix</span><span class="token punctuation">:</span> <span class="token string">&quot;/&quot;</span>           <span class="token comment"># 路由匹配的前缀路径，这里匹配所有路径</span>
+                  <span class="token key atrule">runtime_fraction</span><span class="token punctuation">:</span>
+                    <span class="token key atrule">default_value</span><span class="token punctuation">:</span>
+                      <span class="token key atrule">numerator</span><span class="token punctuation">:</span> <span class="token number">100</span>    <span class="token comment"># 默认百分比值，100 表示 100%</span>
+                      <span class="token key atrule">denominator</span><span class="token punctuation">:</span> HUNDRED
+                    <span class="token key atrule">runtime_key</span><span class="token punctuation">:</span> <span class="token string">&quot;backendApp.runtime_fraction&quot;</span>  <span class="token comment"># 运行时控制的键值，用于动态调整百分比</span>
+                    <span class="token comment"># runtime_fraction 用于动态控制流量的分配。可以在运行时通过管理接口</span>
+                    <span class="token comment"># 动态调整该键值，以便在两个不同的路由之间分配流量。这里的配置表示默认情况下</span>
+                    <span class="token comment"># 将 100% 的流量路由到 backendApp-v10 集群，0% 的流量路由到 backendApp-v20 集群。</span>
+                <span class="token key atrule">route</span><span class="token punctuation">:</span>
+                  <span class="token key atrule">cluster</span><span class="token punctuation">:</span> backendApp<span class="token punctuation">-</span>v10 <span class="token comment"># 当 runtime_fraction 的值为 100% 时，路由到 backendApp-v10 集群</span>
+              <span class="token punctuation">-</span> <span class="token key atrule">match</span><span class="token punctuation">:</span>
+                  <span class="token key atrule">prefix</span><span class="token punctuation">:</span> <span class="token string">&quot;/&quot;</span>           <span class="token comment"># 匹配所有路径</span>
+                <span class="token key atrule">route</span><span class="token punctuation">:</span>
+                  <span class="token key atrule">cluster</span><span class="token punctuation">:</span> backendApp<span class="token punctuation">-</span>v20 <span class="token comment"># 其余情况下，路由到 backendApp-v20 集群</span>
+          <span class="token key atrule">http_filters</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> envoy.filters.http.router
+            <span class="token key atrule">typed_config</span><span class="token punctuation">:</span>
+              <span class="token key atrule">&quot;@type&quot;</span><span class="token punctuation">:</span> type.googleapis.com/envoy.extensions.filters.http.router.v3.Router <span class="token comment"># 配置 HTTP 路由过滤器</span>
+
+  <span class="token key atrule">clusters</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> backendApp<span class="token punctuation">-</span>v10
+    <span class="token key atrule">connect_timeout</span><span class="token punctuation">:</span> 0.25s       <span class="token comment"># 设置连接超时时间为 0.25 秒</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> STRICT_DNS             <span class="token comment"># 集群类型为 STRICT_DNS，严格的 DNS 模式，会动态解析 DNS 并更新端点</span>
+    <span class="token key atrule">lb_policy</span><span class="token punctuation">:</span> ROUND_ROBIN       <span class="token comment"># 负载均衡策略为 ROUND_ROBIN，轮询方式分配请求</span>
+    <span class="token key atrule">load_assignment</span><span class="token punctuation">:</span>
+      <span class="token key atrule">cluster_name</span><span class="token punctuation">:</span> backendApp<span class="token punctuation">-</span>v10 <span class="token comment"># 负载分配集群的名称</span>
+      <span class="token key atrule">endpoints</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">lb_endpoints</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">endpoint</span><span class="token punctuation">:</span>
+            <span class="token key atrule">address</span><span class="token punctuation">:</span>
+              <span class="token key atrule">socket_address</span><span class="token punctuation">:</span>
+                <span class="token key atrule">address</span><span class="token punctuation">:</span> 172.31.1.11 <span class="token comment"># 后端服务的 IP 地址</span>
+                <span class="token key atrule">port_value</span><span class="token punctuation">:</span> <span class="token number">8080</span>     <span class="token comment"># 后端服务的端口号</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> backendApp<span class="token punctuation">-</span>v20
+    <span class="token key atrule">connect_timeout</span><span class="token punctuation">:</span> 0.25s       <span class="token comment"># 设置连接超时时间为 0.25 秒</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> STRICT_DNS             <span class="token comment"># 集群类型为 STRICT_DNS，严格的 DNS 模式，会动态解析 DNS 并更新端点</span>
+    <span class="token key atrule">lb_policy</span><span class="token punctuation">:</span> ROUND_ROBIN       <span class="token comment"># 负载均衡策略为 ROUND_ROBIN，轮询方式分配请求</span>
+    <span class="token key atrule">load_assignment</span><span class="token punctuation">:</span>
+      <span class="token key atrule">cluster_name</span><span class="token punctuation">:</span> backendApp<span class="token punctuation">-</span>v20 <span class="token comment"># 负载分配集群的名称</span>
+      <span class="token key atrule">endpoints</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">lb_endpoints</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">endpoint</span><span class="token punctuation">:</span>
+            <span class="token key atrule">address</span><span class="token punctuation">:</span>
+              <span class="token key atrule">socket_address</span><span class="token punctuation">:</span>
+                <span class="token key atrule">address</span><span class="token punctuation">:</span> 172.31.1.12 <span class="token comment"># 后端服务的 IP 地址</span>
+                <span class="token key atrule">port_value</span><span class="token punctuation">:</span> <span class="token number">8080</span>     <span class="token comment"># 后端服务的端口号</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br></div></div><h3 id="docker-compose"><a href="#docker-compose" class="header-anchor">#</a> docker-compose</h3> <div class="language-yaml line-numbers-mode"><pre class="language-yaml"><code><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'3.3'</span>
+
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">client</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> harbor.ikubeops.local/public/network<span class="token punctuation">-</span>multitool<span class="token punctuation">:</span>latest
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'/bin/bash'</span><span class="token punctuation">,</span> <span class="token string">'-c'</span><span class="token punctuation">,</span> <span class="token string">'sleep INFINITE'</span><span class="token punctuation">]</span>
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token key atrule">envoymesh</span><span class="token punctuation">:</span>
+        <span class="token key atrule">ipv4_address</span><span class="token punctuation">:</span> 172.31.1.100
+        <span class="token key atrule">aliases</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> client
+    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> webserver01
+      <span class="token punctuation">-</span> webserver02
+      <span class="token punctuation">-</span> envoy
+  <span class="token key atrule">envoy</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> m.daocloud.io/docker.io/envoyproxy/envoy<span class="token punctuation">:</span>v1.30.2
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> ./envoy.yaml<span class="token punctuation">:</span>/etc/envoy/envoy.yaml
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> ENVOY_UID=0
+      <span class="token punctuation">-</span> ENVOY_GID=0
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token key atrule">envoymesh</span><span class="token punctuation">:</span>
+        <span class="token key atrule">ipv4_address</span><span class="token punctuation">:</span> 172.31.1.10
+        <span class="token key atrule">aliases</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> front<span class="token punctuation">-</span>proxy
+    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> webserver01
+      <span class="token punctuation">-</span> webserver02
+  <span class="token key atrule">webserver01</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> harbor.ikubeops.local/public/sample<span class="token punctuation">-</span>backend<span class="token punctuation">:</span>v3.0
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> WEB_ADDR=0.0.0.0
+      <span class="token punctuation">-</span> WEB_PORT=8080
+      <span class="token punctuation">-</span> WEB_VERSION=v10
+      <span class="token punctuation">-</span> WEB_NAME=backend<span class="token punctuation">-</span>v10
+    <span class="token key atrule">hostname</span><span class="token punctuation">:</span> webserver01
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token key atrule">envoymesh</span><span class="token punctuation">:</span>
+        <span class="token key atrule">ipv4_address</span><span class="token punctuation">:</span> 172.31.1.11
+        <span class="token key atrule">aliases</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> webserver01
+  <span class="token key atrule">webserver02</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> harbor.ikubeops.local/public/sample<span class="token punctuation">-</span>backend<span class="token punctuation">:</span>v3.0
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> WEB_ADDR=0.0.0.0
+      <span class="token punctuation">-</span> WEB_PORT=8080
+      <span class="token punctuation">-</span> WEB_VERSION=v20
+      <span class="token punctuation">-</span> WEB_NAME=backend<span class="token punctuation">-</span>v20
+    <span class="token key atrule">hostname</span><span class="token punctuation">:</span> webserver02
+    <span class="token key atrule">networks</span><span class="token punctuation">:</span>
+      <span class="token key atrule">envoymesh</span><span class="token punctuation">:</span>
+        <span class="token key atrule">ipv4_address</span><span class="token punctuation">:</span> 172.31.1.12
+        <span class="token key atrule">aliases</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> webserver02
+<span class="token key atrule">networks</span><span class="token punctuation">:</span>
+  <span class="token key atrule">envoymesh</span><span class="token punctuation">:</span>
+    <span class="token key atrule">driver</span><span class="token punctuation">:</span> bridge
+    <span class="token key atrule">ipam</span><span class="token punctuation">:</span>
+      <span class="token key atrule">config</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">subnet</span><span class="token punctuation">:</span> 172.31.1.0/24
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br></div></div><h3 id="测试逻辑"><a href="#测试逻辑" class="header-anchor">#</a> 测试逻辑</h3> <p>定义两个后端集群，分别为 V10 和 V20 通过 admin 修改 阈值控制流量比例。
+一个终端模拟请求，另一个进行修改参数
+模拟请求</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>❯ <span class="token function">docker</span> <span class="token builtin class-name">exec</span> <span class="token parameter variable">-it</span>  01-traffic-shifting-client-1 <span class="token function">bash</span>
+bash-5.1<span class="token comment"># while true;do curl 172.31.1.10/ss &amp;&amp; sleep  1; done</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>修改阈值如下</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>❯ <span class="token function">docker</span> <span class="token builtin class-name">exec</span> <span class="token parameter variable">-it</span>  01-traffic-shifting-client-1 <span class="token function">bash</span>
+bash-5.1<span class="token comment"># curl 172.31.1.10:9901/runtime</span>
+<span class="token punctuation">{</span>
+ <span class="token string">&quot;layers&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+  <span class="token string">&quot;admin&quot;</span>
+ <span class="token punctuation">]</span>,
+ <span class="token string">&quot;entries&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+bash-5.1<span class="token comment"># curl -X POST 172.31.1.10:9901/runtime_modify?backendApp.runtime_fraction=95</span>
+OK
+bash-5.1<span class="token comment"># curl 172.31.1.10:9901/runtime</span>
+<span class="token punctuation">{</span>
+ <span class="token string">&quot;layers&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+  <span class="token string">&quot;admin&quot;</span>
+ <span class="token punctuation">]</span>,
+ <span class="token string">&quot;entries&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+  <span class="token string">&quot;backendApp.runtime_fraction&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+   <span class="token string">&quot;final_value&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;95&quot;</span>,
+   <span class="token string">&quot;layer_values&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+    <span class="token string">&quot;95&quot;</span>
+   <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+bash-5.1<span class="token comment"># curl -X POST 172.31.1.10:9901/runtime_modify?backendApp.runtime_fraction=30</span>
+OK
+bash-5.1<span class="token comment"># curl 172.31.1.10:9901/runtime</span>
+<span class="token punctuation">{</span>
+ <span class="token string">&quot;entries&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+  <span class="token string">&quot;backendApp.runtime_fraction&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+   <span class="token string">&quot;layer_values&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+    <span class="token string">&quot;30&quot;</span>
+   <span class="token punctuation">]</span>,
+   <span class="token string">&quot;final_value&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;30&quot;</span>
+  <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>,
+ <span class="token string">&quot;layers&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+  <span class="token string">&quot;admin&quot;</span>
+ <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br></div></div><h2 id="流量分割"><a href="#流量分割" class="header-anchor">#</a> 流量分割</h2> <p>HTTP route 过滤器支持在一个路由中指定多个上游具有权重属性的集群，而后将流量基于权重调度值此些集群其中之一。
+类似流量迁移，流量分割中，分配给每个集群的权重也可以使用运行时参数进行调整。</p> <h3 id="envoy-配置文件-2"><a href="#envoy-配置文件-2" class="header-anchor">#</a> envoy 配置文件</h3> <div class="language-yaml line-numbers-mode"><pre class="language-yaml"><code><span class="token key atrule">admin</span><span class="token punctuation">:</span>
+  <span class="token key atrule">profile_path</span><span class="token punctuation">:</span> /tmp/envoy.prof  <span class="token comment"># 设置 Envoy 管理接口的性能分析文件路径，用于存储性能分析数据</span>
+  <span class="token key atrule">access_log_path</span><span class="token punctuation">:</span> /dev/stdout   <span class="token comment"># 设置 Envoy 管理接口的访问日志路径，这里设置为标准输出</span>
+  <span class="token key atrule">address</span><span class="token punctuation">:</span>
+    <span class="token key atrule">socket_address</span><span class="token punctuation">:</span>
+      <span class="token key atrule">address</span><span class="token punctuation">:</span> 0.0.0.0           <span class="token comment"># 设置管理接口的监听地址，0.0.0.0 表示监听所有网络接口</span>
+      <span class="token key atrule">port_value</span><span class="token punctuation">:</span> <span class="token number">9901</span>           <span class="token comment"># 管理接口的监听端口号，这里设置为 9901</span>
+
+<span class="token key atrule">layered_runtime</span><span class="token punctuation">:</span>
+  <span class="token key atrule">layers</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> admin
+    <span class="token key atrule">admin_layer</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>              <span class="token comment"># 管理层的运行时配置，可以通过此层动态更新配置，便于管理</span>
+
+<span class="token key atrule">static_resources</span><span class="token punctuation">:</span>
+  <span class="token key atrule">listeners</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> listener_0
+    <span class="token key atrule">address</span><span class="token punctuation">:</span>
+      <span class="token key atrule">socket_address</span><span class="token punctuation">:</span>
+        <span class="token key atrule">address</span><span class="token punctuation">:</span> 0.0.0.0         <span class="token comment"># 设置监听器的监听地址，0.0.0.0 表示监听所有网络接口</span>
+        <span class="token key atrule">port_value</span><span class="token punctuation">:</span> <span class="token number">80</span>           <span class="token comment"># 监听器的端口号，这里设置为 80，表示 HTTP 默认端口</span>
+    <span class="token key atrule">filter_chains</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">filters</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> envoy.filters.network.http_connection_manager
+        <span class="token key atrule">typed_config</span><span class="token punctuation">:</span>
+          <span class="token key atrule">&quot;@type&quot;</span><span class="token punctuation">:</span> type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager
+          <span class="token key atrule">stat_prefix</span><span class="token punctuation">:</span> ingress_http     <span class="token comment"># 设置统计前缀，用于标识该 HTTP 连接管理器的统计信息</span>
+          <span class="token key atrule">codec_type</span><span class="token punctuation">:</span> AUTO              <span class="token comment"># 自动选择 HTTP 编解码类型，可以是 HTTP1 或 HTTP2</span>
+          <span class="token key atrule">route_config</span><span class="token punctuation">:</span>
+            <span class="token key atrule">name</span><span class="token punctuation">:</span> local_route           <span class="token comment"># 路由配置的名称</span>
+            <span class="token key atrule">virtual_hosts</span><span class="token punctuation">:</span>
+            <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> backend_app         <span class="token comment"># 虚拟主机的名称</span>
+              <span class="token key atrule">domains</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">&quot;*&quot;</span><span class="token punctuation">]</span>            <span class="token comment"># 该虚拟主机匹配的域名，* 表示匹配所有域名</span>
+              <span class="token key atrule">routes</span><span class="token punctuation">:</span>
+              <span class="token punctuation">-</span> <span class="token key atrule">match</span><span class="token punctuation">:</span>
+                  <span class="token key atrule">prefix</span><span class="token punctuation">:</span> <span class="token string">&quot;/&quot;</span>           <span class="token comment"># 路由匹配的前缀路径，这里匹配所有路径</span>
+                <span class="token key atrule">route</span><span class="token punctuation">:</span>
+                  <span class="token key atrule">weighted_clusters</span><span class="token punctuation">:</span>     <span class="token comment"># 加权集群路由配置</span>
+                    <span class="token key atrule">clusters</span><span class="token punctuation">:</span>
+                    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> backend_app<span class="token punctuation">-</span>v10
+                      <span class="token key atrule">weight</span><span class="token punctuation">:</span> <span class="token number">100</span>        <span class="token comment"># 初始情况下将 100% 的流量分配给 backend_app-v10</span>
+                    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> backend_app<span class="token punctuation">-</span>v20
+                      <span class="token key atrule">weight</span><span class="token punctuation">:</span> <span class="token number">0</span>          <span class="token comment"># 初始情况下将 0% 的流量分配给 backend_app-v20</span>
+                    <span class="token key atrule">total_weight</span><span class="token punctuation">:</span> <span class="token number">100</span>    <span class="token comment"># 总权重为 100</span>
+                    <span class="token key atrule">runtime_key_prefix</span><span class="token punctuation">:</span> <span class="token string">&quot;routing.traffic_split.backend_app&quot;</span>  <span class="token comment"># 用于动态调整流量分配的运行时键前缀</span>
+          <span class="token key atrule">http_filters</span><span class="token punctuation">:</span>
+          <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> envoy.filters.http.router
+            <span class="token key atrule">typed_config</span><span class="token punctuation">:</span>
+              <span class="token key atrule">&quot;@type&quot;</span><span class="token punctuation">:</span> type.googleapis.com/envoy.extensions.filters.http.router.v3.Router <span class="token comment"># 配置 HTTP 路由过滤器</span>
+
+  <span class="token key atrule">clusters</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> backend_app<span class="token punctuation">-</span>v10
+    <span class="token key atrule">connect_timeout</span><span class="token punctuation">:</span> 0.25s       <span class="token comment"># 设置连接超时时间为 0.25 秒</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> STRICT_DNS             <span class="token comment"># 集群类型为 STRICT_DNS，严格的 DNS 模式，会动态解析 DNS 并更新端点</span>
+    <span class="token key atrule">lb_policy</span><span class="token punctuation">:</span> ROUND_ROBIN       <span class="token comment"># 负载均衡策略为 ROUND_ROBIN，轮询方式分配请求</span>
+    <span class="token key atrule">load_assignment</span><span class="token punctuation">:</span>
+      <span class="token key atrule">cluster_name</span><span class="token punctuation">:</span> backend_app<span class="token punctuation">-</span>v10 <span class="token comment"># 负载分配集群的名称</span>
+      <span class="token key atrule">endpoints</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">lb_endpoints</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">endpoint</span><span class="token punctuation">:</span>
+            <span class="token key atrule">address</span><span class="token punctuation">:</span>
+              <span class="token key atrule">socket_address</span><span class="token punctuation">:</span>
+                <span class="token key atrule">address</span><span class="token punctuation">:</span> 172.31.1.11 <span class="token comment"># 后端服务的 IP 地址</span>
+                <span class="token key atrule">port_value</span><span class="token punctuation">:</span> <span class="token number">8080</span>     <span class="token comment"># 后端服务的端口号</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> backend_app<span class="token punctuation">-</span>v20
+    <span class="token key atrule">connect_timeout</span><span class="token punctuation">:</span> 0.25s       <span class="token comment"># 设置连接超时时间为 0.25 秒</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> STRICT_DNS             <span class="token comment"># 集群类型为 STRICT_DNS，严格的 DNS 模式，会动态解析 DNS 并更新端点</span>
+    <span class="token key atrule">lb_policy</span><span class="token punctuation">:</span> ROUND_ROBIN       <span class="token comment"># 负载均衡策略为 ROUND_ROBIN，轮询方式分配请求</span>
+    <span class="token key atrule">load_assignment</span><span class="token punctuation">:</span>
+      <span class="token key atrule">cluster_name</span><span class="token punctuation">:</span> backend_app<span class="token punctuation">-</span>v20 <span class="token comment"># 负载分配集群的名称</span>
+      <span class="token key atrule">endpoints</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">lb_endpoints</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">endpoint</span><span class="token punctuation">:</span>
+            <span class="token key atrule">address</span><span class="token punctuation">:</span>
+              <span class="token key atrule">socket_address</span><span class="token punctuation">:</span>
+                <span class="token key atrule">address</span><span class="token punctuation">:</span> 172.31.1.12 <span class="token comment"># 后端服务的 IP 地址</span>
+                <span class="token key atrule">port_value</span><span class="token punctuation">:</span> <span class="token number">8080</span>     <span class="token comment"># 后端服务的端口号</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br></div></div><h3 id="docker-compose-2"><a href="#docker-compose-2" class="header-anchor">#</a> docker-compose</h3> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>version: <span class="token string">'3.3'</span>
+
+services:
+  client:
+    image: harbor.ikubeops.local/public/network-multitool:latest
+    command: <span class="token punctuation">[</span><span class="token string">'/bin/bash'</span>, <span class="token string">'-c'</span>, <span class="token string">'sleep INFINITE'</span><span class="token punctuation">]</span>
+    networks:
+      envoymesh:
+        ipv4_address: <span class="token number">172.31</span>.1.100
+        aliases:
+          - client
+    depends_on:
+      - webserver01
+      - webserver02
+      - envoy
+  envoy:
+    image: m.daocloud.io/docker.io/envoyproxy/envoy:v1.30.2
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml
+    environment:
+      - <span class="token assign-left variable">ENVOY_UID</span><span class="token operator">=</span><span class="token number">0</span>
+      - <span class="token assign-left variable">ENVOY_GID</span><span class="token operator">=</span><span class="token number">0</span>
+    networks:
+      envoymesh:
+        ipv4_address: <span class="token number">172.31</span>.1.10
+        aliases:
+          - front-proxy
+    depends_on:
+      - webserver01
+      - webserver02
+  webserver01:
+    image: harbor.ikubeops.local/public/sample-backend:v3.0
+    environment:
+      - <span class="token assign-left variable">WEB_ADDR</span><span class="token operator">=</span><span class="token number">0.0</span>.0.0
+      - <span class="token assign-left variable">WEB_PORT</span><span class="token operator">=</span><span class="token number">8080</span>
+      - <span class="token assign-left variable">WEB_VERSION</span><span class="token operator">=</span>v10
+      - <span class="token assign-left variable">WEB_NAME</span><span class="token operator">=</span>backend-v10
+    hostname: webserver01
+    networks:
+      envoymesh:
+        ipv4_address: <span class="token number">172.31</span>.1.11
+        aliases:
+          - webserver01
+  webserver02:
+    image: harbor.ikubeops.local/public/sample-backend:v3.0
+    environment:
+      - <span class="token assign-left variable">WEB_ADDR</span><span class="token operator">=</span><span class="token number">0.0</span>.0.0
+      - <span class="token assign-left variable">WEB_PORT</span><span class="token operator">=</span><span class="token number">8080</span>
+      - <span class="token assign-left variable">WEB_VERSION</span><span class="token operator">=</span>v20
+      - <span class="token assign-left variable">WEB_NAME</span><span class="token operator">=</span>backend-v20
+    hostname: webserver02
+    networks:
+      envoymesh:
+        ipv4_address: <span class="token number">172.31</span>.1.12
+        aliases:
+          - webserver02
+
+networks:
+  envoymesh:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: <span class="token number">172.31</span>.1.0/24
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br></div></div><h3 id="测试逻辑-2"><a href="#测试逻辑-2" class="header-anchor">#</a> 测试逻辑</h3> <p>定义两个后端集群，分别为 V10 和 V20 通过 admin 修改 阈值控制流量比例。
+一个终端模拟请求，另一个进行修改参数
+模拟请求](&lt;定义两个后端集群，分别为 V10 和 V20 通过 admin 修改 阈值控制流量比例。
+一个终端模拟请求，另一个进行修改参数
+模拟请求</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>❯ <span class="token function">docker</span> <span class="token builtin class-name">exec</span> <span class="token parameter variable">-it</span>  01-traffic-shifting-client-1 <span class="token function">bash</span>
+bash-5.1<span class="token comment"># while true;do curl 172.31.1.10/ss &amp;&amp; sleep  1; done</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>修改阈值如下</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>❯ <span class="token function">docker</span> <span class="token builtin class-name">exec</span> <span class="token parameter variable">-it</span>  02-traffic-weight-client-1 <span class="token function">bash</span>
+bash-5.1<span class="token comment"># curl 172.31.1.10:9901/runtime</span>
+<span class="token punctuation">{</span>
+ <span class="token string">&quot;entries&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>,
+ <span class="token string">&quot;layers&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+  <span class="token string">&quot;admin&quot;</span>
+ <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+bash-5.1<span class="token comment">#  curl -X POST '172.31.1.10:9901/runtime_modify?routing.traffic_split.backend_app.backend_app-v20=50&amp;routing.traffic_split.backend_app.backend_app-v10=50'</span>
+OK
+bash-5.1<span class="token comment"># curl 172.31.1.10:9901/runtime</span>
+<span class="token punctuation">{</span>
+ <span class="token string">&quot;entries&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+  <span class="token string">&quot;routing.traffic_split.backend_app.backend_app-v20&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+   <span class="token string">&quot;final_value&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;50&quot;</span>,
+   <span class="token string">&quot;layer_values&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+    <span class="token string">&quot;50&quot;</span>
+   <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>,
+  <span class="token string">&quot;routing.traffic_split.backend_app.backend_app-v10&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+   <span class="token string">&quot;layer_values&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+    <span class="token string">&quot;50&quot;</span>
+   <span class="token punctuation">]</span>,
+   <span class="token string">&quot;final_value&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;50&quot;</span>
+  <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>,
+ <span class="token string">&quot;layers&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+  <span class="token string">&quot;admin&quot;</span>
+ <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br></div></div><h2 id="流量镜像"><a href="#流量镜像" class="header-anchor">#</a> 流量镜像</h2> <p>Envoy 的流量镜像（Traffic Mirroring）是一种强大的功能，允许将入站或出站流量的副本发送到镜像集群，而不影响原始请求的处理。这种技术为测试、监控和分析提供了强大的工具。
+Envoy 的流量镜像功能为现代微服务架构提供了强大的工具，使开发团队能够在真实环境中安全地进行测试、分析和优化。通过合理应用这些最佳实践，可以显著提高系统的可靠性、性能和安全性，同时加速创新和问题解决的过程。</p> <h3 id="核心应用场景"><a href="#核心应用场景" class="header-anchor">#</a> 核心应用场景</h3> <h4 id="生产环境验证"><a href="#生产环境验证" class="header-anchor">#</a> 生产环境验证</h4> <p>在不影响用户的情况下，使用实际生产流量验证新版本或配置。</p> <ol><li>部署新版本到隔离环境</li> <li>配置 Envoy 将生产流量镜像到新环境</li> <li>逐步增加镜像流量比例（如 1% → 10% → 50% → 100%）</li> <li>比较新旧版本的性能指标和响应
+关键指标：</li></ol> <ul><li>响应时间差异</li> <li>错误率对比</li> <li>资源使用情况
+优势：</li> <li>真实流量测试，无需模拟数据</li> <li>零风险验证</li> <li>早期问题检测</li></ul> <h4 id="a-b-测试"><a href="#a-b-测试" class="header-anchor">#</a> A/B 测试</h4> <p>同时测试多个版本或配置，评估其性能和用户体验。
+实施步骤：</p> <ol><li>部署多个版本（A、B、C...）</li> <li>配置 Envoy 将流量按比例镜像到各版本</li> <li>收集和分析各版本的性能数据和用户反馈</li> <li>基于数据做出决策
+关键指标：</li></ol> <ul><li>用户参与度</li> <li>转化率</li> <li>性能指标（加载时间、响应时间）
+优势：</li> <li>数据驱动决策</li> <li>精确比较不同版本</li> <li>优化用户体验</li></ul> <h4 id="性能基准测试"><a href="#性能基准测试" class="header-anchor">#</a> 性能基准测试</h4> <p>使用镜像流量进行大规模性能测试，而不影响生产环境。
+实施步骤：</p> <ol><li>搭建独立的性能测试环境</li> <li>配置 Envoy 将全量或部分生产流量镜像到测试环境</li> <li>使用流量放大器增加负载</li> <li>监控和分析系统在高负载下的表现
+关键指标：</li></ol> <ul><li>吞吐量</li> <li>延迟</li> <li>资源利用率（CPU、内存、网络）</li> <li>错误率
+优势：</li> <li>真实流量模式</li> <li>安全进行极限测试</li> <li>识别性能瓶颈</li></ul> <h4 id="安全审计与威胁检测"><a href="#安全审计与威胁检测" class="header-anchor">#</a> 安全审计与威胁检测</h4> <p>将流量镜像到专门的安全分析系统，增强实时威胁检测能力。
+实施步骤：</p> <ol><li>部署专用的安全分析集群</li> <li>配置 Envoy 将流量镜像到该集群</li> <li>使用高级安全工具（如 IDS/IPS）分析镜像流量</li> <li>设置实时警报系统
+关键组件：</li></ol> <ul><li>入侵检测系统（IDS）</li> <li>异常行为检测器</li> <li>日志分析工具
+优势：</li> <li>不影响生产流量的深度安全分析</li> <li>实时威胁检测</li> <li>增强事件响应能力</li></ul> <h4 id="灰度发布-金丝雀发布"><a href="#灰度发布-金丝雀发布" class="header-anchor">#</a> 灰度发布 &amp; 金丝雀发布</h4> <p>结合流量镜像和流量分割，实现精确控制的灰度发布。
+实施步骤：</p> <ol><li>部署新版本</li> <li>配置 Envoy 将小比例实际流量路由到新版本</li> <li>同时将较大比例流量镜像到新版本进行全面分析</li> <li>基于分析结果逐步增加实际流量比例
+关键指标：</li></ol> <ul><li>错误率</li> <li>性能指标</li> <li>用户反馈
+优势：</li> <li>降低发布风险</li> <li>快速回滚能力</li> <li>全面验证新版本</li></ul> <h4 id="机器学习模型优化"><a href="#机器学习模型优化" class="header-anchor">#</a> 机器学习模型优化</h4> <p>利用镜像流量训练和优化机器学习模型，特别适用于推荐系统、反欺诈等场景。</p> <ol><li>部署模型训练环境</li> <li>配置 Envoy 将流量镜像到该环境</li> <li>使用镜像数据实时训练和更新模型</li> <li>比较新旧模型性能，并在适当时切换
+关键指标：</li></ol> <ul><li>模型准确率</li> <li>预测速度</li> <li>资源消耗
+优势：</li> <li>使用实时数据持续优化模型</li> <li>无需额外的数据收集过程</li> <li>快速适应变化的模式</li></ul> <h4 id="隔离测试数据库"><a href="#隔离测试数据库" class="header-anchor">#</a> 隔离测试数据库</h4> <p>在数据处理相关的业务中，隔离测试数据库是流量镜像的一个关键应用场景。这种方法的工作原理和优势如下：</p> <ol><li>设置独立的测试数据库：
+创建一个与生产数据库结构相同但内容为空的数据库。
+加载特定的测试数据集。</li> <li>镜像流量处理：
+将生产环境的流量镜像到测试环境。
+所有数据操作都在测试数据库上执行，不影响生产数据。
+优势：</li></ol> <ul><li>数据安全：避免了对生产数据的意外修改或泄露风险。</li> <li>灵活性：可以根据需要自由设置和修改测试数据。</li> <li>性能影响最小化：生产环境的性能不受测试操作的影响。
+实现方法：</li> <li>使用 Envoy 的流量镜像功能将请求复制到测试环境。</li> <li>在测试环境中配置应用程序使用专门的测试数据库。</li> <li>可以通过修改数据库连接配置或使用不同的环境变量来实现。
+注意事项：</li> <li>确保测试数据库的模式（schema）与生产数据库保持同步。</li> <li>定期更新测试数据，以反映生产环境的最新状态。</li> <li>监控镜像流量对测试数据库的影响，必要时调整资源配置。
+通过这种方式，开发团队可以在近乎真实的环境中进行测试，同时完全隔离生产数据，大大降低了测试过程中数据泄露或损坏的风险。这对于需要严格数据保护的应用，如金融系统或涉及个人隐私的应用，尤其重要。</li></ul> <h3 id="测试逻辑-3"><a href="#测试逻辑-3" class="header-anchor">#</a> 测试逻辑</h3> <p>定义两个后端集群，分别为 V10 和 V20 通过 admin 修改 阈值控制流量比例。
+一个终端模拟请求，另一个进行修改参数
+模拟请求](&lt;定义两个后端集群，分别为 V10 和 V20 通过 admin 修改 阈值控制流量比例。
+一个终端模拟请求，另一个进行修改参数
+模拟请求</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>❯ <span class="token function">docker</span> <span class="token builtin class-name">exec</span> <span class="token parameter variable">-it</span>  01-traffic-shifting-client-1 <span class="token function">bash</span>
+bash-5.1<span class="token comment"># while true;do curl 172.31.1.10/ss &amp;&amp; sleep  1; done</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>修改阈值如下</p> <div class="language-bash line-numbers-mode"><pre class="language-bash"><code>❯ <span class="token function">docker</span> <span class="token builtin class-name">exec</span> <span class="token parameter variable">-it</span>  03-traffic-mirror-client-1 <span class="token function">bash</span>
+bash-5.1<span class="token comment"># curl 172.31.1.10:9901/runtime</span>
+<span class="token punctuation">{</span>
+ <span class="token string">&quot;layers&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+  <span class="token string">&quot;admin&quot;</span>
+ <span class="token punctuation">]</span>,
+ <span class="token string">&quot;entries&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+bash-5.1<span class="token comment"># curl -X POST '172.31.1.10:9901/runtime_modify?&amp;routing.request_mirror.backend_app=100'</span>
+OK
+bash-5.1<span class="token comment"># curl 172.31.1.10:9901/runtime</span>
+<span class="token punctuation">{</span>
+ <span class="token string">&quot;layers&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+  <span class="token string">&quot;admin&quot;</span>
+ <span class="token punctuation">]</span>,
+ <span class="token string">&quot;entries&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+  <span class="token string">&quot;routing.request_mirror.backend_app&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+   <span class="token string">&quot;layer_values&quot;</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+    <span class="token string">&quot;100&quot;</span>
+   <span class="token punctuation">]</span>,
+   <span class="token string">&quot;final_value&quot;</span><span class="token builtin class-name">:</span> <span class="token string">&quot;100&quot;</span>
+  <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br></div></div><p>如下图已经进行了百分百的流量镜像
+<img src="https://wiki-images.yanshicheng.com/static/202408040010468.png" alt="image.png"></p></div></div> <!----> <div class="page-edit"><!----> <div class="tags"><a href="/tags/?tag=envoy" title="标签">#envoy</a></div> <div class="last-updated"><span class="prefix">更新时间:</span> <span class="time">2024/08/04, 03:25:04</span></div></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/cloud-native/envoy/20240801150921/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">HTTP 路由配置基础</div></a> <a href="/cloud-native/envoy/20240804001357/" class="page-nav-centre page-nav-centre-next"><div class="tooltip">服务韧性-混沌工程</div></a></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/cloud-native/envoy/20240801150921/" class="prev">HTTP 路由配置基础</a></span> <span class="next"><a href="/cloud-native/envoy/20240804001357/">服务韧性-混沌工程</a>→
+      </span></p></div></div></div> <div class="article-list"><div class="article-title"><a href="/archives/" class="iconfont icon-bi">最近更新</a></div> <div class="article-wrapper"><dl><dd>01</dd> <dt><a href="/cloud-native/envoy/20240804001732/"><div>
+            test
+            <!----></div></a> <span class="date">08-04</span></dt></dl><dl><dd>02</dd> <dt><a href="/cloud-native/envoy/20240804001722/"><div>
+            test
+            <!----></div></a> <span class="date">08-04</span></dt></dl><dl><dd>03</dd> <dt><a href="/cloud-native/envoy/20240804001703/"><div>
+            test
+            <!----></div></a> <span class="date">08-04</span></dt></dl> <dl><dd></dd> <dt><a href="/archives/" class="more">更多文章&gt;</a></dt></dl></div></div></main></div> <div class="footer"><div class="icons"><a href="https://github.com/yanshicheng" title="GitHub" target="_blank" class="iconfont icon-github"></a><a href="https://gitee.com/yanshicheng" title="Gitee" target="_blank" class="iconfont icon-gitee"></a><a href="https://www.yanshicheng.com" title="网站首页" target="_blank" class="iconfont icon-rss"></a><a href="https://www.yanshicheng.cn/?contact=true" title="联系我" target="_blank" class="iconfont icon-youjian"></a></div> 
+  Theme by
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> 
+    | Copyright © 2024-2024
+    <span>闫世成  | blog<br> <a href="http://beian.miit.gov.cn/" target="_blank">京ICP备16013810号</a></span></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">
+          跟随系统
+        </li><li class="iconfont icon-rijianmoshi">
+          浅色模式
+        </li><li class="iconfont icon-yejianmoshi">
+          深色模式
+        </li><li class="iconfont icon-yuedu">
+          阅读模式
+        </li></ul></div></div> <!----> <!----> <!----></div><div class="global-ui"><div></div><div></div><!----></div></div>
+    <script src="/assets/js/app.4d013cf5.js" defer></script><script src="/assets/js/2.3e576c84.js" defer></script><script src="/assets/js/49.e2afdb5b.js" defer></script><script src="/assets/js/15.2849772b.js" defer></script><script src="/assets/js/7.5f97d280.js" defer></script>
+  </body>
+</html>
