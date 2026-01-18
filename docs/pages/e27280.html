@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>周报模板 | Kube Nova</title>
+    
+    <meta name="generator" content="VitePress v1.6.3">
+    <link rel="preload stylesheet" href="/assets/style.BjF50OWa.css" as="style">
+    <link rel="preload stylesheet" href="/vp-icons.css" as="style">
+    <script type="module" src="/assets/chunks/metadata.4420ef6c.js"></script>
+    <script type="module" src="/assets/app.CcRPEFkw.js"></script>
+    <link rel="preload" href="/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/assets/chunks/theme.YuUBfByd.js">
+    <link rel="modulepreload" href="/assets/chunks/framework.DvFTVADX.js">
+    <link rel="modulepreload" href="/assets/pages_e27280.md.Cl1EP8qx.lean.js">
+    <link rel="icon" type="image/svg+xml" href="/kube-nova.svg">
+    <link rel="icon" type="image/png" href="/kube-nova.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh-CN">
+    <meta property="og:title" content="Kube Nova Wiki">
+    <meta property="og:site_name" content="Kube Nova">
+    <meta property="og:image" content="">
+    <meta property="og:url" content="">
+    <meta property="og:description" description="欢迎来到 kube-nova 使用文档,KubeNova 是一个企业级 Kubernetes 多集群管理平台,专为需要统一管理多个 Kubernetes 集群的企业和团队设计">
+    <meta name="description" description="欢迎来到 kube-nova 使用文档,KubeNova 是一个企业级 Kubernetes 多集群管理平台,专为需要统一管理多个 Kubernetes 集群的企业和团队设计">
+    <meta name="author" content="YanShicheng">
+    <meta name="keywords" description="欢迎来到 kube-nova 使用文档,KubeNova 是一个企业级 Kubernetes 多集群管理平台,专为需要统一管理多个 Kubernetes 集群的企业和团队设计">
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+  </head>
+  <body><!--teleport start anchor--><div style="display:none;" class="tk-spotlight-hover tk-spotlight-hover__aside" aria-hidden="true" focusable="false"></div><!--teleport anchor-->
+    <div id="app"><!--[--><!--v-if--><!--v-if--><!--v-if--><!--[--><!--v-if--><!----><!--v-if--><div class="tk-right-bottom-button tk-wallpaper-outside flx-column"><!--[--><!--]--><div title="返回顶部" class="tk-right-bottom-button__button back-top" style="--tk-progress:0;display:none;" role="button" aria-label="返回顶部" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"><span class="content">0</span></div><div title="前往评论" class="tk-right-bottom-button__button" role="button" aria-label="前往评论" style="display:none;"><i class="tk-icon" style="--icon-color-hover:var(--tk-theme-color);" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+    <path
+      fill="currentColor"
+      d="M273.536 736H800a64 64 0 0 0 64-64V256a64 64 0 0 0-64-64H224a64 64 0 0 0-64 64v570.88zM296 800 147.968 918.4A32 32 0 0 1 96 893.44V256a128 128 0 0 1 128-128h576a128 128 0 0 1 128 128v416a128 128 0 0 1-128 128z"
+    ></path>
+    <path
+      fill="currentColor"
+      d="M512 499.2a51.2 51.2 0 1 1 0-102.4 51.2 51.2 0 0 1 0 102.4zm192 0a51.2 51.2 0 1 1 0-102.4 51.2 51.2 0 0 1 0 102.4zm-384 0a51.2 51.2 0 1 1 0-102.4 51.2 51.2 0 0 1 0 102.4z"
+    ></path>
+  </svg></i></div><!--v-if--><!--[--><!--]--></div><!--]--><div class="Layout tk-layout has-sidebar-trigger" data-v-106bdb4a><!--[--><!--]--><!--[--><span tabindex="-1" data-v-efc00f0e></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-efc00f0e>Skip to content</a><!--]--><!----><header class="VPNav" data-v-106bdb4a data-v-35c38431><div class="VPNavBar" data-v-35c38431 data-v-2824ebb2><div class="wrapper" data-v-2824ebb2><div class="container" data-v-2824ebb2><div class="title" data-v-2824ebb2><div class="VPNavBarTitle has-sidebar" data-v-2824ebb2 data-v-aabd0cd4><a class="title" href="/" data-v-aabd0cd4><!--[--><!--]--><!--[--><img class="VPImage logo" src="/kube-nova.svg" alt data-v-29d6a9d4><!--]--><span data-v-aabd0cd4>Kube Nova</span><!--[--><!--]--></a></div></div><div class="content" data-v-2824ebb2><div class="content-body" data-v-2824ebb2><!--[--><!--]--><div class="VPNavBarSearch search" data-v-2824ebb2><!--[--><!----><div id="local-search"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search"><span class="DocSearch-Button-Container"><span class="vp-icon DocSearch-Search-Icon"></span><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"><kbd class="DocSearch-Button-Key"></kbd><kbd class="DocSearch-Button-Key">K</kbd></span></button></div><!--]--></div><nav aria-labelledby="main-nav-aria-label" class="VPNavBarMenu menu" data-v-2824ebb2 data-v-890f2db5><span id="main-nav-aria-label" class="visually-hidden" data-v-890f2db5> Main Navigation </span><!--[--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/" tabindex="0" data-v-890f2db5 data-v-43ccc570><!--[--><span data-v-43ccc570>首页</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/nova/intro" tabindex="0" data-v-890f2db5 data-v-43ccc570><!--[--><span data-v-43ccc570>指南</span><!--]--></a><!--]--><!--[--><a class="VPLink link VPNavBarMenuLink" href="/personal/" tabindex="0" data-v-890f2db5 data-v-43ccc570><!--[--><span data-v-43ccc570>✨ 交流</span><!--]--></a><!--]--><!--]--></nav><!----><div class="VPNavBarAppearance appearance" data-v-2824ebb2 data-v-157d96e1><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-157d96e1 data-v-56eae43e data-v-264b6ef2><span class="check" data-v-264b6ef2><span class="icon" data-v-264b6ef2><!--[--><span class="vpi-sun sun" data-v-56eae43e></span><span class="vpi-moon moon" data-v-56eae43e></span><!--]--></span></span></button></div><div class="VPSocialLinks VPNavBarSocialLinks social-links" data-v-2824ebb2 data-v-b77b12b2 data-v-fb3782ea><!--[--><a class="VPSocialLink no-icon" href="https://github.com/yanshicheng/kube-nova/" aria-label="github" target="_blank" rel="noopener" data-v-fb3782ea data-v-cacb4566><span class="vpi-social-github"></span></a><a class="VPSocialLink no-icon" href="https://gitee.com/ikubeops/kube-nova/" aria-label="gitee" target="_blank" rel="noopener" data-v-fb3782ea data-v-cacb4566><span class="vpi-social-gitee"></span></a><a class="VPSocialLink no-icon" href="https://space.bilibili.com/3546970842990678?spm_id_from=333.788.upinfo.head.click" aria-label="bilibili" target="_blank" rel="noopener" data-v-fb3782ea data-v-cacb4566><span class="vpi-social-bilibili"></span></a><!--]--></div><div class="VPFlyout VPNavBarExtra extra" data-v-2824ebb2 data-v-0ec4df39 data-v-c43cc983><button type="button" class="button" aria-haspopup="true" aria-expanded="false" aria-label="extra navigation" data-v-c43cc983><span class="vpi-more-horizontal icon" data-v-c43cc983></span></button><div class="menu" data-v-c43cc983><div class="VPMenu" data-v-c43cc983 data-v-da9c89ac><!----><!--[--><!--[--><!----><div class="group" data-v-0ec4df39><div class="item appearance" data-v-0ec4df39><p class="label" data-v-0ec4df39>主题</p><div class="appearance-action" data-v-0ec4df39><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-0ec4df39 data-v-56eae43e data-v-264b6ef2><span class="check" data-v-264b6ef2><span class="icon" data-v-264b6ef2><!--[--><span class="vpi-sun sun" data-v-56eae43e></span><span class="vpi-moon moon" data-v-56eae43e></span><!--]--></span></span></button></div></div></div><div class="group" data-v-0ec4df39><div class="item social-links" data-v-0ec4df39><div class="VPSocialLinks social-links-list" data-v-0ec4df39 data-v-fb3782ea><!--[--><a class="VPSocialLink no-icon" href="https://github.com/yanshicheng/kube-nova/" aria-label="github" target="_blank" rel="noopener" data-v-fb3782ea data-v-cacb4566><span class="vpi-social-github"></span></a><a class="VPSocialLink no-icon" href="https://gitee.com/ikubeops/kube-nova/" aria-label="gitee" target="_blank" rel="noopener" data-v-fb3782ea data-v-cacb4566><span class="vpi-social-gitee"></span></a><a class="VPSocialLink no-icon" href="https://space.bilibili.com/3546970842990678?spm_id_from=333.788.upinfo.head.click" aria-label="bilibili" target="_blank" rel="noopener" data-v-fb3782ea data-v-cacb4566><span class="vpi-social-bilibili"></span></a><!--]--></div></div></div><!--]--><!--]--></div></div></div><!--[--><!--[--><!--[--><!--[--><!--]--><!--[--><div class="tk-theme-enhance flx-align-center"><!--[--><i class="tk-icon" style="--icon-size:20px;--icon-color-hover:var(--tk-theme-color);"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+    <path
+      fill="currentColor"
+      d="m512 863.36 384-54.848v-638.72L525.568 222.72a96 96 0 0 1-27.136 0L128 169.792v638.72zM137.024 106.432l370.432 52.928a32 32 0 0 0 9.088 0l370.432-52.928A64 64 0 0 1 960 169.792v638.72a64 64 0 0 1-54.976 63.36l-388.48 55.488a32 32 0 0 1-9.088 0l-388.48-55.488A64 64 0 0 1 64 808.512v-638.72a64 64 0 0 1 73.024-63.36z"
+    ></path>
+    <path fill="currentColor" d="M480 192h64v704h-64z"></path>
+  </svg></i><!--]--></div><!--teleport start--><!--teleport end--><!--]--><!--]--><!--]--><!--]--><button type="button" class="VPNavBarHamburger hamburger" aria-label="mobile navigation" aria-expanded="false" aria-controls="VPNavScreen" data-v-2824ebb2 data-v-82d2b0ee><span class="container" data-v-82d2b0ee><span class="top" data-v-82d2b0ee></span><span class="middle" data-v-82d2b0ee></span><span class="bottom" data-v-82d2b0ee></span></span></button></div></div></div></div><div class="divider" data-v-2824ebb2><div class="divider-line" data-v-2824ebb2></div></div></div><!----></header><div class="VPLocalNav has-sidebar empty" data-v-106bdb4a data-v-9c83f710><div class="container" data-v-9c83f710><button class="menu" aria-expanded="false" aria-controls="VPSidebarNav" data-v-9c83f710><span class="vpi-align-left menu-icon" data-v-9c83f710></span><span class="menu-text" data-v-9c83f710>菜单</span></button><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-9c83f710 data-v-182c53e0><button data-v-182c53e0>返回顶部</button><!----></div></div></div><aside class="VPSidebar" data-v-106bdb4a data-v-29ae4df2><div class="curtain" data-v-29ae4df2></div><nav class="nav" id="VPSidebarNav" aria-labelledby="sidebar-aria-label" tabindex="-1" data-v-29ae4df2><span class="visually-hidden" id="sidebar-aria-label" data-v-29ae4df2> Sidebar Navigation </span><!--[--><!--[--><!--v-if--><!--]--><!--]--><!--[--><div class="no-transition group" data-v-714a6642><section class="VPSidebarItem level-0 has-active" data-v-714a6642 data-v-4d776d93><!----><div class="items" data-v-4d776d93><!--[--><div class="VPSidebarItem level-1 collapsible collapsed is-link" data-v-4d776d93 data-v-4d776d93><div class="item" data-v-4d776d93><div class="indicator" data-v-4d776d93></div><a class="VPLink link link" href="/pages/e27280" data-v-4d776d93><!--[--><p class="text" data-v-4d776d93>周报模板</p><!--]--></a><!----></div><!----></div><div class="VPSidebarItem level-1 collapsible collapsed is-link" data-v-4d776d93 data-v-4d776d93><div class="item" data-v-4d776d93><div class="indicator" data-v-4d776d93></div><a class="VPLink link link" href="/pages/7899e9" data-v-4d776d93><!--[--><p class="text" data-v-4d776d93>日记模板</p><!--]--></a><!----></div><!----></div><!--]--></div></section></div><!--]--><!--[--><!--]--></nav></aside><div class="VPContent has-sidebar" id="VPContent" data-v-106bdb4a data-v-cc8c296b><div class="VPDoc has-sidebar has-aside" data-v-cc8c296b data-v-b1f47424><!--[--><!--]--><div class="container" data-v-b1f47424><div class="aside" data-v-b1f47424><div class="aside-curtain" data-v-b1f47424></div><div class="aside-container" data-v-b1f47424><div class="aside-content" data-v-b1f47424><div class="VPDocAside" data-v-b1f47424 data-v-70f71062><!--[--><!--]--><!--[--><!--[--><!--[--><!--[--><!--[--><!--[--><!--]--><div class="tk-article-share"><button class="tk-article-share__button flx-center" aria-label="分享此页面" aria-live="polite"><div class="flx-center"><i class="tk-icon" style="margin-right:4px;--icon-color-hover:var(--tk-theme-color);"><svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    aria-hidden="true"
+    role="img"
+    class="iconify iconify iconify--solar"
+    alt="Icon"
+    width="1em"
+    height="1em"
+    viewBox="0 0 24 24"
+    style="vertical-align: -0.125em"
+  >
+    <path
+      fill="currentColor"
+      fill-rule="evenodd"
+      d="M13.803 5.333c0-1.84 1.5-3.333 3.348-3.333A3.34 3.34 0 0 1 20.5 5.333c0 1.841-1.5 3.334-3.349 3.334a3.35 3.35 0 0 1-2.384-.994l-4.635 3.156a3.34 3.34 0 0 1-.182 1.917l5.082 3.34a3.35 3.35 0 0 1 2.12-.753a3.34 3.34 0 0 1 3.348 3.334C20.5 20.507 19 22 17.151 22a3.34 3.34 0 0 1-3.348-3.333a3.3 3.3 0 0 1 .289-1.356L9.05 14a3.35 3.35 0 0 1-2.202.821A3.34 3.34 0 0 1 3.5 11.487a3.34 3.34 0 0 1 3.348-3.333c1.064 0 2.01.493 2.623 1.261l4.493-3.059a3.3 3.3 0 0 1-.161-1.023"
+      clip-rule="evenodd"
+    ></path>
+  </svg></i> 分享此页面</div></button></div><!--[--><!--]--><!--]--><!--[--><!--]--><!--]--><!--]--><!--]--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-70f71062 data-v-526d1879><div class="content" data-v-526d1879><div class="outline-marker" data-v-526d1879></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-526d1879>本页导航</div><ul class="VPDocOutlineItem root" data-v-526d1879 data-v-e7f27317><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-70f71062></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--]--></div></div></div></div><div class="content" data-v-b1f47424><div class="content-container" data-v-b1f47424><!--[--><!--[--><!--[--><!--[--><!--]--><!--[--><!--[--><!--]--><div class="tk-article-analyze flx-justify-between" aria-label="文章分析"><div class="tk-article-breadcrumb" role="navigation" aria-label="文章面包屑"><div class="tk-breadcrumb" role="navigation" aria-label="面包屑"><!--[--><span class="tk-breadcrumb__item"><span class="tk-breadcrumb__inner" role="link"><!--[--><a href="/" title="首页" class="home hover-color" aria-label="首页"><i class="tk-icon" style="--icon-color-hover:var(--tk-theme-color);" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+    <path
+      fill="currentColor"
+      d="M192 413.952V896h640V413.952L512 147.328zM139.52 374.4l352-293.312a32 32 0 0 1 40.96 0l352 293.312A32 32 0 0 1 896 398.976V928a32 32 0 0 1-32 32H160a32 32 0 0 1-32-32V398.976a32 32 0 0 1 11.52-24.576"
+    ></path>
+  </svg></i></a><!--]--></span><span class="tk-breadcrumb__separator" role="presentation">/</span></span><!--[--><span class="tk-breadcrumb__item"><span class="tk-breadcrumb__inner" role="link"><!--[--><span href title="script" class="" aria-label="script">script</span><!--]--></span><span class="tk-breadcrumb__separator" role="presentation">/</span></span><!--]--><!--]--></div></div><div class="tk-article-analyze__wrapper flx-align-center"><div class="tk-article-info article" role="group" aria-label="文章信息"><!--[--><!--[--><span class="tk-article-info__item" role="group" aria-label="作者"><i class="tk-icon tk-article-info__icon" style="--icon-color-hover:var(--tk-theme-color);" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <path
+    fill="currentColor"
+    d="M512 512a192 192 0 1 0 0-384 192 192 0 0 0 0 384m0 64a256 256 0 1 1 0-512 256 256 0 0 1 0 512m320 320v-96a96 96 0 0 0-96-96H288a96 96 0 0 0-96 96v96a32 32 0 1 1-64 0v-96a160 160 0 0 1 160-160h448a160 160 0 0 1 160 160v96a32 32 0 1 1-64 0"
+  ></path>
+</svg></i><a title="作者" href="https://github.com/yanshicheng" target="_blank" class="hover-color" aria-label="Yanshicheng">Yanshicheng</a></span><!--]--><!--[--><span class="tk-article-info__item" role="group" aria-label="创建时间"><i class="tk-icon tk-article-info__icon" style="--icon-color-hover:var(--tk-theme-color);" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <path
+    fill="currentColor"
+    d="M128 384v512h768V192H768v32a32 32 0 1 1-64 0v-32H320v32a32 32 0 0 1-64 0v-32H128v128h768v64zm192-256h384V96a32 32 0 1 1 64 0v32h160a32 32 0 0 1 32 32v768a32 32 0 0 1-32 32H96a32 32 0 0 1-32-32V160a32 32 0 0 1 32-32h160V96a32 32 0 0 1 64 0zm-32 384h64a32 32 0 0 1 0 64h-64a32 32 0 0 1 0-64m0 192h64a32 32 0 1 1 0 64h-64a32 32 0 1 1 0-64m192-192h64a32 32 0 0 1 0 64h-64a32 32 0 0 1 0-64m0 192h64a32 32 0 1 1 0 64h-64a32 32 0 1 1 0-64m192-192h64a32 32 0 1 1 0 64h-64a32 32 0 1 1 0-64m0 192h64a32 32 0 1 1 0 64h-64a32 32 0 1 1 0-64"
+  ></path>
+</svg></i><a title="创建时间" class="hover-color" aria-label="2024-01-27">2024-01-27</a></span><!--]--><!--[--><!--v-if--><!--]--><!--[--><!--v-if--><!--]--><!--[--><!--v-if--><!--]--><!--]--><!--[--><!--]--></div><div class="flx-center"><i class="tk-icon" style="--icon-color-hover:var(--tk-theme-color);" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+    <path
+      fill="currentColor"
+      d="m512 863.36 384-54.848v-638.72L525.568 222.72a96 96 0 0 1-27.136 0L128 169.792v638.72zM137.024 106.432l370.432 52.928a32 32 0 0 0 9.088 0l370.432-52.928A64 64 0 0 1 960 169.792v638.72a64 64 0 0 1-54.976 63.36l-388.48 55.488a32 32 0 0 1-9.088 0l-388.48-55.488A64 64 0 0 1 64 808.512v-638.72a64 64 0 0 1 73.024-63.36z"
+    ></path>
+    <path fill="currentColor" d="M480 192h64v704h-64z"></path>
+  </svg></i><a title="文章字数" class="hover-color" aria-label="文章字数">787</a></div><div class="flx-center"><i class="tk-icon" style="--icon-color-hover:var(--tk-theme-color);"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+    <path
+      fill="currentColor"
+      d="M512 896a384 384 0 1 0 0-768 384 384 0 0 0 0 768m0 64a448 448 0 1 1 0-896 448 448 0 0 1 0 896"
+    ></path>
+    <path fill="currentColor" d="M480 256a32 32 0 0 1 32 32v256a32 32 0 0 1-64 0V288a32 32 0 0 1 32-32"></path>
+    <path fill="currentColor" d="M480 512h256q32 0 32 32t-32 32H480q-32 0-32-32t32-32"></path>
+  </svg></i><a title="预计阅读时长" class="hover-color" aria-label="预计阅读时长">4m</a></div><!--v-if--></div></div><!--[--><!--]--><!--]--><!----><!----><!----><!--v-if--><!--[--><div class="tk-sidebar-trigger" title="侧边栏展开/折叠" role="button" aria-label="侧边栏展开/折叠"><div class="tk-right-bottom-button__button"><i class="tk-icon" style="--icon-color-hover:var(--tk-theme-color);" aria-hidden="true"><svg
+    viewBox="0 0 48 48"
+    display="inline-block"
+    vertical-align="middle"
+    min-width="1.2rem"
+    width="1.2em"
+    height="1.2em"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="4">
+      <path d="M6 7h36M8 24h32" />
+      <path stroke-linejoin="round" d="M13.99 30L8 24.005L14 18m20.01 0L40 23.995L34 30" />
+      <path d="M6 41h36" />
+    </g>
+  </svg></i></div></div><!--]--><!--]--><!--]--><!--]--><main class="main" data-v-b1f47424><div style="position:relative;" class="vp-doc _pages_e27280" data-v-b1f47424><div><div style="display:none;" hidden="true" aria-hidden="true">Are you an LLM? You can read better optimized documentation at /100.script/周报模板.md for this page in Markdown format</div><h1 id="周报模板" tabindex="-1">周报模板 <a class="header-anchor" href="#周报模板" aria-label="Permalink to &quot;周报模板&quot;">​</a></h1><h2 id="本周概要" tabindex="-1">本周概要 <a class="header-anchor" href="#本周概要" aria-label="Permalink to &quot;本周概要&quot;">​</a></h2><div class="language-dataviewjs vp-adaptive-theme line-numbers-mode"><button title="Copy Code" class="copy"></button><span class="lang">dataviewjs</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>//日记文件名格式（定义成你自己日记文件名的格式，替换其中的变量）</span></span>
+<span class="line"><span>//yyyy = 年份（例如：2023）</span></span>
+<span class="line"><span>//m    = 自适应位数月份（例如：3、10）</span></span>
+<span class="line"><span>//mm   = 两位数月份（例如：03、10）</span></span>
+<span class="line"><span>//d    = 自适应位数日期（例如：3、10）</span></span>
+<span class="line"><span>//dd   = 两位数日期（例如：03、10）</span></span>
+<span class="line"><span>let dailyFileFormat = &quot;yyyy-m-d-日报&quot;;</span></span>
+<span class="line"><span>//日记文件夹路径</span></span>
+<span class="line"><span>const dailyFilePath = &quot;WorkRecord/日报&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>//日报文件名格式（定义成你自己日报文件名的格式，替换其中的变量）</span></span>
+<span class="line"><span>//yyyy = 年份（例如：2023）</span></span>
+<span class="line"><span>//m    = 自适应位数月份（例如：3、10）</span></span>
+<span class="line"><span>//mm   = 两位数月份（例如：03、10）</span></span>
+<span class="line"><span>//d    = 自适应位数日期（例如：3、10）</span></span>
+<span class="line"><span>//dd   = 两位数日期（例如：03、10）</span></span>
+<span class="line"><span>let dailyWorkFileFormat = &quot;yyyy-m-d-日报&quot;;</span></span>
+<span class="line"><span>//日记文件夹路径</span></span>
+<span class="line"><span>const dailyWorkFilePath = &quot;WorkRecord/周报&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const weekFirstDay = dv.current().weekFirstDay;</span></span>
+<span class="line"><span>const weekLastDat = dv.current().weekLastDat;</span></span>
+<span class="line"><span>const weekday=[&quot;星期日&quot;,&quot;星期一&quot;,&quot;星期二&quot;,&quot;星期三&quot;,&quot;星期四&quot;,&quot;星期五&quot;,&quot;星期六&quot;];</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>//本周日程输出</span></span>
+<span class="line"><span>let resultText = &quot;&quot;;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>//用于概要统计</span></span>
+<span class="line"><span>let dailyCountComplete = 0;</span></span>
+<span class="line"><span>let dailyCountFail = 0;</span></span>
+<span class="line"><span>let workCountComplete = 0;</span></span>
+<span class="line"><span>let workCountFail = 0;</span></span>
+<span class="line"><span>let docCount = 0;</span></span>
+<span class="line"><span>for(var i = 0;i &lt;= 6; i++){</span></span>
+<span class="line"><span>    const nowDate = new Date(weekFirstDay);</span></span>
+<span class="line"><span>    nowDate.setDate(nowDate.getDate() + i);</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    //当天有日记才生成数据</span></span>
+<span class="line"><span>    const dayFile = dv.page(dailyFilePath + &quot;/&quot; + formatDailyFileName(nowDate,dailyFileFormat) +&quot;.md&quot;);</span></span>
+<span class="line"><span>    if(dayFile != null){</span></span>
+<span class="line"><span>        //标题</span></span>
+<span class="line"><span>        resultText += &quot;\n&quot;;</span></span>
+<span class="line"><span>        resultText += &quot;&gt; [!TIP]- &quot; +  weekday[nowDate.getDay()] +&quot;\n&gt; &lt;span style=&#39;color: #72e9fd;font-weight:bold&#39;&gt;📗[[&quot; + dayFile.file.path + &quot;|&quot;+dayFile.file.name+&quot;]]&lt;/span&gt;\n&quot;;</span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>        //日程</span></span>
+<span class="line"><span>        resultText += &quot;&gt;&gt; [!SUCCESS] 日程表\n&quot;</span></span>
+<span class="line"><span>        if(dayFile != null &amp;&amp; dayFile.file != null){</span></span>
+<span class="line"><span>            const dayTask = dayFile.file.tasks;</span></span>
+<span class="line"><span>            for(var rc = 0;rc &lt; dayTask.length;rc ++){</span></span>
+<span class="line"><span>                dayTask[rc].status == &quot;x&quot; ? dailyCountComplete++ : dailyCountFail++;</span></span>
+<span class="line"><span>                resultText += &quot;&gt;&gt; &quot;+dayTask[rc].symbol+&quot; [&quot;+dayTask[rc].status+&quot;] &quot;+dayTask[rc].text+&quot;\n&quot;;</span></span>
+<span class="line"><span>            }</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>        </span></span>
+<span class="line"><span>        //工作</span></span>
+<span class="line"><span>        resultText += &quot; &gt; &quot;</span></span>
+<span class="line"><span>        resultText += &quot;\n &gt;&gt; [!example] 工作项\n&quot;</span></span>
+<span class="line"><span>        const dayWorkFile = dv.page(dailyWorkFilePath + &quot;/&quot; + formatDailyFileName(nowDate,dailyWorkFileFormat) +&quot;.md&quot;);</span></span>
+<span class="line"><span>        if(dayWorkFile != null &amp;&amp; dayWorkFile.file != null){</span></span>
+<span class="line"><span>            const dayTask = dayWorkFile.file.tasks;</span></span>
+<span class="line"><span>            for(var gz = 0;gz &lt; dayTask.length;gz ++){</span></span>
+<span class="line"><span>                dayTask[gz].status == &quot;x&quot; ? workCountComplete++ : workCountFail++;</span></span>
+<span class="line"><span>                resultText += &quot;&gt;&gt; &quot;+dayTask[gz].symbol+&quot; [&quot;+dayTask[gz].status+&quot;] &quot;+dayTask[gz].text+&quot;\n&quot;;</span></span>
+<span class="line"><span>            }</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>        //文章</span></span>
+<span class="line"><span>        resultText += &quot; &gt;&quot;</span></span>
+<span class="line"><span>        resultText += &quot;\n &gt;&gt; [!NOTE] 新文章\n&quot;;</span></span>
+<span class="line"><span>        const dayNewDoc = dv.pages().where(file =&gt; {</span></span>
+<span class="line"><span>            const fileDate = new Date(file.file.cday);</span></span>
+<span class="line"><span>            return (fileDate.getDate() == nowDate.getDate() &amp;&amp; fileDate.getMonth() == nowDate.getMonth() &amp;&amp; fileDate.getFullYear() &amp;&amp; nowDate.getFullYear());</span></span>
+<span class="line"><span>    })</span></span>
+<span class="line"><span>        for(var j = 0;j&lt;dayNewDoc.length;j++){</span></span>
+<span class="line"><span>            docCount++;</span></span>
+<span class="line"><span>            resultText += &quot;&gt;&gt; - [[ &quot; + dayNewDoc[j].file.path + &quot;|&quot;+dayNewDoc[j].file.name+&quot; ]]\n&quot;;</span></span>
+<span class="line"><span>        }</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    </span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>//输出-本周概要</span></span>
+<span class="line"><span>dv.header(3,&quot;本周概要&quot;)</span></span>
+<span class="line"><span>let summaryResult = &quot;&gt; [!SUCCESS] 共完成 \n&quot; +</span></span>
+<span class="line"><span>&quot;&gt; - 🌞日程：&lt;span style=&#39;color: #82eb82;font-weight:bold&#39;&gt;&quot;+dailyCountComplete+&quot;&lt;/span&gt; \n&quot; +</span></span>
+<span class="line"><span>&quot;&gt; - 💼工作任务：&lt;span style=&#39;color: #82eb82;font-weight:bold&#39;&gt;&quot;+workCountComplete+&quot;&lt;/span&gt; \n&quot; +</span></span>
+<span class="line"><span>&quot;&gt; - ✒️新文章：&lt;span style=&#39;color: #82eb82;font-weight:bold&#39;&gt;&quot;+docCount+&quot;&lt;/span&gt; \n&quot; +</span></span>
+<span class="line"><span>&quot;&gt; \n&quot; +</span></span>
+<span class="line"><span>&quot;&gt;&gt; [!FAIL]- 未完成 \n&quot; +</span></span>
+<span class="line"><span>&quot;&gt;&gt; - 🌞日程：&lt;span style=&#39;color: #f078a0;font-weight:bold&#39;&gt;&quot;+dailyCountFail+&quot;&lt;/span&gt; \n&quot; +</span></span>
+<span class="line"><span>&quot;&gt;&gt; - 💼工作任务：&lt;span style=&#39;color: #f078a0;font-weight:bold&#39;&gt;&quot;+workCountFail+&quot;&lt;/span&gt; \n&quot;;</span></span>
+<span class="line"><span>dv.span(summaryResult)</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>//文件名日期格式化</span></span>
+<span class="line"><span>function formatDailyFileName(date,format){</span></span>
+<span class="line"><span>    const dateYear = date.getFullYear();</span></span>
+<span class="line"><span>    const dateMonth = date.getMonth() + 1;</span></span>
+<span class="line"><span>    const dateDate = date.getDate();</span></span>
+<span class="line"><span>    return format</span></span>
+<span class="line"><span>        .replace(&quot;yyyy&quot;,dateYear)</span></span>
+<span class="line"><span>        .replace(&quot;mm&quot;,dateMonth &lt; 10 ? &#39;0&#39; + dateMonth : dateMonth)</span></span>
+<span class="line"><span>        .replace(&quot;m&quot;,dateMonth)</span></span>
+<span class="line"><span>        .replace(&quot;dd&quot;,dateDate &lt; 10 ? &#39;0&#39; + dateDate : dateDate)</span></span>
+<span class="line"><span>        .replace(&quot;d&quot;,dateDate)</span></span>
+<span class="line"><span>}</span></span></code></pre><div class="line-numbers-wrapper" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br></div></div><h2 id="本周日报" tabindex="-1">本周日报 <a class="header-anchor" href="#本周日报" aria-label="Permalink to &quot;本周日报&quot;">​</a></h2><p>[[2024-07-29-日报]] | [[2024-07-30-日报]] | [[2024-07-31-日报]] | [[2024-08-01-日报]] | [[2024-08-02-日报]] | [[2024-08-03-日报]] | [[2024-08-04-日报]]</p><hr><h2 id="任务总结" tabindex="-1">任务总结 <a class="header-anchor" href="#任务总结" aria-label="Permalink to &quot;任务总结&quot;">​</a></h2><h3 id="本周已完成" tabindex="-1">本周已完成 <a class="header-anchor" href="#本周已完成" aria-label="Permalink to &quot;本周已完成&quot;">​</a></h3><div class="language-dataviewjs vp-adaptive-theme line-numbers-mode"><button title="Copy Code" class="copy"></button><span class="lang">dataviewjs</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>function callout(text, type) {</span></span>
+<span class="line"><span>    const allText = `&gt; [!${type}]\n` + text;</span></span>
+<span class="line"><span>    const lines = allText.split(&#39;\n&#39;);</span></span>
+<span class="line"><span>    return lines.join(&#39;\n&gt; &#39;) + &#39;\n&#39;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>const query = `</span></span>
+<span class="line"><span>(done) AND (created &gt;=  2024-07-29   AND created &lt;= 2024-08-04  )</span></span>
+<span class="line"><span>path includes WorkRecord/日报</span></span>
+<span class="line"><span>group by done</span></span>
+<span class="line"><span>hide backlink</span></span>
+<span class="line"><span>hide created date</span></span>
+<span class="line"><span>`;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>dv.paragraph(&#39;```tasks\n&#39; + query + &#39;\n```&#39;, &#39;done&#39;);</span></span></code></pre><div class="line-numbers-wrapper" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><h3 id="本周未完成" tabindex="-1">本周未完成 <a class="header-anchor" href="#本周未完成" aria-label="Permalink to &quot;本周未完成&quot;">​</a></h3><div class="language-dataviewjs vp-adaptive-theme line-numbers-mode"><button title="Copy Code" class="copy"></button><span class="lang">dataviewjs</span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>function callout(text, type) {</span></span>
+<span class="line"><span>    const allText = `&gt; [!${type}]\n` + text;</span></span>
+<span class="line"><span>    const lines = allText.split(&#39;\n&#39;);</span></span>
+<span class="line"><span>    return lines.join(&#39;\n&gt; &#39;) + &#39;\n&#39;</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span>const query = `</span></span>
+<span class="line"><span>(not done) AND (created &gt;=  2024-07-29   AND created &lt;= 2024-08-04  )</span></span>
+<span class="line"><span>path includes WorkRecord/日报</span></span>
+<span class="line"><span>group by created</span></span>
+<span class="line"><span>hide backlink</span></span>
+<span class="line"><span>hide created date</span></span>
+<span class="line"><span>`;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>dv.paragraph(&#39;```tasks\n&#39; + query + &#39;\n```&#39;, &#39;undone&#39;);</span></span></code></pre><div class="line-numbers-wrapper" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><hr><h2 id="本周总结" tabindex="-1">本周总结 <a class="header-anchor" href="#本周总结" aria-label="Permalink to &quot;本周总结&quot;">​</a></h2><hr></div></div></main><footer class="VPDocFooter" data-v-b1f47424 data-v-22e10f89><!--[--><!--]--><div class="edit-info" data-v-22e10f89><div class="edit-link" data-v-22e10f89><a class="VPLink link vp-external-link-icon no-icon edit-link-button" href="https://github.com/yanshicheng/kube-nova-docs/edit/master/kube-nova-docs/100.script/周报模板.md" target="_blank" rel="noreferrer" data-v-22e10f89><!--[--><span class="vpi-square-pen edit-link-icon" data-v-22e10f89></span> 在 GitHub 上编辑此页<!--]--></a></div><!----></div><nav class="prev-next" aria-labelledby="doc-footer-aria-label" data-v-22e10f89><span class="visually-hidden" id="doc-footer-aria-label" data-v-22e10f89>Pager</span><div class="pager" data-v-22e10f89><!----></div><div class="pager" data-v-22e10f89><a class="VPLink link pager-link next" href="/pages/7899e9" data-v-22e10f89><!--[--><span class="desc" data-v-22e10f89>下一页</span><span class="title" data-v-22e10f89>日记模板</span><!--]--></a></div></nav></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><!----><!--[--><!--]--></div><!--]--></div>
+    
+    
+  </body>
+</html>

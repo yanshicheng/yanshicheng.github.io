@@ -1,0 +1,3847 @@
+---
+url: /01.指南/10.使用/15.Pod运维.md
+---
+
+本文档介绍如何在 Kube Nova 平台中进行 Pod 全方位运维管理，包括 Pod 列表查看、状态监控、日志管理、终端访问、文件管理、容器管理以及 Pod 生命周期操作等功能。
+
+Pod 是 Kubernetes 中最小的可部署单元，也是日常运维工作中最常接触的资源对象。Kube Nova 平台提供了完善的 Pod 运维工具集，帮助运维人员快速定位问题、分析性能、管理容器，实现对 Pod 全生命周期的精细化管理。
+
+✨ **特性:**
+
+* **状态监控**：实时查看 Pod 的运行状态、资源使用情况和健康状况。
+* **日志管理**：支持实时日志流、历史日志查询、日志搜索和下载。
+* **终端访问**：通过 Web Terminal 直接连接到容器内部执行命令。
+* **文件管理**：可视化浏览、上传、下载容器内的文件系统。
+* **容器管理**：查看 Pod 内所有容器的详细信息和镜像版本。
+* **临时容器**: 临时容器注入, 快速排障
+* **生命周期操作**：支持 Pod 驱逐、删除、等运维操作。
+
+**操作路径**：业务中心 → 应用中心 → 版本管理 → Pod 管理
+**操作路径**：业务中心 → 应用中心 →  Pod 管理
+
+***
+
+## Pod 列表
+
+### 访问路径
+
+在应用中心选择目标服务后，切换到「版本管理」标签页，选择具体版本，即可看到该版本下所有 Pod 的列表。
+![版本列表](https://images.ikubeops.com/static/20260116234535190.png)
+
+***
+
+## Pod 监控
+
+Pod 监控功能提供实时的资源使用情况和性能指标展示，帮助运维人员了解 Pod 的运行健康状况。
+
+页面顶部展示四个核心指标卡片：
+
+* **CPU 使用**
+* **内存使用**
+* **磁盘 IO**
+* **网络流量**
+* **Pod 状态**
+  ![pod监控](https://images.ikubeops.com/static/20260116221232474.png)
+
+***
+
+## Pod 日志
+
+日志管理是 Pod 运维中最常用的功能，用于排查问题、追踪应用行为和审计操作记录。
+![pod日志](https://images.ikubeops.com/static/20260116221529091.png)
+
+***
+
+## Pod 终端
+
+Pod 终端功能提供 Web Terminal 界面，允许运维人员直接在浏览器中连接到容器内部执行命令，无需使用 kubectl exec 命令。
+![pod终端](https://images.ikubeops.com/static/20260116221556830.png)
+
+### 注意事项
+
+终端操作直接作用于生产容器，请谨慎执行有副作用的命令。某些精简版容器镜像（如基于 Alpine 或 Distroless）可能缺少常用工具，此时可考虑使用临时容器注入功能。终端会话在页面关闭或连接超时后自动断开。
+
+***
+
+## Pod 文件管理
+
+文件管理功能提供可视化的文件浏览器，支持查看、上传、下载容器内的文件，无需通过命令行操作。
+
+> \[!TIP] 功能介绍
+> 强大的上传下载功能，支持分片上传下载。
+
+![文件管理](https://images.ikubeops.com/static/20260116234636859.png)
+
+***
+
+## 容器管理生命周期管理
+
+### 可用操作
+
+* **监控**：跳转到 Pod 监控页面，查看资源使用情况和性能指标。
+* **容器列表**：查看 Pod 中所有容器的信息，包括镜像、状态等。
+* **YAML**：查看 Pod 的完整 YAML 配置。
+* **详情**：查看 Pod 的格式化详情信息。
+* **注入临时容器**：向运行中的 Pod 注入临时调试容器，用于故障排查。
+* **驱逐**：安全地将 Pod 从当前节点驱逐，触发重新调度。
+* **删除**：删除 Pod，对于 Deployment 管理的 Pod 会自动重建。
+
+### 查看容器列表
+
+当 Pod 包含多个容器时，容器管理功能帮助您查看和管理每个容器的详细信息。
+![image.png](https://images.ikubeops.com/static/20260116234920572.png)
+
+### 注入临时容器
+
+此功能可以协助进行故障排查，网络测试等。
+![image.png](https://images.ikubeops.com/static/20260116235049881.png)
+
+---
+
+---
+url: /@pages/loginPage.md
+---
+
+
+---
+
+---
+url: /@pages/riskLinkPage.md
+---
+
+
+---
+
+---
+url: /personal.md
+---
+
+## 🌟 支持项目
+
+如果 Kube Nova 对您有帮助，欢迎给我们一个 Star ⭐️，这是对我们最大的鼓励！
+
+## 👥 加入社区
+
+欢迎加入 Kube Nova 社区，与其他用户一起交流使用经验、分享最佳实践！
+
+[//]: # "## ☕ 赞赏支持"
+
+[//]: #
+
+[//]: # "Kube Nova 是一个开源项目，如果它帮助到了您，可以请作者喝杯咖啡 ☕️"
+
+[//]: #
+
+[//]: # "<div class=\"sponsor-grid\">"
+
+[//]: # "<div class=\"sponsor-card wechat-pay\">"
+
+[//]: # "<div class=\"sponsor-header\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\"><path d=\"M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 01.213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 00.167-.054l1.903-1.114a.864.864 0 01.717-.098 10.16 10.16 0 002.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178A1.17 1.17 0 014.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 01-1.162 1.178 1.17 1.17 0 01-1.162-1.178c0-.651.52-1.18 1.162-1.18z\"/></svg><span>微信赞赏</span></div>"
+
+[//]: # "<img class=\"sponsor-qr\" src=\"https://wiki-images.yanshicheng.com/common/kube-nova-wechat.png\" alt=\"微信赞赏码\" />"
+
+[//]: # "<p class=\"sponsor-tip\">微信扫一扫 💚</p>"
+
+[//]: # "</div>"
+
+[//]: # "<div class=\"sponsor-card alipay\">"
+
+[//]: # "<div class=\"sponsor-header\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\"><path d=\"M21.422 15.358c-3.83-1.153-6.055-1.84-7.18-2.282.96-1.584 1.838-3.61 2.28-5.291h-5.69V6.083h6.76V5.05h-6.76V2.74c0-.17-.14-.305-.344-.305H8.064v2.615H1.222v1.033h6.842v1.702H2.017v1.012h10.94c-.37 1.173-1.063 2.727-1.87 4.03-2.88-.773-5.955-.673-7.946.702-2.28 1.577-2.688 4.406-.913 6.05 1.775 1.643 5.072 1.53 7.352-.048 1.33-.92 2.442-2.313 3.314-3.903 1.72.702 4.972 1.9 9.106 3.14l.422-2.41zM6.987 19.93c-1.512.678-3.574.543-4.463-.366-.89-.908-.533-2.503.865-3.462 1.063-.728 2.538-.94 3.987-.677.893.163 1.742.46 2.512.833-.816 1.424-1.725 2.73-2.9 3.672z\"/></svg><span>支付宝赞赏</span></div>"
+
+[//]: # "<img class=\"sponsor-qr\" src=\"https://wiki-images.yanshicheng.com/common/kube-nova-wechat.png\" alt=\"支付宝赞赏码\" />"
+
+[//]: # "<p class=\"sponsor-tip\">支付宝扫一扫 💙</p>"
+
+[//]: # "</div>"
+
+[//]: # "</div>"
+
+[//]: #
+
+[//]: # "<div class=\"sponsor-message\">"
+
+[//]: # "<span class=\"message-icon\">🙏</span>"
+
+[//]: # "<div class=\"message-content\">"
+
+[//]: # "<strong>感谢所有赞助者</strong>"
+
+[//]: # "<p>每一份支持都是对开源的认可，感谢你们让 Kube Nova 变得更好！</p>"
+
+[//]: # "</div>"
+
+[//]: # "</div>"
+
+## 📮 联系作者
+
+## 📜 开源协议
+
+Kube Nova 遵循 [AGPL v3.0](https://github.com/yanshicheng/kube-nova/blob/main/LICENSE) 开源协议。
+
+---
+
+---
+url: /@pages/categoriesPage.md
+---
+
+
+---
+
+---
+url: /100.script/周报模板.md
+---
+
+## 本周概要
+
+```dataviewjs
+//日记文件名格式（定义成你自己日记文件名的格式，替换其中的变量）
+//yyyy = 年份（例如：2023）
+//m    = 自适应位数月份（例如：3、10）
+//mm   = 两位数月份（例如：03、10）
+//d    = 自适应位数日期（例如：3、10）
+//dd   = 两位数日期（例如：03、10）
+let dailyFileFormat = "yyyy-m-d-日报";
+//日记文件夹路径
+const dailyFilePath = "WorkRecord/日报";
+
+//日报文件名格式（定义成你自己日报文件名的格式，替换其中的变量）
+//yyyy = 年份（例如：2023）
+//m    = 自适应位数月份（例如：3、10）
+//mm   = 两位数月份（例如：03、10）
+//d    = 自适应位数日期（例如：3、10）
+//dd   = 两位数日期（例如：03、10）
+let dailyWorkFileFormat = "yyyy-m-d-日报";
+//日记文件夹路径
+const dailyWorkFilePath = "WorkRecord/周报";
+
+const weekFirstDay = dv.current().weekFirstDay;
+const weekLastDat = dv.current().weekLastDat;
+const weekday=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+
+//本周日程输出
+let resultText = "";
+
+//用于概要统计
+let dailyCountComplete = 0;
+let dailyCountFail = 0;
+let workCountComplete = 0;
+let workCountFail = 0;
+let docCount = 0;
+for(var i = 0;i <= 6; i++){
+    const nowDate = new Date(weekFirstDay);
+    nowDate.setDate(nowDate.getDate() + i);
+
+    //当天有日记才生成数据
+    const dayFile = dv.page(dailyFilePath + "/" + formatDailyFileName(nowDate,dailyFileFormat) +".md");
+    if(dayFile != null){
+        //标题
+        resultText += "\n";
+        resultText += "> [!TIP]- " +  weekday[nowDate.getDay()] +"\n> <span style='color: #72e9fd;font-weight:bold'>📗[[" + dayFile.file.path + "|"+dayFile.file.name+"]]</span>\n";
+    
+        //日程
+        resultText += ">> [!SUCCESS] 日程表\n"
+        if(dayFile != null && dayFile.file != null){
+            const dayTask = dayFile.file.tasks;
+            for(var rc = 0;rc < dayTask.length;rc ++){
+                dayTask[rc].status == "x" ? dailyCountComplete++ : dailyCountFail++;
+                resultText += ">> "+dayTask[rc].symbol+" ["+dayTask[rc].status+"] "+dayTask[rc].text+"\n";
+            }
+        }
+        
+        //工作
+        resultText += " > "
+        resultText += "\n >> [!example] 工作项\n"
+        const dayWorkFile = dv.page(dailyWorkFilePath + "/" + formatDailyFileName(nowDate,dailyWorkFileFormat) +".md");
+        if(dayWorkFile != null && dayWorkFile.file != null){
+            const dayTask = dayWorkFile.file.tasks;
+            for(var gz = 0;gz < dayTask.length;gz ++){
+                dayTask[gz].status == "x" ? workCountComplete++ : workCountFail++;
+                resultText += ">> "+dayTask[gz].symbol+" ["+dayTask[gz].status+"] "+dayTask[gz].text+"\n";
+            }
+        }
+    
+    
+        //文章
+        resultText += " >"
+        resultText += "\n >> [!NOTE] 新文章\n";
+        const dayNewDoc = dv.pages().where(file => {
+            const fileDate = new Date(file.file.cday);
+            return (fileDate.getDate() == nowDate.getDate() && fileDate.getMonth() == nowDate.getMonth() && fileDate.getFullYear() && nowDate.getFullYear());
+    })
+        for(var j = 0;j<dayNewDoc.length;j++){
+            docCount++;
+            resultText += ">> - [[ " + dayNewDoc[j].file.path + "|"+dayNewDoc[j].file.name+" ]]\n";
+        }
+    }
+    
+}
+
+//输出-本周概要
+dv.header(3,"本周概要")
+let summaryResult = "> [!SUCCESS] 共完成 \n" +
+"> - 🌞日程：<span style='color: #82eb82;font-weight:bold'>"+dailyCountComplete+"</span> \n" +
+"> - 💼工作任务：<span style='color: #82eb82;font-weight:bold'>"+workCountComplete+"</span> \n" +
+"> - ✒️新文章：<span style='color: #82eb82;font-weight:bold'>"+docCount+"</span> \n" +
+"> \n" +
+">> [!FAIL]- 未完成 \n" +
+">> - 🌞日程：<span style='color: #f078a0;font-weight:bold'>"+dailyCountFail+"</span> \n" +
+">> - 💼工作任务：<span style='color: #f078a0;font-weight:bold'>"+workCountFail+"</span> \n";
+dv.span(summaryResult)
+
+//文件名日期格式化
+function formatDailyFileName(date,format){
+    const dateYear = date.getFullYear();
+    const dateMonth = date.getMonth() + 1;
+    const dateDate = date.getDate();
+    return format
+        .replace("yyyy",dateYear)
+        .replace("mm",dateMonth < 10 ? '0' + dateMonth : dateMonth)
+        .replace("m",dateMonth)
+        .replace("dd",dateDate < 10 ? '0' + dateDate : dateDate)
+        .replace("d",dateDate)
+}
+```
+
+## 本周日报
+
+\[\[2024-07-29-日报]] | \[\[2024-07-30-日报]] | \[\[2024-07-31-日报]] | \[\[2024-08-01-日报]] | \[\[2024-08-02-日报]] | \[\[2024-08-03-日报]] | \[\[2024-08-04-日报]]
+
+***
+
+## 任务总结
+
+### 本周已完成
+
+````dataviewjs
+function callout(text, type) {
+    const allText = `> [!${type}]\n` + text;
+    const lines = allText.split('\n');
+    return lines.join('\n> ') + '\n'
+}
+
+const query = `
+(done) AND (created >=  2024-07-29   AND created <= 2024-08-04  )
+path includes WorkRecord/日报
+group by done
+hide backlink
+hide created date
+`;
+
+dv.paragraph('```tasks\n' + query + '\n```', 'done');
+````
+
+### 本周未完成
+
+````dataviewjs
+function callout(text, type) {
+    const allText = `> [!${type}]\n` + text;
+    const lines = allText.split('\n');
+    return lines.join('\n> ') + '\n'
+}
+const query = `
+(not done) AND (created >=  2024-07-29   AND created <= 2024-08-04  )
+path includes WorkRecord/日报
+group by created
+hide backlink
+hide created date
+`;
+
+dv.paragraph('```tasks\n' + query + '\n```', 'undone');
+````
+
+***
+
+## 本周总结
+
+***
+
+---
+
+---
+url: /01.指南/10.使用/11.工作空间.md
+---
+
+# 工作空间管理
+
+✨ **特性:**
+
+* Namespace 可视化管理: 工作空间与 Kubernetes Namespace 一一对应
+* 多维度资源配额: 支持 CPU、内存、GPU、存储、Pod 等资源配额设置
+* 细粒度限制策略: Pod 级别、容器级别的资源限制与默认值配置
+* 实时监控面板: 资源使用、配额消耗、指标趋势、Pod 排行榜
+* 跨项目迁移: 支持工作空间在项目间无缝迁移
+
+## 核心概念
+
+工作空间是 Kube Nova 中对 Kubernetes Namespace 的抽象封装。每个工作空间对应集群中的一个 Namespace，是项目内资源隔离和管理的基本单位。
+
+### 自动同步与默认项目
+
+当 Kube Nova 平台同步集群数据时，会自动发现集群中已存在的 Namespace。这些通过同步发现的 Namespace 会被自动归属到「默认项目」下，作为未分配的工作空间进行管理。
+
+这种设计确保了集群中所有的 Namespace 都能被平台纳管，不会出现"漏管"的情况。但在实际使用中，建议将这些自动同步的工作空间迁移到对应的业务项目中，以便进行更精细的资源管理和成本核算。
+
+### 工作空间与资源池的关系
+
+工作空间必须创建在项目的资源池内。一个资源池（项目在某集群上的配额）可以包含多个工作空间，所有工作空间共享该资源池的配额上限。
+
+```
+项目 (Project)
+  └── 资源池 (集群 A 的配额)
+        ├── 工作空间 1 (namespace-prod)
+        ├── 工作空间 2 (namespace-staging)
+        └── 工作空间 3 (namespace-dev)
+```
+
+***
+
+## 工作空间列表
+
+**操作路径**：项目中心 → 工作空间
+
+### 页面布局
+
+页面顶部提供筛选和操作区域：
+
+**集群筛选** 通过下拉框选择要查看的目标集群，切换后显示该集群下当前项目的所有工作空间。
+
+**项目与集群信息** 显示当前项目名称、所选集群名称，以及资源池的整体使用情况（CPU、内存、存储使用百分比），便于快速了解配额消耗状态。
+
+**视图切换** 页面右上角提供「卡片视图」和「列表视图」两种展示模式，可根据偏好选择。
+
+### 工作空间卡片
+
+每个工作空间以卡片形式展示，包含以下信息：
+
+**名称与标识** 显示工作空间的显示名称和对应的 Kubernetes Namespace 名称。
+
+**资源配额** 展示该工作空间分配的资源配额：
+
+* **CPU**：分配的 CPU 核数
+* **内存**：分配的内存容量（GiB）
+* **存储**：分配的临时存储容量（GiB）
+* **GPU**：分配的 GPU 卡数
+* **Pod**：允许创建的 Pod 数量上限
+
+**创建时间** 显示工作空间的创建日期。
+
+**状态指示** 卡片底部的状态点表示工作空间的健康状态。
+
+### 操作菜单
+
+点击工作空间卡片右上角的更多按钮（⋯），可展开操作菜单：
+
+**查看详情** 进入工作空间详情页，查看完整的配置信息和资源使用情况。
+
+**监控** 跳转到工作空间监控面板，查看实时资源使用和历史趋势。
+
+**编辑配置** 修改工作空间的资源配额和限制策略。
+
+**迁移空间** 将工作空间迁移到其他项目。
+
+**删除** 删除工作空间及其对应的 Namespace。
+
+***
+
+## 迁移工作空间
+
+迁移功能用于将工作空间从当前项目转移到其他项目，这是管理自动同步资源的关键操作。
+
+### 使用场景
+
+**场景一：整理自动同步的资源** 集群同步后，已存在的 Namespace 会被归属到默认项目。通过迁移功能，可以将这些工作空间分配到正确的业务项目中。
+
+**场景二：业务调整** 当组织架构调整或业务归属变更时，可以将工作空间迁移到新的项目下。
+
+**场景三：资源重新规划** 在进行资源池调整时，可能需要将工作空间迁移到配额更充足的项目。
+
+### 迁移前提条件
+
+执行迁移操作前，请确保满足以下条件：
+
+**目标项目拥有对应集群的资源池** 工作空间只能迁移到在同一集群上有资源池的项目。如果目标项目没有该集群的资源池，需要先为目标项目分配资源。
+
+**目标项目资源配额充足** 目标项目的资源池必须有足够的剩余配额来容纳被迁移的工作空间。系统会在迁移时校验配额，如果配额不足，迁移将被拒绝。
+
+### 迁移操作步骤
+
+**操作路径**：工作空间卡片 → 更多菜单（⋯）→ 迁移空间
+
+1. 在弹出的「迁移工作空间」对话框中，系统会显示迁移说明，请仔细阅读。
+
+2. 确认「当前工作空间」和「当前项目」信息无误。
+
+3. 在「目标项目」下拉框中选择要迁移到的目标项目。下拉列表只会显示在当前集群上有资源池的项目。
+
+4. 点击「确认迁移」按钮完成操作。
+
+### 迁移说明
+
+> \[!IMPORTANT] 迁移注意事项
+>
+> * 工作空间将从当前项目迁移到目标项目
+> * 迁移过程中会更新所有相关资源配额
+> * 请确保目标项目有足够的资源配额
+> * 迁移操作不可撤销，请谨慎操作
+
+### 迁移原理
+
+迁移操作是纯平台层的逻辑处理，不会对 Kubernetes 集群产生任何影响。具体来说：
+
+**不变的内容** Kubernetes 集群中的 Namespace 及其内部的所有资源（Pod、Deployment、Service 等）保持不变，工作负载不会中断。
+
+**变更的内容** 平台数据库中工作空间与项目的关联关系会被更新，资源配额的归属会从源项目转移到目标项目。
+
+这种设计确保了迁移操作的安全性，即使在生产环境中执行迁移，也不会影响正在运行的业务。
+
+***
+
+## 创建工作空间
+
+创建工作空间的流程分为四个步骤：基础信息 → 资源配额 → 限制策略 → 确认信息。
+
+**操作路径**：项目中心 → 工作空间 → 点击右上角「+」按钮
+
+### 创建前提条件
+
+要在某个集群上创建工作空间，必须满足以下条件：
+
+**项目已分配该集群的资源池** 项目必须拥有目标集群的资源配额，才能在该集群上创建工作空间。
+
+**资源配额充足** 资源池中需有足够的剩余配额来满足新工作空间的资源需求。
+
+**用户权限** 操作用户需具有项目管理员权限或工作空间创建权限。
+
+### 步骤一：基础信息（必填）
+
+配置工作空间的基本标识信息。
+
+**工作空间名称**（必填）：输入工作空间的显示名称，用于在平台中标识和管理。支持中英文，最多 100 字符。例如：`开发环境`、`生产环境`、`测试环境` 等。
+
+**命名空间**（必填）：输入对应的 Kubernetes Namespace 名称。命名规则如下：
+
+* 必须以小写字母开头
+* 只能包含小写字母（a-z）和连字符（-）
+* 必须以字母结尾
+* 例如：`dev-namespace`、`prod-env`、`app-staging`
+
+**描述信息**（可选）：详细描述工作空间的用途、负责人、相关项目等信息，最多 500 字符。
+
+填写完成后，点击「下一步」进入资源配额配置。
+
+### 步骤二：资源配额（必填）
+
+资源配额配置决定了工作空间可使用的资源上限，是创建工作空间的核心步骤。
+
+#### 集群资源概览
+
+页面顶部的「集群资源概览」区域实时显示当前资源池的配额使用情况，帮助您了解可分配空间：
+
+* **CPU**：已使用/总配额（核），进度条显示使用比例
+* **内存**：已使用/总配额（GiB）
+* **存储**：已使用/总配额（GiB）
+* **Pods**：已使用/总配额（个）
+* **GPU**：已使用/总配额（核）
+
+进度条颜色指示配额状态：绿色表示充足，黄色表示紧张，红色表示即将耗尽。
+
+#### 基础资源配置
+
+设置工作空间的计算和存储资源配额：
+
+**CPU 配额**（必填）：设置工作空间可使用的 CPU 核数上限。输入框下方显示资源池的可用余量。单位可选择「核」或「毫核」。
+
+**内存配额**（必填）：设置工作空间可使用的内存上限。单位可选择 Gi（GiB）、Mi（MiB）等。
+
+**存储配额**（可选）：设置临时存储（ephemeral-storage）的配额上限。
+
+**GPU 配额**（可选）：设置工作空间可使用的 GPU 卡数。如果资源池没有 GPU 配额，此项将显示可用为 0。
+
+#### 对象资源限制
+
+设置各类 Kubernetes 资源对象的数量限制，防止单个工作空间创建过多资源对象。
+
+**工作负载类**
+
+* **Pod 数量**（必填）：工作空间内允许创建的 Pod 总数上限
+* **Deployment**：部署数量限制
+* **StatefulSet**：有状态集数量限制
+* **DaemonSet**：守护进程集数量限制
+* **Job**：任务数量限制
+* **CronJob**：定时任务数量限制
+
+**网络资源类**
+
+* **Service**：服务数量限制
+* **Ingress**：入口资源数量限制
+* **LoadBalancer**：负载均衡器数量限制
+* **NodePort**：NodePort 服务数量限制
+
+**配置与存储类**
+
+* **ConfigMap**：配置映射数量限制
+* **Secret**：密钥数量限制
+* **PVC**：持久化存储卷声明数量限制
+* **临时存储**：临时存储总容量限制
+
+每个输入框下方会显示资源池的可用余量，帮助您合理分配资源。
+
+### 步骤三：限制策略（选填）
+
+限制策略用于设置 Pod 和容器级别的资源边界，通过 Kubernetes LimitRange 机制实现。这一步骤是可选的，但建议配置以确保资源使用的可控性。
+
+#### Pod 级别限制
+
+设置单个 Pod 可申请的资源范围：
+
+**Pod 最大 CPU**：单个 Pod 可使用的最大 CPU 核数。例如设置为 8 核，则任何 Pod 的 CPU limits 不能超过 8 核。
+
+**Pod 最大内存**：单个 Pod 可使用的最大内存。例如设置为 16 GiB。
+
+**Pod 最大临时存储**：单个 Pod 可使用的最大临时存储容量。
+
+**Pod 最小 CPU**：Pod 必须请求的最小 CPU 量。例如设置为 10 毫核，则所有 Pod 的 CPU requests 至少为 10m。
+
+**Pod 最小内存**：Pod 必须请求的最小内存量。
+
+**Pod 最小临时存储**：Pod 必须请求的最小临时存储量。
+
+#### 容器级别限制
+
+设置单个容器可申请的资源范围：
+
+**容器最大 CPU**：单个容器可使用的最大 CPU。例如设置为 4 核。
+
+**容器最大内存**：单个容器可使用的最大内存。例如设置为 8 GiB。
+
+**容器最大临时存储**：单个容器可使用的最大临时存储。
+
+**容器最小 CPU**：容器必须请求的最小 CPU。例如设置为 10 毫核。
+
+**容器最小内存**：容器必须请求的最小内存。例如设置为 64 MiB。
+
+**容器最小临时存储**：容器必须请求的最小临时存储。
+
+#### 容器默认资源
+
+当 Pod 或容器未指定资源请求和限制时，系统会自动应用这些默认值：
+
+**默认 CPU 限制**：未指定时的默认 CPU limit。例如设置为 1 核。
+
+**默认内存限制**：未指定时的默认内存 limit。例如设置为 1 GiB。
+
+**默认临时存储限制**：未指定时的默认临时存储 limit。
+
+**默认 CPU 请求**：未指定时的默认 CPU request。例如设置为 10 毫核。
+
+**默认内存请求**：未指定时的默认内存 request。例如设置为 100 MiB。
+
+**默认临时存储请求**：未指定时的默认临时存储 request。
+
+> \[!TIP] 限制策略的作用
+> 配置限制策略可以防止以下问题：
+>
+> * 单个 Pod/容器申请过多资源，影响其他工作负载
+> * 开发者忘记设置资源请求，导致调度问题
+> * 资源使用无约束，难以进行容量规划
+
+### 步骤四：确认信息
+
+确认所有配置信息无误后，点击「创建」按钮完成工作空间创建。
+
+创建成功后：
+
+* Kubernetes 集群中会创建对应的 Namespace
+* ResourceQuota 资源会被自动创建并应用配额限制
+* LimitRange 资源会被自动创建并应用限制策略（如果配置了）
+* 工作空间会出现在工作空间列表中
+
+***
+
+## 工作空间监控
+
+工作空间监控提供对 Namespace 级别资源使用的实时监控和历史分析。
+
+**操作路径**：工作空间卡片 → 更多菜单（⋯）→ 监控
+
+### 监控面板概览
+
+监控页面顶部显示工作空间的基本状态信息：
+
+**状态标识** 显示工作空间的运行状态（Active/Inactive）。
+
+**健康分数** 基于资源使用、Pod 状态等多维度指标计算的健康评分（满分 100）。
+
+**当前时间** 显示监控数据的采集时间。
+
+### 监控视图
+
+监控页面提供四个维度的监控视图，通过标签页切换：
+
+#### 资源监控
+
+展示工作空间的核心资源使用情况：
+
+**CPU 使用率** 显示 CPU 的实时使用百分比和负载情况（Load）。
+
+**内存使用** 显示内存使用百分比和具体用量（已用/总量）。
+
+**磁盘使用** 显示存储资源的使用百分比。
+
+**网络流量** 显示入站（接收）和出站（发送）的网络流量速率。
+
+**Pod 状态** 显示 Pod 总数和正在运行的 Pod 数量。
+
+页面下方提供资源使用趋势图，展示 CPU、内存等指标的历史变化，可以查看当前值、使用率、平均值和峰值。
+
+#### 配额监控
+
+展示 ResourceQuota 的配额使用情况，帮助了解各类资源的消耗程度和剩余空间。
+
+#### 指标监控
+
+展示更详细的 Prometheus 指标数据，包括自定义指标和系统指标。
+
+#### Pod 资源 Top 榜
+
+按资源消耗排序展示工作空间内的 Pod 列表，帮助快速定位资源消耗大户。可以按 CPU、内存等维度排序。
+
+### 监控操作
+
+**时间范围** 通过下拉框选择查询的时间范围，如最近 30 分钟、1 小时、6 小时、24 小时等。
+
+**自动刷新** 开启后监控数据会定时自动刷新。
+
+**手动刷新** 点击「刷新数据」按钮立即获取最新数据。
+
+**数据导出** 点击「导出」按钮可将监控数据导出为文件。
+
+***
+
+## 编辑工作空间
+
+编辑功能用于修改已创建工作空间的配置。
+
+**操作路径**：工作空间卡片 → 更多菜单（⋯）→ 编辑配置
+
+### 可编辑内容
+
+**基础信息** 可修改工作空间名称和描述信息。注意：Namespace 名称创建后不可修改。
+
+**资源配额** 可调整 CPU、内存、存储、GPU、Pod 等资源的配额限制。
+
+**对象资源限制** 可调整各类 Kubernetes 资源对象的数量限制。
+
+**限制策略** 可修改 Pod 级别、容器级别的资源限制和默认值。
+
+### 编辑注意事项
+
+**配额增加** 增加配额时，需要确保资源池有足够的剩余配额。
+
+**配额减少** 减少配额时，如果新配额小于当前已使用量，修改将被拒绝。需要先清理资源使用后再降低配额。
+
+**限制策略变更** 修改限制策略后，已存在的 Pod 不受影响，只对新创建的 Pod 生效。
+
+***
+
+## 删除工作空间
+
+删除功能用于移除不再需要的工作空间。
+
+**操作路径**：工作空间卡片 → 更多菜单（⋯）→ 删除
+
+### 删除影响
+
+删除工作空间是一个危险操作，会产生以下影响：
+
+**Kubernetes 资源删除** 对应的 Namespace 会被删除，Namespace 内的所有资源（Pod、Deployment、Service、ConfigMap、Secret、PVC 等）都会被级联删除。
+
+**数据丢失** 存储在 PVC 中的数据可能会丢失（取决于存储类的回收策略）。
+
+**配额释放** 工作空间占用的资源配额会被释放回资源池。
+
+### 删除前检查
+
+执行删除前，建议进行以下检查：
+
+1. 确认工作空间内没有正在运行的重要业务
+2. 备份需要保留的配置和数据
+3. 通知相关的开发和运维人员
+4. 确认 PVC 数据的处理方式
+
+### 删除确认
+
+系统会要求二次确认删除操作，防止误删。请仔细阅读确认提示，确保了解删除的影响后再执行。
+
+***
+
+## 最佳实践
+
+### 工作空间规划建议
+
+**按环境划分** 建议按开发、测试、预发布、生产等环境创建独立的工作空间，实现环境隔离。
+
+**命名规范** 建立统一的 Namespace 命名规范，例如：`{项目简称}-{环境}-{用途}`，如 `app-prod-api`、`app-dev-frontend`。
+
+**资源配额预估** 根据应用的资源需求合理设置配额，避免过度分配或配额不足。
+
+### 限制策略配置建议
+
+**设置合理的默认值** 为容器设置合理的默认资源请求和限制，避免开发者忘记配置导致的问题。
+
+**防止资源滥用** 通过 Pod 和容器的最大限制，防止单个工作负载占用过多资源。
+
+**保证基本资源** 通过最小资源限制，确保每个 Pod/容器都有基本的运行资源。
+
+### 迁移操作建议
+
+**批量规划** 对于大量需要迁移的工作空间，建议先制定迁移计划，明确每个工作空间的目标项目。
+
+**配额检查** 迁移前检查目标项目的配额是否充足，避免迁移失败。
+
+**非高峰期操作** 虽然迁移不影响集群，但建议在非业务高峰期执行，便于观察和处理可能的问题。
+
+***
+
+## 常见问题
+
+### 为什么创建工作空间失败？
+
+**可能原因 1**：资源池配额不足。检查资源池的剩余配额是否满足新工作空间的需求。
+
+**可能原因 2**：Namespace 名称冲突。检查集群中是否已存在同名的 Namespace。
+
+**可能原因 3**：Namespace 命名不符合规范。确保名称以小写字母开头，只包含小写字母和连字符，以字母结尾。
+
+### 为什么无法迁移工作空间？
+
+**可能原因 1**：目标项目没有对应集群的资源池。需要先为目标项目分配该集群的资源。
+
+**可能原因 2**：目标项目配额不足。需要增加目标项目的配额或减少工作空间的资源占用。
+
+### 监控数据为什么显示为空？
+
+**可能原因 1**：集群未配置 Prometheus。需要在集群的中间件管理中配置并启用 Prometheus。
+
+**可能原因 2**：Prometheus 连接异常。检查 Prometheus 服务状态和网络连通性。
+
+**可能原因 3**：工作空间内没有运行中的 Pod。只有运行中的工作负载才会产生监控数据。
+
+### 删除工作空间后数据能否恢复？
+
+工作空间删除后，Namespace 及其内部资源会被 Kubernetes 级联删除，这是不可逆的操作。对于 PVC 中的数据，取决于存储类的回收策略（Delete/Retain）。如果使用 Delete 策略，数据会被一并删除；如果使用 Retain 策略，底层存储卷会被保留。
+
+建议在删除前做好数据备份，重要数据使用 Retain 策略的存储类。
+
+---
+
+---
+url: /01.指南/10.使用/12.应用发布.md
+---
+
+# 应用中心
+
+✨ **特性:**
+
+* 以应用为中心: 告别资源碎片化管理，一站式管理应用全生命周期
+* 多版本管理: 支持应用多版本发布、回滚、灰度发布
+* 服务聚合: 自动关联 Service、Ingress，无需频繁切换页面
+* 便捷运维: Pod 管理、副本伸缩、镜像更新、配置变更一键完成
+* 全类型支持: Deployment、StatefulSet、DaemonSet、CronJob 全覆盖
+
+## 设计理念
+
+### 为什么需要以应用为中心？
+
+在传统的 Kubernetes 管理方式中，运维人员需要分别管理 Deployment、Service、Ingress、ConfigMap 等多种资源。当一个业务应用包含多个组件时，运维人员不得不在不同的资源页面之间频繁切换，这不仅效率低下，而且容易出错。
+
+以一个典型的微服务应用为例，它可能包含以下资源：一个 Deployment 管理 Pod 副本、一个或多个 Service 暴露服务端口、一个 Ingress 提供外部访问入口、若干 ConfigMap 和 Secret 存储配置。在传统模式下，查看这个应用的状态需要访问至少 4-5 个不同的页面。
+
+### 以应用为中心的解决方案
+
+Kube Nova 的应用中心采用「以应用为中心」的设计理念，将与应用相关的所有资源聚合到一个统一的管理视图中。这种设计带来了三个核心价值：
+
+**第一，信息聚合，一目了然。** 在应用详情页面，您可以看到应用的 Pod 状态、Service 端口、Ingress 地址、资源使用等所有关键信息，无需在多个页面之间跳转。
+
+**第二，操作集中，提升效率。** 镜像更新、副本伸缩、配置变更、服务管理等常用操作都集中在应用页面内完成，大幅减少操作步骤，提升运维效率。
+
+**第三，版本管理，轻松回滚。** 每次应用变更都会记录为一个版本，支持快速查看历史版本、对比差异、一键回滚，让应用发布更加安全可控。
+
+### 应用类型说明
+
+应用中心支持管理以下类型的 Kubernetes 工作负载：
+
+**Deployment（无状态应用部署）** 是最常用的应用类型，支持滚动更新和水平扩展，适用于 Web 服务、API 网关、微服务等无状态应用。其特点是副本之间完全对等，可以随时扩缩容，支持滚动更新策略。
+
+**StatefulSet（有状态应用部署）** 提供稳定的网络标识和持久化存储，适用于数据库、消息队列、分布式存储等有状态应用。其特点是每个 Pod 有固定的网络标识（如 pod-0、pod-1），支持有序部署和删除，可以绑定持久化存储卷。
+
+**DaemonSet（守护进程集）** 确保在每个节点上运行一个 Pod 副本，适用于日志收集、监控代理、网络插件等系统守护进程。其特点是全节点部署，新节点加入时自动调度，适合需要在每个节点运行的基础服务。
+
+**CronJob（定时任务）** 按照指定的时间表周期性运行任务，适用于定时备份、数据同步、报表生成等周期性任务。其特点是支持 Cron 表达式定义执行周期，任务完成后 Pod 自动清理。
+
+> \[!NOTE] 为什么不包含 Pod 和 Job？
+> Pod 和 Job 是一次性或短生命周期的资源，不具备持续的生命周期管理需求。Pod 通常由上层控制器（Deployment、StatefulSet 等）管理，而 Job 在任务完成后即终止。应用中心聚焦于需要持续运维的长生命周期应用，因此 Pod 和 Job 由专门的管理模块处理。
+
+***
+
+## 应用列表
+
+**操作路径**：业务中心 → 应用中心
+
+### 页面布局
+
+应用中心页面采用左右分栏布局，左侧为服务列表，右侧为应用详情。
+
+**顶部筛选栏** 提供多维度的筛选条件：
+
+* **集群**：选择要查看的目标集群
+* **工作空间**：选择工作空间（对应 Kubernetes Namespace）
+* **服务**：选择具体的服务/应用
+* **类型**：按应用类型筛选（全部、Deployment、StatefulSet、DaemonSet、CronJob）
+
+### 服务列表
+
+左侧的服务列表展示当前工作空间内的所有应用，包括：
+
+**应用名称** 显示应用的名称，点击可切换查看不同应用的详情。
+
+**应用类型标签** 通过彩色标签标识应用类型：
+
+* `deployment`（蓝色）：无状态应用
+* `statefulset`（红色）：有状态应用
+* `daemonset`（橙色）：守护进程集
+* `cronjob`（紫色）：定时任务
+
+**搜索功能** 支持按名称搜索应用，快速定位目标服务。
+
+**刷新按钮** 点击可刷新服务列表，获取最新的应用状态。
+
+***
+
+## 基础信息
+
+基础信息页面展示应用的概览信息和访问地址，是了解应用状态的入口。
+
+### 应用状态概览
+
+页面顶部以卡片形式展示应用的关键指标：
+
+**Pod 总数** 显示应用当前的 Pod 副本总数，反映应用的规模。
+
+**正常 Pod** 显示处于 Running 且就绪的 Pod 数量，以及正常率百分比。100% 表示所有 Pod 都在正常运行。
+
+**异常 Pod** 显示处于非正常状态（Pending、Failed、Unknown 等）的 Pod 数量，以及异常率。0% 是理想状态。
+
+**Service 数量** 显示与该应用关联的 Service 资源数量。
+
+**Ingress 数量** 显示与该应用关联的 Ingress 资源数量。
+
+### 服务访问地址
+
+服务访问地址区域聚合展示了应用的所有访问入口，这正是「以应用为中心」理念的直接体现。运维人员无需分别查看 Service 和 Ingress 资源，所有访问信息都集中在这里。
+
+**集群内部地址（ClusterIP）** 列出所有 ClusterIP 类型的 Service 地址，用于集群内部服务间调用。地址格式为 `http://{service-name}.{namespace}.svc.cluster.local:{port}`。标签上的数字表示 Service 暴露的端口数量。
+
+**节点端口地址（NodePort）** 列出所有 NodePort 类型的 Service 地址，可通过任意节点 IP 加端口访问。
+
+**LoadBalancer 访问地址** 列出所有 LoadBalancer 类型的 Service 地址，适用于云环境，由云厂商提供外部负载均衡器。
+
+**Ingress 访问地址（HTTP/HTTPS）** 列出所有 Ingress 资源配置的域名访问地址，支持 HTTP 和 HTTPS 协议，是应用对外暴露的首选方式。
+
+***
+
+## 版本管理
+
+版本管理是应用中心的核心功能模块，支持应用的多版本管理、Pod 运维、副本伸缩、镜像更新等操作。
+
+### 版本概览
+
+版本管理页面顶部展示应用的版本信息：
+
+**发布新版本** 点击「+ 发布新版本」按钮可以创建应用的新版本，用于灰度发布或蓝绿部署场景。
+
+**当前版本卡片** 显示应用的当前稳定版本，绿色边框标识为「稳定版本」。点击版本卡片可展开该版本的详细管理功能。
+
+### Pod 管理
+
+Pod 管理页签展示当前版本下所有 Pod 的详细信息和运维操作。
+
+#### Pod 列表
+
+Pod 列表以表格形式展示，包含以下信息：
+
+**Pod 名称** 显示 Pod 的完整名称，点击可查看 Pod 详情。
+
+**状态** 显示 Pod 的运行状态，常见状态包括：
+
+* `Running`（绿色）：正常运行中
+* `Pending`（黄色）：等待调度或资源
+* `Failed`（红色）：运行失败
+* `Terminating`（灰色）：正在终止
+
+**就绪** 显示 Pod 内容器的就绪状态，格式为「就绪数/总数」，如 `3/3` 表示 3 个容器全部就绪。
+
+**重启** 显示 Pod 的累计重启次数，频繁重启可能表示应用存在问题。
+
+**节点** 显示 Pod 所在的节点名称。
+
+**Pod IP** 显示 Pod 的集群内部 IP 地址。
+
+**运行时长** 显示 Pod 从创建到现在的运行时长。
+
+**创建时间** 显示 Pod 的创建时间戳。
+
+#### Pod 操作
+
+每个 Pod 行提供便捷的操作入口：
+
+**日志** 查看 Pod 内容器的实时日志输出，支持多容器切换。
+
+**终端** 打开 Web 终端，直接进入 Pod 内执行命令，用于调试和排查问题。
+
+**文件** 浏览和管理 Pod 内的文件系统，支持文件上传和下载。
+
+#### 资源操作
+
+点击「资源操作」下拉菜单，可对整个应用进行批量操作：
+
+**查看 YAML** 查看应用的完整 YAML 配置，支持复制和下载。
+
+**查看详情** 查看应用资源的详细信息，包括标签、注解、事件等。
+
+**停止变更** 暂停正在进行的滚动更新操作。
+
+**恢复变更** 恢复被暂停的滚动更新操作。
+
+**重启资源** 触发应用的滚动重启，所有 Pod 会被依次重建。
+
+**停止资源** 将应用的副本数设置为 0，停止所有 Pod。
+
+**启动资源** 恢复应用的副本数，重新启动 Pod。
+
+### 副本管理
+
+副本管理页签用于管理应用的副本数量和自动伸缩策略。
+
+#### 当前状态
+
+显示应用的当前副本状态：
+
+**当前副本数** 显示正在运行的 Pod 副本数量。
+
+**应用类型** 显示工作负载类型（Deployment、StatefulSet 等）。
+
+**HPA 状态** 显示水平自动伸缩（HPA）的配置状态，「未配置」表示未启用自动伸缩。
+
+**VPA 状态** 显示垂直自动伸缩（VPA）的配置状态。
+
+#### 扩缩容配置
+
+**目标副本数** 通过加减按钮或直接输入数字来调整目标副本数。
+
+**变化趋势** 可视化展示从当前副本数到目标副本数的变化方向（增加、减少或无变化）。
+
+**应用更改** 点击「应用更改」按钮执行扩缩容操作。
+
+**重置** 点击「重置」按钮恢复为当前副本数。
+
+#### 扩缩容说明
+
+页面右侧提供扩缩容操作的说明：
+
+**扩容（增加副本）** 系统会创建新的 Pod，逐步增加到目标数量。新 Pod 会自动加入负载均衡，开始接收流量。
+
+**缩容（减少副本）** 系统会优雅地终止多余的 Pod，直到达到目标数量。Pod 会先从负载均衡中移除，然后执行 PreStop 钩子，最后终止。
+
+> \[!WARNING] 重要提示
+> 缩容会导致部分 Pod 被终止，请确保服务有足够的副本处理当前流量，避免服务中断。
+
+### 更新管理
+
+更新管理页签用于更新应用的容器镜像和更新策略。
+
+#### 更新镜像
+
+镜像更新是应用发布的核心操作，支持以下配置：
+
+**容器选择** 当应用包含多个容器时，选择要更新的目标容器。
+
+**当前镜像** 显示容器当前使用的镜像地址和版本标签。
+
+**镜像搜索** 支持搜索平台镜像仓库中的镜像，输入镜像名称（如 nginx、redis）进行搜索。
+
+**镜像配置** 配置新的镜像地址：
+
+* **镜像仓库**：选择镜像所在的仓库
+* **镜像名称**：输入或选择镜像名称
+* **镜像标签**：选择镜像版本标签
+
+#### 更新策略
+
+配置应用的滚动更新策略（仅 Deployment 支持）：
+
+**最大不可用（maxUnavailable）** 更新过程中允许不可用的最大 Pod 数量或百分比。
+
+**最大超量（maxSurge）** 更新过程中允许超出期望副本数的最大 Pod 数量或百分比。
+
+#### 历史版本
+
+查看应用的历史发布版本，支持版本对比和一键回滚：
+
+**版本列表** 显示所有历史版本的修订号、创建时间、变更内容。
+
+**版本回滚** 选择目标版本，一键回滚到该版本的配置。
+
+### 高级管理
+
+高级管理页签提供容器级别的详细配置管理。
+
+#### 环境变量
+
+管理容器的环境变量配置：
+
+**容器选择** 选择要配置的目标容器。
+
+**环境变量列表** 展示当前配置的所有环境变量：
+
+* **变量名**：环境变量名称
+* **来源类型**：值的来源方式（直接值、ConfigMap、Secret、字段引用）
+* **值/引用**：具体的值或引用配置
+
+**批量导入** 支持批量导入环境变量配置。
+
+**添加变量** 点击「+ 添加变量」按钮新增环境变量。
+
+#### 健康检查
+
+配置容器的健康检查探针：
+
+**存活探针（Liveness Probe）** 检测容器是否存活，失败时重启容器。
+
+**就绪探针（Readiness Probe）** 检测容器是否就绪，失败时从 Service 端点移除。
+
+**启动探针（Startup Probe）** 检测容器是否启动完成，适用于启动较慢的应用。
+
+#### 资源配额
+
+配置容器的资源请求（requests）和限制（limits）：
+
+**CPU 请求/限制** 设置 CPU 资源的请求值和上限。
+
+**内存请求/限制** 设置内存资源的请求值和上限。
+
+#### 调度管理
+
+配置 Pod 的调度策略：
+
+**节点选择器** 通过标签选择 Pod 调度的目标节点。
+
+**亲和性/反亲和性** 配置节点亲和性和 Pod 亲和性/反亲和性规则。
+
+**容忍度** 配置 Pod 对节点污点的容忍规则。
+
+#### 存储管理
+
+管理容器的存储卷挂载：
+
+**存储卷列表** 展示已挂载的存储卷（PVC、ConfigMap、Secret、EmptyDir 等）。
+
+**添加存储卷** 添加新的存储卷挂载配置。
+
+### 事件管理
+
+事件管理页签展示应用相关的 Kubernetes 事件，用于排查问题和了解应用状态变化。
+
+***
+
+## 服务管理
+
+服务管理页签用于管理与应用关联的 Service 资源。
+
+### 功能说明
+
+**查看服务** 列出与应用关联的所有 Service，包括类型、端口、选择器等信息。
+
+**创建服务** 为应用创建新的 Service，支持 ClusterIP、NodePort、LoadBalancer 类型。
+
+**编辑服务** 修改现有 Service 的配置，如端口映射、服务类型等。
+
+**删除服务** 删除不再需要的 Service 资源。
+
+***
+
+## Ingress 管理
+
+Ingress 管理页签用于管理应用的外部访问入口。
+
+### 功能说明
+
+**查看 Ingress** 列出与应用关联的所有 Ingress 规则。
+
+**创建 Ingress** 为应用创建新的 Ingress，配置域名、路径、TLS 证书等。
+
+**编辑 Ingress** 修改现有 Ingress 的路由规则。
+
+**删除 Ingress** 删除不再需要的 Ingress 资源。
+
+***
+
+## Flagger 发布
+
+Flagger 发布页签支持基于 Flagger 的渐进式交付能力，实现金丝雀发布、A/B 测试等高级发布策略。
+
+### 功能说明
+
+**金丝雀发布** 逐步将流量从旧版本切换到新版本，根据指标自动推进或回滚。
+
+**A/B 测试** 基于请求特征（Header、Cookie 等）将流量路由到不同版本。
+
+**蓝绿部署** 维护两个相同的环境，一键切换流量。
+
+***
+
+## 操作审计
+
+操作审计页签记录所有对应用的操作历史，便于追溯和审计。
+
+### 审计记录
+
+**操作时间** 显示操作发生的时间戳。
+
+**操作人** 显示执行操作的用户。
+
+**操作类型** 显示操作的类型（创建、更新、删除、扩缩容等）。
+
+**操作详情** 显示操作的具体内容和变更详情。
+
+***
+
+## 创建工作负载
+
+应用中心支持创建多种类型的工作负载。
+
+**操作路径**：应用中心 → 点击右上角「+」按钮
+
+### 工作负载类型选择
+
+创建工作负载时，首先选择工作负载类型：
+
+**Deployment** 无状态应用部署，支持滚动更新和水平扩展。适用场景包括 Web 服务、API 服务、微服务应用。关键特性是无状态、副本管理、滚动更新。
+
+**StatefulSet** 有状态应用部署，提供稳定的网络标识和持久化存储。适用场景包括数据库、消息队列、分布式存储。关键特性是有状态、稳定标识、持久存储。
+
+**DaemonSet** 在每个节点上运行一个 Pod 副本，适合系统守护进程。适用场景包括日志采集、监控代理、网络插件。关键特性是节点守护、全节点部署、日志/监控。
+
+**CronJob** 按照指定的时间表周期性运行任务。适用场景包括定时备份、数据同步、报表生成。关键特性是定时执行、周期性、Cron 表达式。
+
+**Job** 一次性任务，运行完成后自动退出。适用场景包括数据迁移、批处理任务。关键特性是一次性、批处理、任务完成退出。
+
+**Pod** Kubernetes 最小的可部署单元，包含一个或多个容器。适用场景包括快速测试、临时调试。关键特性是单实例、适合测试、快速部署。
+
+选择类型后，点击「确认创建」按钮进入详细配置页面。
+
+***
+
+## 不同应用类型的便捷操作
+
+不同类型的应用在版本管理中提供的操作略有不同，以下是各类型的特有操作说明。
+
+### Deployment 便捷操作
+
+Deployment 是功能最完整的应用类型，支持以下便捷操作：
+
+**滚动更新** 支持配置 maxUnavailable 和 maxSurge 策略，实现零停机更新。
+
+**副本伸缩** 支持手动调整副本数，以及配置 HPA 实现自动伸缩。
+
+**暂停/恢复** 支持暂停正在进行的滚动更新，用于观察新版本状态。
+
+**回滚** 支持一键回滚到任意历史版本。
+
+**重启** 支持滚动重启所有 Pod，不改变配置。
+
+### StatefulSet 便捷操作
+
+StatefulSet 在 Deployment 的基础上，针对有状态应用提供额外功能：
+
+**有序部署** Pod 按照 0、1、2... 的顺序依次创建，确保依赖关系。
+
+**有序删除** 缩容时按照逆序删除，先删除编号大的 Pod。
+
+**持久存储** 自动为每个 Pod 创建独立的 PVC，数据持久保存。
+
+**稳定网络** 每个 Pod 有固定的 DNS 名称，重建后保持不变。
+
+### DaemonSet 便捷操作
+
+DaemonSet 用于全节点部署场景，提供以下便捷操作：
+
+**全节点部署** 自动在所有节点（或指定节点）上部署 Pod。
+
+**节点感知** 新节点加入集群时自动调度，节点移除时自动清理。
+
+**更新策略** 支持 RollingUpdate 和 OnDelete 两种更新策略。
+
+**节点选择** 支持通过节点选择器指定部署的目标节点。
+
+> \[!NOTE] DaemonSet 特殊说明
+> DaemonSet 没有副本管理功能，因为其副本数由集群节点数决定。扩缩容通过调整节点选择器实现。
+
+### CronJob 便捷操作
+
+CronJob 用于定时任务场景，提供以下便捷操作：
+
+**Cron 表达式** 使用标准 Cron 表达式定义执行周期（如 `0 2 * * *` 表示每天凌晨 2 点）。
+
+**并发策略** 配置任务并发执行策略（Allow、Forbid、Replace）。
+
+**历史保留** 配置保留的成功/失败任务历史数量。
+
+**手动触发** 支持手动触发一次任务执行，不影响定时计划。
+
+**暂停/恢复** 支持暂停定时任务的调度，不删除已创建的 Job。
+
+***
+
+## 最佳实践
+
+### 应用管理建议
+
+**合理选择应用类型** 根据应用的特性选择合适的工作负载类型。无状态服务使用 Deployment，数据库使用 StatefulSet，系统组件使用 DaemonSet，定时任务使用 CronJob。
+
+**配置健康检查** 为应用配置适当的存活探针和就绪探针，确保 Kubernetes 能够正确判断应用状态，实现自动故障恢复和优雅滚动更新。
+
+**设置资源配额** 为容器设置合理的 CPU 和内存请求/限制，避免资源争抢和 OOM 问题。
+
+**使用滚动更新** 利用 Deployment 的滚动更新能力，配合健康检查，实现零停机发布。
+
+### 版本管理建议
+
+**语义化版本** 使用语义化版本号（如 v1.2.3）标记镜像，便于追踪和回滚。
+
+**保留历史版本** 合理配置 revisionHistoryLimit，保留足够的历史版本以支持回滚。
+
+**发布前测试** 重大变更前在测试环境验证，确认无误后再发布到生产环境。
+
+### 服务暴露建议
+
+**内部服务使用 ClusterIP** 仅供集群内部调用的服务使用 ClusterIP 类型。
+
+**外部访问使用 Ingress** 需要对外暴露的服务优先使用 Ingress，便于统一管理域名和证书。
+
+**谨慎使用 NodePort** NodePort 会占用节点端口资源，仅在特殊场景使用。
+
+***
+
+## 常见问题
+
+### Pod 一直处于 Pending 状态怎么办？
+
+**可能原因 1**：资源不足。检查工作空间的配额是否充足，以及集群是否有可用资源。
+
+**可能原因 2**：调度约束无法满足。检查节点选择器、亲和性规则、容忍度配置是否正确。
+
+**可能原因 3**：PVC 无法绑定。对于 StatefulSet，检查 PVC 是否能够成功创建和绑定。
+
+### 滚动更新卡住了怎么处理？
+
+**检查新 Pod 状态** 查看新创建的 Pod 是否正常启动，检查 Pod 事件和日志。
+
+**检查健康检查** 确认就绪探针配置正确，新 Pod 能够通过健康检查。
+
+**暂停更新** 如果需要排查问题，可以先暂停更新，防止继续创建问题 Pod。
+
+**回滚** 如果问题无法快速解决，建议先回滚到上一个稳定版本。
+
+### 如何实现零停机更新？
+
+实现零停机更新需要满足以下条件：
+
+**配置就绪探针** 确保新 Pod 在完全就绪后才接收流量。
+
+**合理配置更新策略** maxUnavailable 不要设置过大，确保始终有足够的 Pod 处理流量。
+
+**优雅终止** 为容器配置适当的 terminationGracePeriodSeconds，确保旧 Pod 能够处理完现有请求。
+
+**PreStop 钩子** 如果需要，配置 PreStop 钩子执行清理操作。
+
+---
+
+---
+url: /01.指南/40.开发/01.开发指南.md
+---
+
+# Kube-Nova 开发指南
+
+## 环境准备
+
+### 后端开发环境
+
+#### Go 语言环境
+
+Kube-Nova 后端基于 Go 语言开发，使用 go-zero 微服务框架。你需要安装 Go 1.22 或更高版本。安装完成后，请确保 `$GOPATH/bin` 已添加到系统 PATH 环境变量中，这样后续安装的 Go 工具才能在命令行中直接调用。
+
+```bash
+# 验证 Go 安装
+go version
+
+# 确保 GOPATH/bin 在 PATH 中
+export PATH=$PATH:$(go env GOPATH)/bin
+```
+
+#### 安装 goctl 工具
+
+goctl 是 go-zero 框架的代码生成工具，用于根据 API 定义文件和 Proto 文件自动生成服务代码骨架。这是开发过程中最核心的工具之一。
+
+```bash
+go install github.com/zeromicro/go-zero/tools/goctl@latest
+```
+
+安装完成后，可以通过 `goctl --version` 验证安装是否成功。更多详情请参考官方文档：https://go-zero.dev/docs/tasks/installation/goctl
+
+#### 安装 protoc 及相关插件
+
+protoc 是 Protocol Buffers 的编译器，用于编译 `.proto` 文件生成 gRPC 服务代码。go-zero 提供了一键安装命令，可以同时安装 protoc、protoc-gen-go 和 protoc-gen-go-grpc 三个组件。
+
+```bash
+goctl env check --install --verbose --force
+```
+
+这个命令会检查当前环境，并自动下载安装缺失的组件。`--force` 参数确保即使组件已存在也会重新安装最新版本。更多详情请参考官方文档：https://go-zero.dev/docs/tasks/installation/protoc
+
+### 前端开发环境
+
+#### Node.js 环境
+
+前端项目要求 Node.js 版本 >= 20.19.0，包管理器使用 pnpm >= 8.8.0。建议使用 nvm 管理 Node.js 版本，便于在不同项目间切换。
+
+```bash
+# 验证 Node.js 版本
+node --version
+
+# 安装 pnpm（如果尚未安装）
+npm install -g pnpm
+
+# 验证 pnpm 版本
+pnpm --version
+```
+
+***
+
+## 代码仓库
+
+### 后端仓库
+
+| 平台   | 仓库地址                                              |
+| ------ | ----------------------------------------------------- |
+| GitHub | https://github.com/yanshicheng/kube-nova              |
+| Gitee  | https://gitee.com/ikubeops/kube-nova                  |
+
+```bash
+# 克隆仓库（选择其一）
+git clone https://github.com/yanshicheng/kube-nova.git
+# 或
+git clone https://gitee.com/ikubeops/kube-nova.git
+
+# 进入项目目录并下载依赖
+cd kube-nova
+go mod tidy
+```
+
+### 前端仓库
+
+| 平台   | 仓库地址                                              |
+| ------ | ----------------------------------------------------- |
+| GitHub | https://github.com/yanshicheng/kube-nova-web          |
+| Gitee  | https://gitee.com/ikubeops/kube-nova-web              |
+
+```bash
+# 克隆仓库（选择其一）
+git clone https://github.com/yanshicheng/kube-nova-web.git
+# 或
+git clone https://gitee.com/ikubeops/kube-nova-web.git
+
+# 进入项目目录并安装依赖
+cd kube-nova-web
+pnpm install
+```
+
+***
+
+## 后端项目结构
+
+理解项目结构对于高效开发至关重要。Kube-Nova 后端采用典型的 go-zero 微服务架构，核心目录说明如下：
+
+```
+kube-nova/
+├── application/          # 应用服务目录（核心开发区域）
+│   ├── console-api/      # 控制台 API 服务
+│   ├── console-rpc/      # 控制台 RPC 服务
+│   ├── manager-api/      # 管理端 API 服务
+│   ├── manager-rpc/      # 管理端 RPC 服务
+│   ├── portal-api/       # 门户 API 服务
+│   ├── portal-rpc/       # 门户 RPC 服务
+│   └── workload-api/     # 工作负载 API 服务
+├── common/               # 公共模块
+│   ├── handler/          # 通用处理器
+│   ├── interceptors/     # gRPC 拦截器
+│   ├── k8smanager/       # Kubernetes 客户端管理
+│   ├── middleware/       # HTTP 中间件
+│   └── utils/            # 工具函数
+├── pkg/                  # 可复用的包
+│   ├── casbinadapter/    # Casbin 权限适配器
+│   ├── jwt/              # JWT 认证
+│   └── storage/          # 存储相关
+├── template/             # goctl 代码生成模板
+└── sql/                  # 数据库脚本
+```
+
+在 go-zero 的设计理念中，API 服务负责处理 HTTP 请求，而 RPC 服务则提供内部的 gRPC 调用。API 服务通常会调用一个或多个 RPC 服务来完成业务逻辑，这种分层设计使得服务之间的职责更加清晰。
+
+***
+
+## Makefile 指令详解
+
+项目提供了丰富的 Makefile 指令来简化开发流程。这些指令可以分为三类：通用指令、代码生成指令（gen-xxx）和服务运行指令（run-xxx）。
+
+### 通用指令
+
+| 指令            | 说明                                                         |
+| --------------- | ------------------------------------------------------------ |
+| `make tidy`     | 执行 `go mod tidy`，自动更新和清理依赖                       |
+| `make fmt`      | 格式化所有 Go 代码                                           |
+| `make vet`      | 静态分析代码，检测潜在错误                                   |
+| `make lint`     | 使用 golangci-lint 进行代码质量检查                          |
+| `make test`     | 运行单元测试                                                 |
+| `make build`    | 构建当前平台的二进制文件，输出到 `dist/` 目录                |
+| `make linux`    | 交叉编译 Linux amd64 版本                                    |
+| `make docker`   | 构建 Docker 镜像并推送到 Harbor 仓库                         |
+| `make clean`    | 清理构建产物                                                 |
+| `make help`     | 显示所有可用指令的帮助信息                                   |
+
+### 代码生成指令（gen-xxx）
+
+代码生成指令是开发过程中的核心工具。当你修改了 `.api` 文件或 `.proto` 文件后，需要运行相应的生成指令来更新代码骨架。
+
+#### API 服务代码生成
+
+API 服务使用 `.api` 文件定义 HTTP 接口。goctl 会根据这个定义文件生成路由、handler、types 等代码。
+
+| 指令                   | 作用                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| `make gen-portal-api`  | 根据 `portal.api` 生成门户 API 服务代码                      |
+| `make gen-manager-api` | 根据 `manager.api` 生成管理端 API 服务代码                   |
+| `make gen-workload-api`| 根据 `workload.api` 生成工作负载 API 服务代码                |
+| `make gen-console-api` | 根据 `console.api` 生成控制台 API 服务代码                   |
+
+以 `gen-portal-api` 为例，它实际执行的命令是：
+
+```bash
+goctl api go \
+  --api=application/portal-api/portal.api \
+  --dir=application/portal-api/ \
+  --style=goZero \
+  --home=./template
+```
+
+这里的 `--home=./template` 参数指定了自定义模板目录，使生成的代码符合项目规范。`--style=goZero` 表示使用驼峰命名风格。
+
+#### RPC 服务代码生成
+
+RPC 服务使用 `.proto` 文件定义 gRPC 接口。生成过程会同时产生 protobuf 消息定义和 gRPC 服务代码。
+
+| 指令                   | 作用                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| `make gen-portal-rpc`  | 根据 `portal.proto` 生成门户 RPC 服务代码                    |
+| `make gen-manager-rpc` | 根据 `manager.proto` 生成管理端 RPC 服务代码                 |
+| `make gen-console-rpc` | 根据 `console.proto` 生成控制台 RPC 服务代码                 |
+
+以 `gen-portal-rpc` 为例，它实际执行的命令是：
+
+```bash
+goctl rpc protoc --style=goZero --home=./template \
+  -I=application/portal-rpc/ \
+  --go_out=application/portal-rpc/pb/ \
+  --go_opt=module="github.com/yanshicheng/kube-nova/application/portal-rpc/pb" \
+  --go-grpc_out=application/portal-rpc/pb/ \
+  --go-grpc_opt=module="github.com/yanshicheng/kube-nova/application/portal-rpc/pb" \
+  --zrpc_out=application/portal-rpc/ -m \
+  application/portal-rpc/portal.proto
+```
+
+命令参数说明：`-I` 指定 proto 文件的搜索路径；`--go_out` 和 `--go-grpc_out` 指定生成的 Go 代码输出目录；`--zrpc_out` 指定 go-zero 服务代码输出目录；`-m` 表示支持多个 proto 文件。
+
+### 服务运行指令（run-xxx）
+
+开发阶段使用这些指令可以快速启动单个服务进行调试，无需每次都完整构建。
+
+| 指令                   | 作用                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| `make run-portal-api`  | 启动门户 API 服务（端口见配置文件）                          |
+| `make run-portal-rpc`  | 启动门户 RPC 服务                                            |
+| `make run-manager-api` | 启动管理端 API 服务                                          |
+| `make run-manager-rpc` | 启动管理端 RPC 服务                                          |
+| `make run-workload-api`| 启动工作负载 API 服务                                        |
+| `make run-console-api` | 启动控制台 API 服务                                          |
+| `make run-console-rpc` | 启动控制台 RPC 服务                                          |
+
+以 `run-portal-api` 为例，它实际执行的命令是：
+
+```bash
+go run application/portal-api/portal.go -f application/portal-api/etc/portal-api.yaml
+```
+
+每个服务的配置文件位于对应目录的 `etc/` 子目录中，包含服务端口、数据库连接、Redis 配置等信息。启动服务前请确保配置文件已正确设置。
+
+***
+
+## 开发工作流
+
+### 新增 API 接口的典型流程
+
+当你需要为某个服务新增 HTTP 接口时，应该遵循以下步骤。这里以在 portal-api 服务中新增接口为例：
+
+第一步，编辑 API 定义文件。打开 `application/portal-api/portal.api` 文件，按照 go-zero 的 API 语法添加新的接口定义，包括请求路径、方法、请求参数和响应结构。
+
+第二步，生成代码骨架。运行 `make gen-portal-api` 命令，goctl 会根据更新后的 API 定义自动生成或更新路由注册、handler 函数签名和类型定义。
+
+第三步，实现业务逻辑。在生成的 handler 文件中编写具体的业务逻辑。如果需要调用 RPC 服务，可以在 `svc/servicecontext.go` 中注入 RPC 客户端。
+
+第四步，测试验证。运行 `make run-portal-api` 启动服务，使用 Postman 或 curl 测试新增的接口。
+
+### 新增 RPC 方法的典型流程
+
+当你需要新增内部 gRPC 调用方法时：
+
+第一步，编辑 Proto 定义文件。打开对应服务的 `.proto` 文件（如 `application/portal-rpc/portal.proto`），添加新的 message 定义和 service 方法。
+
+第二步，生成代码骨架。运行 `make gen-portal-rpc` 命令，生成 protobuf 序列化代码和 gRPC 服务骨架。
+
+第三步，实现服务逻辑。在 `internal/logic/` 目录下找到对应的 logic 文件，实现具体的业务逻辑。
+
+第四步，测试验证。运行 `make run-portal-rpc` 启动 RPC 服务，可以使用 grpcurl 或编写测试用例进行验证。
+
+***
+
+## 前端开发
+
+### 启动开发服务器
+
+```bash
+cd kube-nova-web
+pnpm install    # 首次运行或依赖更新后执行
+pnpm run dev    # 启动开发服务器，支持热更新
+```
+
+开发服务器启动后，默认会在本地开启一个端口（通常是 5173 或 3000），浏览器访问该地址即可预览前端界面。开发模式下支持热模块替换（HMR），修改代码后页面会自动刷新。
+
+### 构建生产版本
+
+```bash
+pnpm build:prod
+```
+
+构建完成后，产物会输出到 `dist/` 目录，可以直接部署到 Nginx 或其他静态文件服务器。
+
+***
+
+## 常见问题
+
+### goctl 命令未找到
+
+如果运行 `make gen-xxx` 时提示 `goctl: command not found`，说明 `$GOPATH/bin` 未加入 PATH 环境变量。请执行 `export PATH=$PATH:$(go env GOPATH)/bin` 并将此行添加到你的 shell 配置文件（如 `~/.bashrc` 或 `~/.zshrc`）中。
+
+### protoc 相关错误
+
+如果生成 RPC 代码时出现 protoc 相关错误，请重新运行 `goctl env check --install --verbose --force` 确保所有组件正确安装。
+
+### 依赖下载缓慢
+
+国内用户可以设置 Go 模块代理加速依赖下载：
+
+```bash
+go env -w GOPROXY=https://goproxy.cn,direct
+```
+
+### 服务启动失败
+
+请检查对应服务的配置文件（位于 `etc/` 目录）中的数据库、Redis、Etcd 等连接信息是否正确，以及相关基础服务是否已启动。
+
+---
+
+---
+url: /@pages/archivesPage.md
+---
+
+
+---
+
+---
+url: /01.指南/01.简介/02.快速开始.md
+---
+
+## 部署模式
+
+目前仅支持 Kubernetes 部署，并且提供两种部署模式 `Operator` 和 `Yaml 清单` 。如果想 Docker Compose 或者二进制部署可自行修改。
+
+> \[!note] 必备清单
+> mysql，redis，minio，Jaeger . 如果本地已经有了，可以使用自己的，如果没有可以查看 基本环境部署章节，使用脚本统一初始化。
+
+## 基本环境部署
+
+> \[!WARNING] 提示
+> 如果已经有 mysql，redis，s3，jaeger 推荐使用内部的，此部署方式仅用于演示。
+>
+> 并且需要提前准备好 NFS 或者集群内有可用的 SC。
+
+仓库地址:
+
+* [Gtee - ikubeops/kube-nova](https://gitee.com/ikubeops/kube-nova.git)
+* [GitHub - yanshicheng/kube-nova](https://github.com/yanshicheng/kube-nova.git)
+
+### 克隆仓库
+
+```bash
+git clone https://github.com/ikubeops/kube-nova.git
+
+# 修改关键配置
+vim scripts/basic-deploy.sh
+# 存储模式：storageClass 或 nfs
+STORAGE_MODE="storageClass" # 需要集群哪已经配置了 storageClass
+ 
+ 
+# 如果选择 nfs 模式，`需要先配置 NFS 服务器`
+# 需要手动修改文件: manifests/basic/pvc-nfs.yaml 
+```
+
+### NFS 存储修改示例
+
+```bash
+# 修改关键配置
+vim scripts/basic-deploy.sh
+# 存储模式：storageClass 或 nfs
+STORAGE_MODE="nfs" # 需要集群哪已经配置了 storageClass
+
+# 修改pvc
+vim manifests/basic/pvc-nfs.yaml
+# 修改 NFS 服务器地址和路径
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-pv
+spec:
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    server: 192.168.1.100  # 修改为您的 NFS 服务器 IP
+    path: /nfs/kube-nova/mysql  # 修改为实际路径
+```
+
+### 执行部署
+
+```bash
+bash scripts/basic-deploy.sh
+
+# 部分日志如下:
+==========================================
+ Kube-Nova 基础环境部署完成
+==========================================
+
+ MySQL 连接信息:
+  集群内访问: mysql.kube-nova.svc.cluster.local:3306
+  用户名: root
+  密码: 8VlZ2lvIsKBCYSE3
+  数据库: kube_nova
+  端口转发: kubectl port-forward -n kube-nova svc/mysql 3306:3306
+
+ Redis 连接信息:
+  集群内访问: redis.kube-nova.svc.cluster.local:6379
+  密码: 2VOSiz0vhGtxaBJb
+  端口转发: kubectl port-forward -n kube-nova svc/redis 6379:6379
+  连接测试: redis-cli -h localhost -p 6379 -a 2VOSiz0vhGtxaBJb ping
+
+ MinIO 对象存储:
+  集群内 API: minio-service.kube-nova.svc.cluster.local:9000
+  集群内控制台: minio-service.kube-nova.svc.cluster.local:9001
+  访问密钥: kube-nova-admin
+  密钥: KubeNova@2024SecretKey!
+  桶名: kube-nova (公开访问)
+  已上传图片: public/kube-nova.png
+  端口转发:
+    API:      kubectl port-forward -n kube-nova svc/minio-service 9000:9000
+    控制台:    kubectl port-forward -n kube-nova svc/minio-service 9001:9001
+  访问控制台: http://localhost:9001
+
+ Jaeger 链路追踪:
+  集群内 Collector: jaeger-collector.kube-nova.svc.cluster.local
+  HTTP Collector: http://jaeger-collector:14268/api/traces
+  gRPC Collector: jaeger-collector:14250
+  OTLP gRPC: jaeger-collector:4317
+  OTLP HTTP: http://jaeger-collector:4318
+  UI NodePort: 30286
+  访问 UI: http://<NodeIP>:30286
+  端口转发: kubectl port-forward -n kube-nova svc/jaeger-ui 16686:16686
+  访问 UI: http://localhost:16686
+
+存储配置:
+  存储模式: storageClass
+  说明: 使用 Kubernetes StorageClass 动态供应
+
+常用命令:
+  查看所有资源:
+    kubectl get all -n kube-nova
+  查看 PVC 状态:
+    kubectl get pvc -n kube-nova
+  查看 Pod 日志:
+    kubectl logs -n kube-nova <pod-name>
+  进入 Pod:
+    kubectl exec -it -n kube-nova <pod-name> -- sh
+  删除所有资源:
+    kubectl delete namespace kube-nova
+
+==========================================
+
+
+[✓]  部署完成！所有服务已成功启动！
+```
+
+脚本将自动完成以下步骤：
+
+* 环境检查 - 检查 kubectl、集群连接、存储配置
+* 创建命名空间 - 创建 `kube-nova` 命名空间
+* 部署 PVC - 根据选择的存储模式创建持久化存储
+* 等待 PVC 绑定 - 等待所有 PVC 成功绑定
+* 部署基础服务 - 依次部署 MySQL、Redis、MinIO、Jaeger
+* 等待服务就绪 - 等待所有 Pod 进入 Running 状态
+* 初始化 MinIO - 创建存储桶并上传默认图片
+* 导入数据库 - 初始化 MySQL 数据库表结构和基础数据
+* 显示访问信息 - 输出所有服务的访问地址和凭证
+
+### 已有环境操作如下
+
+**Mysql:** 请手动导入代码仓库中 `sql/db.sql` 到数据库中。
+
+**Minio:** 上传 `images/kube-nova.png` 到 存储桶 `public/kube-nova.png`
+
+## Operator 部署
+
+* [Gtee - ikubeops/kube-nova-operator](https://gitee.com/ikubeops/kube-nova-operator.git)
+* [GitHub - yanshicheng/kube-nova-operator](https://github.com/yanshicheng/kube-nova-operator.git)
+
+### 克隆地址
+
+根据网络环境可以自行选择克隆仓库。
+
+```bash
+git clone https://gitee.com/ikubeops/kube-nova-operator.git
+```
+
+### 部署控制器
+
+```bash
+cd kube-nova-operator/
+kubectl apply -f dist/install.yaml 
+```
+
+### 部署 kube-nova
+
+目前提供了三个 yaml 文件可根据需求自行选择
+
+```bash
+deploy/
+├── deploy-ingress.yaml
+├── ingress+htts.yaml
+└── nodeport.yaml
+```
+
+### 配置文件
+
+介绍 operator 配置文件参数。
+
+### 访问
+
+默认用户名:
+
+* super\_admin
+* Admin@123456
+
+```bash
+root@k8s-181:~/kube-nova/kube-nova-operator# kubectl  get kn -n kube-nova -w
+NAME              阶段    WEB   访问地址                        运行时长
+kubenova-sample   就绪    就绪    http://172.16.1.183:30088   79s
+```
+
+![平台登陆](http://wiki-images.ikubeops.com/20260116151718570.png)
+
+## Manifests 部署
+
+平台同时提供了 YAML 清单方式，可自行根据需求进行修改。
+
+清单在 `kube-nova` 仓库中，如下
+
+```bash
+cd /kube-nova/manifests/base
+tree
+.
+├── 00-secret.yaml    # 主要修改此文件
+├── 01-rbac.yaml
+├── 99-kube-nova-web.yaml
+├── console-api-configmap.yaml
+├── console-api-deployment.yaml
+├── console-api-service.yaml
+├── console-rpc-configmap.yaml
+├── console-rpc-deployment.yaml
+├── console-rpc-service.yaml
+├── manager-api-configmap.yaml
+├── manager-api-deployment.yaml
+├── manager-api-service.yaml
+├── manager-rpc-configmap.yaml
+├── manager-rpc-deployment.yaml
+├── manager-rpc-service.yaml
+├── portal-api-configmap.yaml
+├── portal-api-deployment.yaml
+├── portal-api-service.yaml
+├── portal-rpc-configmap.yaml
+├── portal-rpc-deployment.yaml
+├── portal-rpc-service.yaml
+├── workload-api-configmap.yaml
+├── workload-api-deployment.yaml
+└── workload-api-service.yaml
+```
+
+### Secret 文件
+
+主要修改 secret 文件即可，所有服务的配置会通过环境变量注入。
+
+```yaml
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: kube-nova-secret
+  namespace: kube-nova
+type: Opaque
+stringData:
+  # 全局超时
+  DEFAULT_TIMEOUT: "30000"
+
+  # MySQL 基础参数
+  MYSQL_HOST: "mysql"
+  MYSQL_PORT: "3306"
+  MYSQL_DATABASE: "kube_nova"
+  MYSQL_USER: "root"
+  MYSQL_PASSWORD: "8VlZ2lvIsKBCYSE3"
+  MYSQL_MAX_OPEN_CONNS: "100"
+  MYSQL_MAX_IDLE_CONNS: "50"
+  MYSQL_CONN_MAX_LIFETIME: "30m"
+
+  # Redis 基础参数
+  REDIS_HOST: "redis"
+  REDIS_PORT: "6379"
+  REDIS_PASSWORD: "2VOSiz0vhGtxaBJb"
+  REDIS_TYPE: "node"
+  REDIS_TLS: "false"
+  REDIS_NONBLOCK: "true"
+  REDIS_PING_TIMEOUT: "3s"
+
+  # MinIO 配置
+  MINIO_ENDPOINT: "minio-service:9000"
+  MINIO_ACCESS_KEY: "kube-nova-admin"
+  MINIO_SECRET_KEY: "KubeNova@2024SecretKey!"
+  MINIO_BUCKET: "kube-nova"
+  MINIO_USE_TLS: "false"
+
+  # JWT
+  JWT_ACCESS_SECRET: "zk5Lp8m+0g7lvvLcnbUHPzQFEsRAmvNIn9tXdx0o80U="
+  JWT_ACCESS_EXPIRE: "86400"
+  JWT_REFRESH_SECRET: "zk5Lp8m+0g7lvvLcnbUHPzQFEsRAmvNIn9tXdx0o80U="
+  JWT_REFRESH_EXPIRE: "604800"
+  JWT_REFRESH_AFTER: "604800"
+
+  # Webhook
+  ALERTMANAGER_WEBHOOK_TOKEN: "mRwErqZaQVrxfyhiDQrdiQohAsONwSTtwhcmFXpCcaGavcINqorVoWINnSFFAijb"
+
+  # Jaeger
+  JAEGER_ENDPOINT: "http://jaeger-collector:14268/api/traces"
+  TELEMETRY_SAMPLER: "1.0"
+  TELEMETRY_BATCHER: "jaeger"
+
+  # Portal
+  PORTAL_NAME: "Kube-Nova 云原生平台"
+  PORTAL_URL: "http://www.yanshicheng.com:8888"
+  DEMO_MODE: "true"
+
+  # 其他
+  INJECT_IMAGE: "harbor.ikubeops.local/public/network-multitool:latest"
+```
+
+### 应用配置文件
+
+```python
+
+
+```
+
+---
+
+---
+url: /01.指南/目录.md
+---
+
+
+---
+
+---
+url: /@pages/articleOverviewPage.md
+---
+
+
+---
+
+---
+url: /100.script/日记模板.md
+---
+
+```
+ 
+北京天气
+当前温度:27℃
+天气:中雨
+温度范围:26 ~ 34℃
+湿度：77%
+风向：北风 2级
+紫外线：无
+空气质量：优 PM: 22
+日出: 05:14 日落: 19:27
+```
+
+## 今日任务
+
+### 已完成任务
+
+````dataviewjs
+function callout(text, type) {
+    const allText = `> [!${type}]\n` + text;
+    const lines = allText.split('\n');
+    return lines.join('\n>') + '\n'
+};
+const query = `
+(done on {{DATE:YYYY-MM-DD}})
+path includes WorkRecord/日报
+
+hide backlink
+hide created date
+`;
+
+dv.paragraph('```tasks\n' + query + '\n```', 'todo');
+````
+
+### 未完成任务
+
+````dataviewjs
+function callout(text, type) {
+    const allText = `> [!${type}]\n` + text;
+    const lines = allText.split('\n');
+    return lines.join('\n>') + '\n'
+};
+const query = `
+((created on {{DATE:YYYY-MM-DD}}) AND (done after {{DATE:YYYY-MM-DD}})) OR ((created on {{DATE:YYYY-MM-DD}}) AND (not done))
+path includes WorkRecord/日报
+
+hide backlink
+hide created date
+`;
+
+dv.paragraph('```tasks\n' + query + '\n```', 'todo');
+````
+
+### 日志
+
+---
+
+---
+url: /@pages/tagsPage.md
+---
+
+
+---
+
+---
+url: /01.指南/10.使用/03.监控管理.md
+---
+
+> \[!NOTE]
+> 暂不深入讲解监控相关内容
+>
+> 具体可以看:
+>
+> 集群相关: 集群管理
+>
+> pod相关: pod 运维
+>
+> namespace: 工作空间
+
+---
+
+---
+url: /01.指南/01.简介/01.简介.md
+---
+
+# KubeNova 项目介绍
+
+## 什么是 KubeNova？
+
+KubeNova 是一个**企业级 Kubernetes 多集群管理平台**，专为需要统一管理多个 Kubernetes 集群的企业和团队设计。平台以**项目为核心视角**，通过"项目 → 集群配额 → 工作空间"三级架构，实现了多租户资源隔离与统一管理，让复杂的 Kubernetes 运维变得简单高效。
+::: right
+@YanShicheng
+:::
+::: tip 愿景
+无论是管理少量微服务，还是跨多集群编排数千容器，KubeNova 都能提供所需的可扩展性、可靠性和可观测性。
+::: right
+2026-01-15 @YanShicheng
+:::
+
+## 代码仓库
+
+| 仓库       | GitHub                                                                              | Gitee                                                                        |
+|----------|-------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
+| 后端代码     | [yanshicheng/kube-nova](https://github.com/yanshicheng/kube-nova)                   | [ikubeops/kube-nova](https://gitee.com/ikubeops/kube-nova)                   |
+| 前端代码     | [yanshicheng/kube-nova-web](https://github.com/yanshicheng/kube-nova-web)           | [ikubeops/kube-nova-web](https://gitee.com/ikubeops/kube-nova-web)           |
+| operator | [yanshicheng/kube-nova-operator](https://github.com/yanshicheng/kube-nova-operator) | [ikubeops/kube-nova-operator](https://gitee.com/ikubeops/kube-nova-operator) |
+
+## Docker 镜像
+
+| 服务模块               | Docker Hub                           | 阿里云镜像                                                                   |
+|--------------------|--------------------------------------|-------------------------------------------------------------------------|
+| portal-api         | `ikubeops/portal-api:latest`         | `registry.cn-hangzhou.aliyuncs.com/kube-nova/portal-api:latest`         |
+| portal-rpc         | `ikubeops/portal-rpc:latest`         | `registry.cn-hangzhou.aliyuncs.com/kube-nova/portal-rpc:latest`         |
+| console-api        | `ikubeops/console-api:latest`        | `registry.cn-hangzhou.aliyuncs.com/kube-nova/console-api:latest`        |
+| console-rpc        | `ikubeops/console-rpc:latest`        | `registry.cn-hangzhou.aliyuncs.com/kube-nova/console-rpc:latest`        |
+| manager-api        | `ikubeops/manager-api:latest`        | `registry.cn-hangzhou.aliyuncs.com/kube-nova/manager-api:latest`        |
+| manager-rpc        | `ikubeops/manager-rpc:latest`        | `registry.cn-hangzhou.aliyuncs.com/kube-nova/manager-rpc:latest`        |
+| workload-api       | `ikubeops/workload-api:latest`       | `registry.cn-hangzhou.aliyuncs.com/kube-nova/workload-api:latest`       |
+| kube-nova-web      | `ikubeops/kube-nova-web:latest`      | `registry.cn-hangzhou.aliyuncs.com/kube-nova/kube-nova-web:latest`      |
+| kube-nova-operator | `ikubeops/kube-nova-operator:latest` | `registry.cn-hangzhou.aliyuncs.com/kube-nova/kube-nova-operator:latest` |
+
+## 架构图
+
+![项目架构图.png](https://images.ikubeops.com/static/20260118162212833.png)
+
+## 为什么选择 KubeNova？
+
+### 降低 Kubernetes 使用门槛
+
+Kubernetes 功能强大但复杂度高，对于开发和运维团队来说学习曲线陡峭。KubeNova 提供了直观的 Web 界面和简化的 API，让团队能够专注于业务开发，而非底层基础设施的复杂性。
+
+同时平台也可以提高工作效率，pod 日志，交互式终端等可以有效帮助运维同学进行便捷的管理工作。
+
+### 统一多集群管理
+
+企业通常需要管理多个 Kubernetes 集群（开发、测试、生产环境，或跨区域部署）。KubeNova 提供单一控制平面，让您可以从一个界面管理所有集群，告别在多个 kubectl 上下文之间切换的烦恼。
+
+### 企业级多租户支持
+
+通过三级资源隔离架构和完整的 RBAC 权限体系，KubeNova 支持企业内部多个团队共享基础设施，同时确保资源隔离和安全访问控制。
+
+### 生产就绪的运维能力
+
+KubeNova 不仅仅是一个管理界面，它提供了完整的生产运维能力，包括五维监控、智能告警、灰度发布、审计日志等企业级特性。
+
+## 核心理念
+
+KubeNova 的设计遵循以下核心理念：
+
+**以项目为中心**：打破传统以集群为中心的管理模式，让业务项目成为资源组织的核心单元，更贴合企业实际的组织结构和工作流程。
+
+**简化而非简陋**：在屏蔽 Kubernetes 底层复杂性的同时，保留对容器化工作负载的精细化控制能力。平台所有资源均支持 YAML 导入，表单与 YAML 无缝转换，满足不同用户的操作习惯。
+
+**云原生优先**：原生支持 Kubernetes 部署，与 Prometheus、Alertmanager、Istio 等云原生生态无缝集成。
+
+***
+
+# 功能特性
+
+## 一、多租户与资源管理
+
+### 三级资源隔离架构
+
+KubeNova 采用"项目 → 集群配额 → 工作空间"的三级架构，为提供灵活的资源隔离方案：
+
+**项目（Project）** 是最高级别的资源隔离单元，对应企业的业务线、产品或团队。每个项目可以分配专属的管理员和成员，拥有独立的资源配额和计费统计。
+
+**集群配额（Cluster Quota）** 定义了项目在特定集群中可使用的资源上限，包括 CPU、内存、GPU 等计算资源，以及 Pod 数量、Service 数量等对象配额。支持资源超分配置，在保证资源安全的前提下提高集群利用率。
+
+**工作空间（Workspace）** 是项目内的逻辑隔离单元，对应 Kubernetes 的 Namespace。每个工作空间可以进一步细分资源配额，并支持 LimitRange 配置，实现 Pod 和 Container 级别的资源限制。
+
+### 资源超分（Overcommit）
+
+支持 CPU、内存、GPU 的超分配置，允许为项目分配超过集群物理容量的资源配额。通过合理的超分比例配置，可以显著提高集群资源利用率，降低基础设施成本。平台提供超分收益分析功能，直观展示超分带来的资源节约和投资回报。
+
+### 完整的 RBAC 权限体系
+
+基于角色的访问控制（RBAC），实现用户、角色、权限三层架构。支持菜单权限与 API 权限的独立管控，角色可绑定多种权限组合。用户可关联多个角色，权限自动聚合。前端菜单根据角色权限动态渲染，后端接口实现请求级别的权限校验。
+
+## 二、多集群管理
+
+### 集群接入
+
+支持多种集群接入方式，适应不同的安全策略和运维场景：
+
+* **Kubeconfig**：直接使用 kubeconfig 文件接入，适合自建集群
+* **Token**：使用 ServiceAccount Token 接入，适合受限环境
+* **证书认证**：使用客户端证书接入，适合高安全要求场景
+* **InCluster**: 集群内部通过 sa 可直接纳管。
+
+### 集群资源视图
+
+提供集群资源的全局视图，包括节点列表、资源使用率、配额分配情况等。支持节点标签、污点、注解的管理，以及节点封锁、驱逐等运维操作。
+
+### 网络与存储
+
+自动发现集群的网络配置和命名空间列表。支持 StorageClass、PersistentVolume、PersistentVolumeClaim 的完整生命周期管理。
+
+## 三、工作负载管理
+
+### 全类型工作负载支持
+
+覆盖 Kubernetes 所有工作负载类型：
+
+* **Deployment**：无状态应用管理，支持滚动更新与版本回滚
+* **StatefulSet**：有状态应用编排，提供稳定网络标识与持久化存储
+* **DaemonSet**：节点级守护进程管理，确保集群全覆盖
+* **Job / CronJob**：批处理任务与定时任务自动化，完整生命周期控制
+* **Pod**：直接 Pod 操作，支持调试、临时容器注入等高级排障
+
+### 应用全生命周期管理
+
+提供启停、重启、扩缩容、滚动更新等标准操作。完整的版本历史追踪，支持一键回滚到任意历史版本。镜像批量更新功能，简化多服务同时升级的流程。
+
+### 应用编排能力
+
+**环境变量注入**：支持字面量、ConfigMap、Secret、字段引用等多种来源的环境变量注入。
+
+**健康检查**：完整支持 Liveness、Readiness、Startup 三种探针的配置和管理。
+
+**调度策略**：提供节点选择器、节点亲和性、Pod 亲和/反亲和、污点容忍、拓扑分布约束等高级调度能力。
+
+**存储卷配置**：支持 EmptyDir、HostPath、ConfigMap、Secret、PVC、NFS 等多种卷类型的配置和挂载。
+
+## 四、配置与网络
+
+### 配置管理
+
+**ConfigMap**：应用配置管理，支持使用追踪和依赖分析。
+
+**Secret**：敏感数据安全管理，支持类型过滤和引用追踪。
+
+### 服务发现与流量管理
+
+**Service**：支持 ClusterIP、NodePort、LoadBalancer、ExternalName 等服务类型，提供 Endpoint 可视化。
+
+**Ingress**：HTTP/HTTPS 路由管理，支持 TLS 证书管理和 IngressClass 配置。
+
+## 五、弹性伸缩
+
+### 水平 Pod 自动伸缩（HPA）
+
+基于资源的伸缩（CPU、内存），支持自定义指标（Pods、Object、External）。可配置容器级资源指标，提供伸缩行为和稳定窗口的精细化控制。
+
+### 垂直 Pod 自动伸缩（VPA）
+
+自动资源推荐，根据历史使用情况优化资源配置。支持容器级资源策略，提供 Off、Initial、Recreate、Auto 多种更新模式。可配置资源边界，确保资源调整在安全范围内。
+
+## 六、灰度发布
+
+### Flagger 集成
+
+原生集成 Flagger，提供自动化的渐进式发布能力：
+
+**金丝雀发布**：渐进式流量切换，自动化指标分析，实时监控新版本健康状况。
+
+**A/B 测试**：基于 Header 的流量路由，支持特性验证和用户体验对比。
+
+**蓝绿部署**：零停机发布，支持即时回滚，降低发布风险。
+
+**自动回滚**：基于指标的故障检测与恢复，发现问题自动回滚到稳定版本。
+
+**Webhook 集成**：支持自定义验证门禁和通知，与 CI/CD 流水线无缝对接。
+
+## 七、智能告警
+
+### 多渠道通知
+
+支持 8 种主流通知渠道，满足不同团队的协作习惯：
+
+* **钉钉**：钉钉机器人 Webhook
+* **企业微信**：企业微信机器人
+* **飞书**：飞书机器人 Webhook
+* **邮件**：SMTP 邮件通知
+* **短信**：短信网关集成
+* **语音电话**：语音呼叫通知
+* **Webhook**：自定义 HTTP 回调
+* **站内信**：平台内置消息系统
+
+### 智能路由
+
+**告警分级**：按严重级别（Info/Warning/Critical）配置不同通知渠道，确保关键告警及时触达。
+
+**告警分组**：支持自定义告警分组，深度定制分组告警规则。
+
+**标签过滤**：基于告警标签的智能匹配与路由，实现精准的告警分发。
+
+### Alertmanager 集成
+
+与 Prometheus Alertmanager 原生集成，自动解析告警标签，关联集群、项目、工作空间。完整的告警生命周期管理（firing → resolved），发送记录全链路追踪。
+
+> \[!warning]
+> 需要按照平台规则进行接入。
+
+## 八、监控与可观测性
+
+### 全方位监控体系
+
+**Pod 监控**：资源使用率、网络流量、存储 I/O、健康状态全方位监控。
+
+**Node 监控**：CPU、内存、磁盘、网络、系统指标的实时监控和历史分析。
+
+**Namespace 监控**：配额使用情况、工作负载状态、资源 Top 排行。
+
+**集群监控**：控制面（API Server、etcd、Scheduler、Controller Manager）健康状态和性能指标，集群资源容量规划。
+
+**Ingress 监控**：入口流量、请求性能、错误率、TLS 证书状态监控。
+
+.....
+
+### Prometheus 集成
+
+自动配置 Prometheus 连接，支持 Basic Auth、Token、API Key 多种认证方式。PrometheusRule 告警规则管理，Probe 黑盒监控配置。
+
+## 九、Pod 运维工具
+
+### 日志管理
+
+实时日志流查看，支持多容器日志聚合。历史日志查询，支持时间范围和关键字过滤。日志下载功能，便于离线分析和归档。
+
+### 交互式终端
+
+Web 终端直接连接容器，执行命令进行调试和排障。支持多容器选择，临时容器注入。
+
+### 文件管理
+
+容器文件系统浏览，支持文件和目录的查看。文件编辑、上传、下载功能，支持文件压缩和解压。
+
+## 十、镜像仓库管理
+
+### Harbor 集成
+
+支持多个 Harbor 仓库的统一管理，实现项目级权限隔离。
+
+### 镜像生命周期
+
+完整的镜像生命周期管理，包括镜像清理策略（GC）、保留策略配置、跨仓库镜像复制。
+
+## 十一、审计与合规
+
+### 四级审计日志
+
+完整的操作审计体系，覆盖集群、项目、工作空间、应用四个层级。
+
+### 多维度查询
+
+支持按时间、操作者、操作类型、资源类型等多维度查询和过滤。所有操作记录支持追溯，满足企业合规要求。
+
+## 十二、Istio 服务网格（规划中）
+
+### 流量治理
+
+服务网格可视化管理，提供流量路由、负载均衡、故障注入等能力。
+
+### 安全策略
+
+mTLS 加密通信，访问控制策略管理。
+
+### 可观测性
+
+分布式链路追踪，服务拓扑可视化。
+
+***
+
+## 技术栈
+
+### 后端
+
+| 组件 | 技术选型 |
+|------|---------|
+| 开发语言 | Go 1.25.5+ |
+| 微服务框架 | Go-Zero v1.9.4 |
+| 数据库 | MySQL 8.0+ |
+| 缓存 | Redis 7.0+ |
+| 认证机制 | JWT（双令牌机制） |
+| API 协议 | RESTful HTTP + gRPC |
+
+### 前端
+
+| 组件 | 技术选型 |
+|------|---------|
+| 框架 | Vue 3.x |
+| UI 框架 | Art Design Pro |
+
+### 基础设施
+
+| 组件 | 要求 |
+|------|------|
+| Kubernetes | 1.21+ |
+| Prometheus | 可选，用于监控 |
+| Alertmanager | 可选，用于告警 |
+| Harbor | 可选，用于镜像管理 |
+| Istio | 可选，用于服务网格 |
+
+***
+
+---
+
+---
+url: /01.指南/10.使用/05.费用管理.md
+---
+
+> \[!DANGER]
+> 注意: 费用配置不起到实际的作用。
+>
+> 只做于企业内部资源成本管理的粗略统计。
+
+费用配置，可以通过集群管理 - 费用配置自定义费用配置列表
+
+费用可以绑定在项目集群资源上也可以绑定在集群中。具体如下图
+
+![image.png](https://images.ikubeops.com/static/20260117223446330.png)
+
+---
+
+---
+url: /01.指南/10.使用/13.配置管理.md
+---
+
+# 配置管理
+
+✨ **特性:**
+
+* 统一配置中心: ConfigMap、Secret、Service、Ingress 等资源集中管理
+* 可视化编辑: 告别命令行，表单化创建和编辑 Kubernetes 资源
+* 引用追踪: 一键查看资源被哪些工作负载引用
+* YAML 导出: 支持下载资源的完整 YAML 配置
+* RBAC 管理: ServiceAccount、Role、RoleBinding 权限配置
+
+## 概述
+
+配置管理是 Kube Nova 中用于管理 Kubernetes 配置类资源的统一入口。在 Kubernetes 中，应用的运行不仅依赖工作负载本身，还需要各种配置资源的支撑，包括配置数据、密钥凭证、网络服务、存储卷、访问权限等。
+
+传统方式下，运维人员需要使用 kubectl 命令或编写 YAML 文件来管理这些资源，不仅操作繁琐，而且容易出错。配置管理模块将这些资源进行可视化封装，通过直观的表单界面完成资源的创建、编辑、查看和删除操作，大幅降低了 Kubernetes 的使用门槛。
+
+**操作路径**：业务中心 → 配置管理
+
+### 页面布局
+
+配置管理页面顶部提供筛选条件，用于定位目标资源：
+
+**集群选择** 选择要管理的目标集群，不同集群的资源相互独立。
+
+**工作空间选择** 选择工作空间（对应 Kubernetes Namespace），配置资源都是命名空间级别的资源。
+
+页面主体区域通过标签页切换不同的资源类型：ConfigMap、Secret、Service、Ingress、PVC、ServiceAccount、Role、RoleBinding。每个标签页都提供独立的资源列表和管理功能。
+
+***
+
+## ConfigMap 管理
+
+ConfigMap 是 Kubernetes 中用于存储非敏感配置数据的资源对象。它可以存储配置文件、环境变量、命令行参数等配置信息，并以键值对的形式供 Pod 使用。
+
+### 使用场景
+
+ConfigMap 适用于存储应用程序的配置信息，例如数据库连接字符串（非密码部分）、应用配置文件、特性开关、日志级别设置等。通过将配置与容器镜像分离，可以实现配置的动态更新，而无需重新构建镜像。
+
+### 资源列表
+
+ConfigMap 列表展示以下信息：
+
+**名称** 显示 ConfigMap 的名称，如 `coredns`、`kube-proxy` 等。
+
+**命名空间** 显示 ConfigMap 所属的命名空间。
+
+**数据项** 显示 ConfigMap 中包含的键值对数量，点击可查看具体内容。
+
+**运行时长** 显示 ConfigMap 从创建到现在的时长。
+
+**创建时间** 显示 ConfigMap 的创建时间戳。
+
+### 操作功能
+
+点击每行右侧的操作菜单，可执行以下操作：
+
+**查看详情** 查看 ConfigMap 的完整信息，包括元数据、标签、注解和所有数据项内容。
+
+**编辑** 修改 ConfigMap 的数据项，支持添加、修改、删除键值对。编辑后引用该 ConfigMap 的 Pod 会自动感知变化（需要应用支持配置热加载）。
+
+**查看引用** 查看哪些工作负载（Deployment、StatefulSet 等）引用了该 ConfigMap。这是一个非常实用的功能，在删除或修改 ConfigMap 前，可以先确认影响范围。
+
+**下载 YAML** 将 ConfigMap 导出为 YAML 文件，便于备份、迁移或版本管理。
+
+**删除** 删除 ConfigMap。删除前请确认没有工作负载正在引用，否则可能导致 Pod 启动失败。
+
+### 创建 ConfigMap
+
+点击「新增」按钮创建新的 ConfigMap：
+
+**名称** 输入 ConfigMap 的名称，需符合 Kubernetes 命名规范。
+
+**数据项** 添加一个或多个键值对。键是数据项的名称，值可以是简单字符串或完整的配置文件内容。
+
+> \[!TIP] 配置文件存储技巧
+> 如果需要存储完整的配置文件（如 nginx.conf），可以将文件名作为键，文件内容作为值。例如：键为 `nginx.conf`，值为完整的 Nginx 配置内容。
+
+***
+
+## Secret 管理
+
+Secret 是 Kubernetes 中用于存储敏感信息的资源对象。与 ConfigMap 不同，Secret 的数据会进行 Base64 编码存储，并且在 etcd 中可以配置加密存储，提供更高的安全性。
+
+### Secret 类型
+
+Kubernetes 支持多种类型的 Secret，平台会通过标签标识不同类型：
+
+**Opaque** 通用类型，用于存储任意的用户自定义数据，是最常用的类型。
+
+**SA Token（kubernetes.io/service-account-token）** ServiceAccount 的访问令牌，由 Kubernetes 自动创建和管理。
+
+**Docker Config（kubernetes.io/dockerconfigjson）** Docker 镜像仓库的认证信息，用于拉取私有镜像。
+
+**TLS（kubernetes.io/tls）** TLS 证书和私钥，用于 Ingress 的 HTTPS 配置。
+
+**Basic Auth（kubernetes.io/basic-auth）** 基本认证信息，包含用户名和密码。
+
+### 资源列表
+
+Secret 列表展示以下信息：
+
+**名称** 显示 Secret 的名称。
+
+**命名空间** 显示 Secret 所属的命名空间。
+
+**类型** 显示 Secret 的类型标签，便于快速识别用途。
+
+**数据项数量** 显示 Secret 中包含的数据项数量。
+
+**创建时间** 显示 Secret 的创建时间。
+
+### 操作功能
+
+**查看详情** 查看 Secret 的完整信息。出于安全考虑，敏感数据默认以掩码形式显示，可选择显示明文。
+
+**编辑** 修改 Secret 的数据项。编辑时可以直接输入明文，系统会自动进行 Base64 编码。
+
+**查看引用** 查看哪些工作负载引用了该 Secret。
+
+**下载 YAML** 导出 Secret 的 YAML 配置。注意：导出的 YAML 中数据是 Base64 编码的。
+
+**删除** 删除 Secret。
+
+### 创建 Secret
+
+点击「新增」按钮创建新的 Secret：
+
+**名称** 输入 Secret 的名称。
+
+**类型** 选择 Secret 的类型。不同类型会有不同的数据项模板。
+
+**数据项** 根据所选类型填写数据项。输入明文即可，系统会自动编码。
+
+> \[!WARNING] 安全提示
+> 虽然 Secret 提供了基本的安全保护，但 Base64 编码并非加密。对于高度敏感的数据，建议结合外部密钥管理系统（如 HashiCorp Vault）使用，或启用 etcd 加密。
+
+***
+
+## Service 管理
+
+Service 是 Kubernetes 中用于定义 Pod 访问策略的抽象层。由于 Pod 的 IP 地址是动态分配的，Service 提供了稳定的访问入口，通过标签选择器将流量路由到后端 Pod。
+
+### Service 类型
+
+**ClusterIP** 默认类型，仅在集群内部可访问。分配一个集群内部 IP 地址，其他 Pod 可以通过该 IP 或服务名访问。
+
+**NodePort** 在 ClusterIP 的基础上，在每个节点上开放一个静态端口（范围 30000-32767）。可以通过 `<节点IP>:<NodePort>` 从集群外部访问。
+
+**LoadBalancer** 在 NodePort 的基础上，由云厂商提供外部负载均衡器。适用于云环境，会分配一个外部可访问的 IP 地址。
+
+**ExternalName** 将服务映射到外部 DNS 名称，不创建代理，用于访问集群外部服务。
+
+### 资源列表
+
+Service 列表展示以下信息：
+
+**名称** 显示 Service 的名称，如 `kube-dns`、`metrics-server` 等。
+
+**命名空间** 显示 Service 所属的命名空间。
+
+**类型** 显示 Service 的类型（ClusterIP、NodePort、LoadBalancer）。
+
+**集群 IP** 显示分配的集群内部 IP 地址。
+
+**外部 IP** 对于 LoadBalancer 类型，显示外部负载均衡器的 IP 地址。
+
+**端口** 显示 Service 暴露的端口列表，格式为 `端口/协议`，如 `53/UDP,53/TCP,9153/TCP`。
+
+**创建时间** 显示 Service 的创建时间。
+
+### 操作功能
+
+**查看详情** 查看 Service 的完整配置，包括选择器、端口映射、会话亲和性等。
+
+**编辑** 修改 Service 的配置，如端口映射、服务类型等。
+
+**查看 Endpoints** 查看 Service 后端关联的 Pod 端点列表，包括每个端点的 IP 和端口。这对于排查服务连接问题非常有用。
+
+**下载 YAML** 导出 Service 的 YAML 配置。
+
+**删除** 删除 Service。
+
+### 创建 Service
+
+点击「新增」按钮创建新的 Service：
+
+**名称** 输入 Service 的名称。
+
+**类型** 选择 Service 类型。
+
+**选择器** 配置标签选择器，定义哪些 Pod 属于该 Service 的后端。
+
+**端口配置** 配置端口映射，包括服务端口、目标端口、协议等。
+
+***
+
+## Ingress 管理
+
+Ingress 是 Kubernetes 中用于管理外部 HTTP/HTTPS 流量访问的资源。它提供了基于域名和路径的路由规则，可以将外部请求路由到不同的 Service。
+
+### 核心概念
+
+**Ingress Controller** Ingress 资源本身只是一组路由规则的定义，需要 Ingress Controller（如 Nginx Ingress、Traefik）来实际处理流量。
+
+**Host** 定义域名规则，支持精确匹配和通配符匹配。
+
+**Path** 定义 URL 路径规则，支持前缀匹配和精确匹配。
+
+**TLS** 配置 HTTPS 证书，实现加密传输。
+
+### 资源列表
+
+Ingress 列表展示以下信息：
+
+**名称** 显示 Ingress 的名称。
+
+**状态** 显示 Ingress 的健康状态（正常/异常）。
+
+**命名空间** 显示 Ingress 所属的命名空间。
+
+**Ingress Class** 显示使用的 Ingress Controller 类型，如 `nginx`。
+
+**主机/规则** 显示配置的域名和路由规则数量。点击域名可直接访问。
+
+**LoadBalancer 地址** 显示 Ingress Controller 的外部访问地址。
+
+**端口/TLS** 显示监听的端口（80/443）以及是否配置了 TLS。
+
+**创建时间** 显示 Ingress 的创建时间。
+
+### 操作功能
+
+**查看详情** 查看 Ingress 的完整配置，包括所有路由规则、TLS 配置、注解等。
+
+**编辑** 修改 Ingress 的路由规则和配置。
+
+**下载 YAML** 导出 Ingress 的 YAML 配置。
+
+**删除** 删除 Ingress。
+
+### 创建 Ingress
+
+点击「新增 Ingress」按钮创建新的 Ingress：
+
+**名称** 输入 Ingress 的名称。
+
+**Ingress Class** 选择要使用的 Ingress Controller。
+
+**路由规则** 配置域名和路径规则：
+
+* **Host**：输入域名，如 `app.example.com`
+* **Path**：输入路径，如 `/api`
+* **Path Type**：选择匹配类型（Prefix/Exact/ImplementationSpecific）
+* **Backend Service**：选择后端 Service 和端口
+
+**TLS 配置** 配置 HTTPS 证书：
+
+* **Hosts**：选择需要启用 TLS 的域名
+* **Secret**：选择包含证书的 Secret
+
+***
+
+## PVC 管理
+
+PVC（PersistentVolumeClaim）是 Kubernetes 中用于申请持久化存储的资源。通过 PVC，Pod 可以使用持久化存储卷来保存数据，即使 Pod 被删除重建，数据也不会丢失。
+
+### 核心概念
+
+**StorageClass** 存储类定义了存储的类型和配置参数，如 `nfs-default`、`csi-disk` 等。不同的存储类提供不同的存储能力。
+
+**Access Modes** 访问模式定义了存储卷的访问方式：
+
+* **ReadWriteOnce (RWO)**：单节点读写
+* **ReadOnlyMany (ROX)**：多节点只读
+* **ReadWriteMany (RWX)**：多节点读写
+
+**Volume Mode** 卷模式定义了存储的使用方式：
+
+* **Filesystem**：作为文件系统挂载
+* **Block**：作为原始块设备挂载
+
+### 资源列表
+
+PVC 列表展示以下信息：
+
+**名称** 显示 PVC 的名称，如 `mysql-pvc`、`redis-pvc` 等。
+
+**命名空间** 显示 PVC 所属的命名空间。
+
+**状态** 显示 PVC 的绑定状态：
+
+* `Bound`（绿色）：已成功绑定到 PV
+* `Pending`（黄色）：等待绑定
+* `Lost`（红色）：绑定的 PV 已丢失
+
+**绑定的 PV** 显示 PVC 绑定的 PersistentVolume 名称，点击可查看 PV 详情。
+
+**容量** 显示申请的存储容量，如 `10Gi`、`5Gi`。
+
+**访问模式** 显示存储卷的访问模式。
+
+**存储类** 显示使用的存储类名称。
+
+**创建时间** 显示 PVC 的创建时间。
+
+### 操作功能
+
+**查看详情** 查看 PVC 的完整配置和状态信息。
+
+**关联信息** 查看哪些 Pod 正在使用该 PVC，以及绑定的 PV 详情。
+
+**编辑** 修改 PVC 的配置。注意：某些字段（如容量、访问模式）在创建后可能无法修改。
+
+**下载 YAML** 导出 PVC 的 YAML 配置。
+
+**删除** 删除 PVC。如果 PVC 正在被 Pod 使用，删除操作会被阻塞，直到 Pod 释放该 PVC。
+
+### 创建 PVC
+
+点击「新增 PVC」按钮创建新的 PVC：
+
+**名称** 输入 PVC 的名称。
+
+**存储类** 选择存储类。如果集群配置了默认存储类，可以留空使用默认值。
+
+**访问模式** 选择访问模式，需要存储类支持所选模式。
+
+**容量** 输入申请的存储容量。
+
+> \[!NOTE] PVC 扩容
+> 部分存储类支持在线扩容。如果需要增加 PVC 容量，可以编辑 PVC 修改容量值（只能增加，不能减少）。扩容是否支持以及是否需要重启 Pod，取决于存储类的配置。
+
+***
+
+## ServiceAccount 管理
+
+ServiceAccount 是 Kubernetes 中用于 Pod 身份认证的资源。每个 Pod 都会关联一个 ServiceAccount，用于访问 Kubernetes API 和其他需要认证的服务。
+
+### 使用场景
+
+ServiceAccount 主要用于以下场景：为应用提供访问 Kubernetes API 的凭证，配合 RBAC 实现细粒度的权限控制，以及为 Pod 提供拉取私有镜像的凭证（通过 imagePullSecrets）。
+
+### 资源列表
+
+ServiceAccount 列表展示以下信息：
+
+**名称** 显示 ServiceAccount 的名称。每个命名空间都有一个名为 `default` 的默认 ServiceAccount。
+
+**命名空间** 显示 ServiceAccount 所属的命名空间。
+
+**Secrets 数量** 显示关联的 Secret 数量，包括 API 访问令牌等。
+
+**创建时间** 显示 ServiceAccount 的创建时间。
+
+### 操作功能
+
+**查看详情** 查看 ServiceAccount 的完整信息，包括关联的 Secret 和 ImagePullSecret。
+
+**编辑** 修改 ServiceAccount 的配置，如添加 ImagePullSecret。
+
+**下载 YAML** 导出 ServiceAccount 的 YAML 配置。
+
+**删除** 删除 ServiceAccount。注意：删除后使用该 ServiceAccount 的 Pod 将无法正常访问 API。
+
+### 创建 ServiceAccount
+
+点击「新增 ServiceAccount」按钮创建新的 ServiceAccount：
+
+**名称** 输入 ServiceAccount 的名称。
+
+**ImagePullSecrets** 可选，配置用于拉取私有镜像的 Secret。
+
+***
+
+## Role 管理
+
+Role 是 Kubernetes RBAC（基于角色的访问控制）中定义权限的资源。Role 定义了一组权限规则，指定了可以对哪些资源执行哪些操作。
+
+### 核心概念
+
+**Role vs ClusterRole** Role 是命名空间级别的资源，只能授权访问同一命名空间内的资源。ClusterRole 是集群级别的资源，可以授权访问集群范围的资源或跨命名空间的资源。
+
+**权限规则** 每条规则包含三个要素：
+
+* **apiGroups**：API 组，如 `""` 表示核心 API，`apps` 表示应用 API
+* **resources**：资源类型，如 `pods`、`deployments`、`services`
+* **verbs**：操作动词，如 `get`、`list`、`create`、`update`、`delete`
+
+### 资源列表
+
+Role 列表展示以下信息：
+
+**名称** 显示 Role 的名称。
+
+**命名空间** 显示 Role 所属的命名空间。
+
+**创建时间** 显示 Role 的创建时间。
+
+### 操作功能
+
+**查看详情** 查看 Role 的完整权限规则列表。
+
+**关联信息** 查看哪些 RoleBinding 引用了该 Role，以及绑定的主体（用户、组、ServiceAccount）。
+
+**编辑** 修改 Role 的权限规则。
+
+**下载 YAML** 导出 Role 的 YAML 配置。
+
+**删除** 删除 Role。删除前请确认没有 RoleBinding 正在引用。
+
+### 创建 Role
+
+点击「新增 Role」按钮创建新的 Role：
+
+**名称** 输入 Role 的名称。
+
+**权限规则** 添加一条或多条权限规则，定义可访问的资源和操作。
+
+***
+
+## RoleBinding 管理
+
+RoleBinding 用于将 Role 中定义的权限授予给用户、组或 ServiceAccount。它建立了「谁」（Subject）可以「做什么」（Role）的关联关系。
+
+### 核心概念
+
+**Subject** 权限的授予对象，可以是：
+
+* **User**：用户，通常对应证书中的 CN 字段
+* **Group**：用户组，通常对应证书中的 O 字段
+* **ServiceAccount**：服务账户
+
+**RoleRef** 引用的 Role 或 ClusterRole。RoleBinding 可以引用同一命名空间的 Role，也可以引用集群级别的 ClusterRole（权限范围仍限于当前命名空间）。
+
+### 资源列表
+
+RoleBinding 列表展示以下信息：
+
+**名称** 显示 RoleBinding 的名称。
+
+**命名空间** 显示 RoleBinding 所属的命名空间。
+
+**绑定的角色** 显示引用的 Role 或 ClusterRole 名称。
+
+**创建时间** 显示 RoleBinding 的创建时间。
+
+### 操作功能
+
+**查看详情** 查看 RoleBinding 的完整配置，包括引用的角色和所有主体。
+
+**编辑** 修改 RoleBinding 的主体列表。注意：roleRef 字段在创建后不可修改。
+
+**下载 YAML** 导出 RoleBinding 的 YAML 配置。
+
+**删除** 删除 RoleBinding。删除后相关主体将失去该角色的权限。
+
+### 创建 RoleBinding
+
+点击「新增 RoleBinding」按钮创建新的 RoleBinding：
+
+**名称** 输入 RoleBinding 的名称。
+
+**角色引用** 选择要绑定的 Role 或 ClusterRole。
+
+**主体** 添加一个或多个主体，指定权限的授予对象。
+
+***
+
+## 最佳实践
+
+### ConfigMap 和 Secret 使用建议
+
+**分离配置和代码** 将应用配置外置到 ConfigMap，实现配置与镜像的解耦。这样可以在不重新构建镜像的情况下更新配置。
+
+**敏感信息使用 Secret** 密码、API 密钥、证书等敏感信息务必使用 Secret 存储，不要放在 ConfigMap 或镜像中。
+
+**合理拆分配置** 将相关的配置项组织到同一个 ConfigMap 中，但避免单个 ConfigMap 过大。建议按功能模块或更新频率拆分。
+
+**配置热加载** 如果应用支持配置热加载，可以利用 ConfigMap 挂载为文件的方式，实现配置的动态更新。
+
+### Service 配置建议
+
+**选择合适的类型** 内部服务使用 ClusterIP，需要外部访问优先使用 Ingress + ClusterIP 的组合，谨慎使用 NodePort 和 LoadBalancer。
+
+**合理配置端口** 使用有意义的端口命名（如 `http`、`grpc`），便于 Istio 等服务网格识别协议类型。
+
+**健康检查端点** 为 Service 后端的 Pod 配置健康检查，确保流量只路由到健康的实例。
+
+### 存储管理建议
+
+**选择合适的存储类** 根据应用的 I/O 特性选择存储类型。数据库等高 I/O 应用使用 SSD 存储，日志等低频访问数据可使用 HDD 存储。
+
+**合理规划容量** 根据数据增长预期合理申请容量，既要避免浪费，也要为增长留有余量。
+
+**定期备份** 持久化存储虽然数据不会丢失，但仍需要定期备份以防止误删除或数据损坏。
+
+### RBAC 配置建议
+
+**最小权限原则** 只授予必要的最小权限，避免使用过于宽泛的权限（如 `*`）。
+
+**使用 ServiceAccount** 为每个应用创建独立的 ServiceAccount，并配置专属的权限，避免使用 default ServiceAccount。
+
+**定期审计** 定期审查 Role 和 RoleBinding 配置，清理不再需要的权限授权。
+
+***
+
+## 常见问题
+
+### ConfigMap 更新后 Pod 为什么没有感知到？
+
+ConfigMap 更新后，Pod 感知变化的方式取决于挂载方式。如果通过环境变量引用，Pod 不会自动感知变化，需要重启 Pod。如果通过 Volume 挂载为文件，Kubernetes 会在几分钟内自动更新文件内容，但应用是否能感知取决于应用本身的实现。
+
+### PVC 一直处于 Pending 状态怎么办？
+
+PVC Pending 通常有以下原因：存储类不存在或配置错误，存储后端容量不足，访问模式不被存储类支持，或者没有可用的 PV 满足 PVC 的要求。可以通过 `kubectl describe pvc` 查看详细的事件信息来定位问题。
+
+### 如何查看 ServiceAccount 的 Token？
+
+在 Kubernetes 1.24 之后，ServiceAccount 不再自动创建 Token Secret。如需获取 Token，可以创建一个类型为 `kubernetes.io/service-account-token` 的 Secret 并关联到 ServiceAccount，或者使用 `kubectl create token` 命令生成临时 Token。
+
+### Ingress 配置后无法访问怎么排查？
+
+排查步骤包括：确认 Ingress Controller 是否正常运行，检查 Ingress 规则是否正确配置，确认后端 Service 和 Pod 是否正常，检查域名解析是否正确指向 Ingress Controller 的地址，以及查看 Ingress Controller 的日志定位具体错误。
+
+---
+
+---
+url: /01.指南/10.使用/06.镜像管库.md
+---
+
+# 镜像仓库管理
+
+本文档介绍如何在 Kube Nova 平台中管理容器镜像仓库，包括仓库配置、项目管理、制品管理和垃圾回收等功能。
+
+镜像仓库管理功能用于管理和配置容器镜像仓库，支持对接 Harbor 等主流镜像仓库服务。通过统一管理镜像仓库，可以方便地浏览项目、查看镜像制品、管理存储空间等。
+
+**操作路径**：集群管理 → 镜像仓库
+
+✨ **特性:**
+
+* 公共仓库仓木全局可访问(集群要先绑定 harbor 实例)
+* 私有仓库项目可绑定平台项目，实现仓库隔离
+* Harbor 可绑定集群，实现集群 harbor 隔离
+
+***
+
+## 创建镜像仓库
+
+点击「创建仓库」按钮打开创建对话框，配置以下信息：
+
+### 基本配置
+
+**仓库名称**（必填）：输入仓库的显示名称，用于在平台中标识该仓库。
+
+**仓库类型**（必填）：选择仓库类型，目前支持 Harbor。
+
+**环境类型**（必填）：选择仓库所属的环境，可选开发、测试、预发、生产四种环境类型。
+
+**仓库地址**（必填）：输入仓库的访问地址，例如 `https://harbor.example.com`。
+
+### 认证配置
+
+**用户名**（必填）：输入访问仓库的用户名。
+
+**密码**（必填）：输入访问仓库的密码。
+
+**跳过证书验证**：如果仓库使用自签名证书，请开启此选项。开启后将跳过 TLS 证书验证。
+
+**CA 证书**（可选）：如果不跳过证书验证，可以粘贴 CA 证书内容用于验证仓库的 TLS 证书。
+
+### 其他配置
+
+**状态**：设置仓库的启用状态，可选禁用或启用。禁用后该仓库将不可用于镜像拉取等操作。
+
+**描述**（可选）：输入仓库的描述信息。
+
+配置完成后，建议点击「测试连接」验证仓库连接是否正常，确认无误后点击「创建」完成创建。
+
+***
+
+## 仓库列表
+
+仓库列表页面展示所有已配置的镜像仓库，支持卡片视图和列表视图两种展示方式。
+
+### 仓库卡片信息
+
+每个仓库以卡片形式展示以下信息：
+
+**仓库标识**：仓库名称、状态（启用/禁用）、仓库地址（可复制）。
+
+**仓库标签**：显示仓库类型（如 Harbor）、环境类型（如 开发）、证书验证状态（如 跳过验证）。
+
+**统计信息**：项目数量、仓库数量（镜像仓库总数）、存储使用量。
+
+**管理信息**：管理员用户名、创建时间。
+
+### 搜索与筛选
+
+页面顶部提供多维度筛选功能：按名称搜索仓库、按环境类型筛选、按仓库类型筛选、按状态筛选。
+
+### 仓库操作
+
+每个仓库卡片底部提供以下操作：
+
+**管理**：进入仓库的项目管理页面，可以查看和管理仓库中的所有项目。
+
+**绑定**：将仓库绑定到特定的集群或项目，使其可以被使用。
+
+**更多操作**（点击三点菜单）：编辑仓库配置、删除仓库等。
+
+***
+
+## 项目管理
+
+点击仓库卡片的「管理」按钮进入项目管理页面。项目管理页面包含六个标签页：项目详情、项目管理、用户管理、垃圾回收、保留策略、复制策略。
+
+### 项目详情
+
+项目详情标签页展示仓库的整体概览信息。
+
+**统计概览**展示四个核心指标：项目总数（仓库中的项目数量）、仓库总数（所有项目中的镜像仓库总数）、私有项目（访问权限为私有的项目数量）、公开项目（访问权限为公开的项目数量）。
+
+**存储信息**展示仓库的存储使用情况：总容量、已使用空间、可用空间、使用率。存储信息以环形图直观展示使用比例。
+
+**基本信息**展示仓库的配置详情，包括仓库地址、类型、认证方式等。
+
+### 项目管理
+
+项目管理标签页展示仓库中所有项目的列表。
+
+**列表字段**包括：项目名称（带 ID 标识）、访问权限（公开/私有）、已用配额（当前存储使用量）、配额限制（存储配额上限，无限制表示不限制）、拥有者、仓库数量、操作。
+
+**项目操作**根据项目类型有所不同：
+
+对于公开项目：分配用户（管理项目成员权限）、查看（进入制品管理页面）、编辑、配额管理、删除。
+
+对于私有项目：额外显示「绑定项目」按钮，用于将仓库项目与平台项目关联。
+
+**创建项目**：点击页面右上角「创建项目」按钮可以在仓库中创建新项目。
+
+### 用户管理
+
+用户管理标签页用于管理仓库的用户和权限。可以添加用户、分配角色、管理访问权限等。
+
+### 垃圾回收
+
+垃圾回收功能用于清理未使用的镜像层和制品，释放存储空间。
+
+**任务列表**展示垃圾回收任务的执行历史，包括：任务名称、任务类型（SCHEDULE 表示定时任务）、状态（成功/失败/运行中）、删除无标签镜像（是/否）、创建时间、更新时间、操作（详情、日志）。
+
+**操作功能**：
+
+「立即执行 GC」手动触发一次垃圾回收任务。
+
+「调度配置」配置定时垃圾回收的执行计划，例如每天凌晨执行。
+
+「刷新」刷新任务列表。
+
+### 保留策略
+
+保留策略用于配置镜像的自动清理规则，例如保留最近 N 个版本、保留最近 N 天的镜像等。通过合理配置保留策略，可以自动清理旧版本镜像，节省存储空间。
+
+### 复制策略
+
+复制策略用于配置镜像在不同仓库之间的同步规则。可以设置源仓库、目标仓库、复制触发条件（手动/定时/事件触发）等，实现镜像的跨仓库分发。
+
+***
+
+## 制品管理
+
+在项目管理页面点击项目的「查看」按钮，进入制品管理页面。
+
+### 仓库列表
+
+制品管理页面展示项目中的所有镜像仓库，支持卡片视图和列表视图。
+
+**仓库卡片信息**包括：仓库名称（格式为 `项目名/镜像名`，如 `argocd/dex`）、描述信息、制品数量（该仓库中的镜像标签数量）、拉取次数（镜像被拉取的总次数）、最后更新时间。
+
+**仓库操作**：点击「查看」按钮查看仓库中的所有制品（镜像标签）。
+
+### 制品列表
+
+点击仓库的「查看」按钮，打开制品列表对话框，展示该仓库中的所有镜像标签。
+
+**列表字段**包括：标签（镜像版本号，如 v2.38.0、v2.41.1）、类型（IMAGE 表示容器镜像）、摘要（镜像的 SHA256 摘要，用于唯一标识）、大小（镜像文件大小）、推送时间、拉取次数、操作。
+
+**制品操作**：
+
+「复制」复制镜像的完整拉取地址到剪贴板，方便在部署时使用。
+
+「删除」删除该镜像标签。删除后无法恢复，请谨慎操作。
+
+***
+
+## 仓库绑定
+
+仓库绑定功能用于将镜像仓库与 Kube Nova 平台中的集群或项目关联，使集群能够从该仓库拉取镜像。
+
+### 绑定到集群
+
+将仓库绑定到集群后，该集群中的工作负载可以使用此仓库中的镜像。绑定时会自动在集群中创建对应的 Secret，用于镜像拉取认证。
+
+### 绑定到项目
+
+将仓库中的项目与平台项目关联后，可以在项目的命名空间中直接使用该仓库的镜像，无需手动配置镜像拉取密钥。
+
+***
+
+## 最佳实践
+
+### 环境隔离
+
+建议按环境类型配置不同的镜像仓库，开发环境使用开发仓库，生产环境使用生产仓库，避免开发镜像误部署到生产环境。
+
+### 存储管理
+
+定期执行垃圾回收清理无用镜像层。配置合理的保留策略自动清理旧版本镜像。监控存储使用情况，及时扩容或清理。
+
+### 安全配置
+
+生产环境建议使用正规 CA 签发的证书，避免跳过证书验证。为不同用途创建不同的仓库账户，遵循最小权限原则。私有项目应限制访问权限，只对必要的用户开放。
+
+---
+
+---
+url: /01.指南/10.使用/01.集群管理.md
+---
+
+# 集群管理
+
+✨ **特性:**
+
+* 多种认证方式: kubeconfig, token, 证书， inCluster
+* 集群整体全方位监控面板
+* 资源管理
+* 同步功能
+
+## 集群添加
+
+Kube Nova 支持将现有的 Kubernetes 集群添加到管理平台中进行统一管理。
+
+**操作路径**：集群管理 → 集群管理 → 新增集群
+
+添加集群的流程分为七个步骤：选择集群类型 → 基础信息 → 认证配置 → 费用配置 → 监控配置 → 管控配置 → 完成。
+
+### 步骤一：选择集群类型
+
+在此步骤中，您需要配置集群的基本类型和部署信息。
+
+**集群类型** 选项包括三种：「标准集群」适用于常规工作负载，提供完整功能；「边缘集群」部署在边缘节点，具有低延迟高性能特点；「无服务器」按需付费，支持自动伸缩，免运维。
+
+**运行环境** 用于标识集群用途，可选择：开发环境、测试环境、预发布环境、生产环境。
+
+**基础设施提供商**  AWS、Azure、Google Cloud、阿里云、腾讯云、华为云，以及自建集群。
+
+### 步骤二：基础信息
+
+配置集群的基本标识和显示信息。
+
+**集群名称**（必填）：输入集群的唯一标识名称，例如 `prod-k8s-cluster`。
+
+**集群描述**（可选）：描述集群的用途、特点等信息，最多 500 字符。
+
+**位置信息**（可选）：包括地域（如 `cn-beijing`）、可用区（如 `zone-a`）、数据中心。
+
+**负载配置**（可选）：配置 Ingress 域名（多个用逗号分隔）、Node 负载均衡地址、Master 负载均衡地址。
+
+**托管集群**：标识是否为云厂商托管集群（如 EKS、AKS、GKE），默认为「否」。
+
+### 步骤三：认证配置
+
+设置集群的访问认证方式。平台支持四种认证类型：
+
+**支持多种云平台：** 使用 KubeConfig 文件进行认证，包含完整的集群访问信息，是最常用的方式。在文本框中粘贴完整的 KubeConfig 文件内容即可。
+
+**「Token」** 使用 Bearer Token 进行认证，需要额外提供 API Server 地址。
+
+**「证书」** 使用客户端证书和密钥进行双向 TLS 认证。
+
+**「集群内部」** 在集群内部运行时，使用 ServiceAccount 进行认证。
+
+配置完成后，建议点击 **「测试连通性」** 验证集群可达性。请注意，生产环境不推荐勾选 **「跳过 TLS 证书验证」** 选项。
+
+### 步骤四：费用配置
+
+**费用管理章节** 会详细介绍计费相关配置。
+
+选择集群的计费价格配置，此配置将用于资源计费统计。
+
+**标准计费**（系统内置）：系统默认提供的计费方案，价格参考如下：CPU ¥0.05/核/时、内存 ¥0.015/GiB/时、存储 ¥0.001/GiB/时、GPU ¥15/卡/时、Pod ¥0.002/个/时、管理费 ¥3.1/时。
+
+**不计费**（系统内置）：所有资源计费为零，系统默认不推荐修改此选项。
+
+**计费开始时间**：选择计费的起始时间，留空则默认从集群创建时间开始计费。
+
+### 步骤五：监控配置
+
+配置 Prometheus 监控连接信息（可选）。您可以选择立即「配置 Prometheus」启用监控功能，或者选择「跳过此步骤」稍后在中间件管理中配置。
+
+如果选择跳过，请注意：添加集群后需要在集群管理中进入集群控制台的「中间件管理」页面配置 Prometheus 连接信息并设置为默认，否则监控功能不可用。请确保 Prometheus 服务可被 Kube Nova 管理平台正常连接。
+
+### 步骤六：管控配置
+
+配置集群资源创建管控策略，这是一个重要的治理选项。
+
+**启用集群管控**：平台将管控该集群的资源创建，只允许通过平台创建资源。管控生效后，集群中的资源只能通过 Kube Nova 管理平台创建，直接使用 kubectl 或其他工具创建资源将被拒绝。如需临时绕过管控限制，可在资源上添加注解：`ikubeops.com/allow-create: "true"`。启用管控后，请确保相关运维人员了解该策略，避免因创建资源被拒绝而影响业务。
+
+**不启用管控**：集群资源可通过任何方式创建（kubectl、Helm、CI/CD 等），平台不会进行限制。请注意，未经平台管控的资源可能导致资源统计不准确、费用计算遗漏等问题。如需开启管控，可稍后在集群设置中修改。
+
+### 步骤七：完成
+
+确认并创建集群。完成后集群将出现在集群管理列表中。
+![集群创建](https://images.ikubeops.com/static/20260116214426493.png)
+
+***
+
+## 集群监控
+
+集群监控提供对 Kubernetes 集群资源使用情况的实时监控和历史趋势分析。
+
+监控页面提供多个维度的监控视图，通过顶部标签页切换：
+
+* 「集群资源」展示 CPU、内存、Pod、存储等资源的整体监控，包括容量、已用量和使用率趋势图。
+* 「控制平面」监控 Kubernetes 控制平面组件的运行状态和性能指标。
+* 「Etcd」展示 etcd 集群的健康状态、延迟、吞吐量等关键指标。
+* 「节点」显示各节点的资源使用情况和健康状态。
+* 「工作负载」监控 Deployment、StatefulSet、DaemonSet 等工作负载的运行状态。
+* 「Pod & 命名空间」按命名空间和 Pod 维度查看资源使用详情。
+
+**操作路径**：仪表盘 → 集群监控 → 选择对应的集群
+![集群监控](https://images.ikubeops.com/static/20260116214938534.png)
+
+***
+
+## 中间件管理
+
+中间件管理用于配置和管理集群的可观测性组件，包括监控、日志、链路追踪和告警等。
+
+**操作路径**：集群管理 → 集群管理 → 选择对应的集群 → 进入控制台
+
+组件分类:
+
+* **监控管理**（4 个组件）：Prometheus 是开源监控和告警工具包，Thanos 提供高可用性 Prometheus 长期存储，Grafana 是开源可视化和监控平台，VictoriaMetrics 是快速、经济高效的监控解决方案。
+* **日志管理**（4 个组件）：Elasticsearch 是分布式搜索和分析引擎，Loki 是水平可扩展的日志聚合系统，Kibana 是 Elasticsearch 数据可视化工具
+* **链路追踪**（3 个组件）：Jaeger 是端到端分布式追踪系统，SkyWalking 是应用性能监控系统，Zipkin 是分布式追踪系统。
+* **告警管理**（2 个组件）：AlertManager 处理由 Prometheus 发送的告警。
+
+### 默认组件配置
+
+每个分类中需要设置一个组件为默认启用状态。这一点非常重要，因为后续平台获取该集群的监控、日志等数据时，会从对应分类的中间件中查找默认启用的组件。如果未配置默认组件，相关功能将不可用。
+
+例如，若要使用集群监控功能，必须在「监控管理」分类中配置并启用一个组件（如 Prometheus）作为默认监控源。
+
+### 组件配置
+
+点击各组件卡片上的「配置」按钮进入配置页面，填写组件的连接信息（地址、端口、认证方式等）。配置完成后，组件状态会从「未配置」变更为「正常」或其他状态。
+
+***
+
+## 资源管理
+
+资源管理展示集群资源的分配情况，注意这里显示的是资源分配量，而非实时使用量（实时使用请查看集群监控）。
+
+**操作路径**：集群管理 → 集群管理 → 选择对应的集群 → 进入控制台
+
+**CPU**：显示总核数、已分配比例、剩余核数。
+
+**内存**：显示总容量（GiB）、已分配比例、剩余容量。
+
+**GPU**：显示 GPU 卡总数、已分配比例、剩余数量。
+
+**Pod**：显示 Pod 配额总数、已分配比例、剩余数量。
+
+**存储**：显示临时存储总容量（GiB）、已分配比例、剩余容量。存储资源较为特殊，这里控制的是临时存储（ephemeral storage），需要根据集群节点配置手动设置容量值。
+![image.png](https://images.ikubeops.com/static/20260116215109134.png)
+
+***
+
+## 同步功能
+
+同步功能用于将集群的最新状态同步到 Kube Nova 平台，确保平台数据与实际集群保持一致。
+
+**操作路径**：集群管理 → 集群管理 → 点击集群卡片上的「同步」按钮
+
+同步操作会更新以下信息：集群资源使用情况（CPU、内存、Pod、存储等的分配和使用数据）、命名空间（Namespace）列表、工作负载和应用信息（Deployment、StatefulSet、DaemonSet 等）、节点状态信息、其他集群元数据。
+
+> \[!NOTE] 集群同步
+> 集群第一次同步为全量同步
+> 后续同步逻辑 增量 Informer
+> 全量定时任务
+
+---
+
+---
+url: /01.指南/10.使用/04.节点管理.md
+---
+
+# 集群节点管理
+
+本文档介绍如何在 Kube Nova 平台中管理 Kubernetes 集群的节点（Node），包括节点列表查看、节点监控、节点详情管理、标签/注解/污点配置以及节点维护操作等功能。
+
+✨ **特性:**
+
+* 监控
+* YAML 详情
+* 节点维护
+* 启用/禁用调度
+* 标签管理
+* 污点管理
+* 注解管理
+
+**操作路径**：集群管理 → 集群节点 → 选择对应的集群
+
+## 节点列表
+
+节点列表页面展示集群中所有节点的概览信息，支持卡片视图和列表视图两种展示方式。
+
+### 节点卡片信息
+
+每个节点以卡片形式展示以下关键信息：
+
+* **节点标识**：节点名称（如 `nova-24.ikubeops.local`）和 IP 地址（如 `172.16.1.24`）。
+* **节点角色**：「Worker」表示工作节点，负责运行业务 Pod；「Control Plane」表示控制平面节点，运行 Kubernetes 核心组件。
+* **运行状态**：显示节点当前状态，「运行中」表示节点正常工作。
+* **调度状态**：「可调度」表示节点可以接收新的 Pod 调度；「禁止调度」表示节点已被设置为不可调度状态。
+* **资源使用**：以进度条和百分比形式展示 CPU 使用率、内存使用率、Pod 数量（当前/最大容量）。
+* **节点信息**：显示节点架构（如 amd64）和加入集群的时间。
+
+### 节点快捷操作
+
+点击节点卡片右上角的菜单按钮（三个点），可执行以下快捷操作：
+
+**禁用调度**：将节点设置为不可调度状态（CordonNode），新的 Pod 将不会被调度到该节点，但已运行的 Pod 不受影响。
+
+**节点维护**：进入节点维护模式（Drain），会安全驱逐节点上的 Pod 并禁止新的调度，适用于节点升级或硬件维护场景。
+
+***
+
+## 节点监控
+
+节点监控页面提供单个节点的详细性能监控数据。
+
+核心指标：
+
+* CPU 使用率
+* 内存使用
+* 磁盘使用
+* 网络流量
+* Pod 状态
+* Kubernetes 节点信息
+* 系统监控
+* Pod CPU Top 榜
+* Pod 内存 Top 榜
+  **操作路径**：节点卡片 → 监控按钮
+
+***
+
+## 节点管理
+
+### 基本信息
+
+* **基本信息区域**：节点名称、主机名、节点 UUID、IP 地址、节点角色（worker/control-plane）、状态（Ready/NotReady）、调度状态（允许调度/禁止调度）、加入时间。
+* **系统信息区域**：操作系统（如 linux）、系统镜像（如 Ubuntu 24.04.2 LTS）、内核版本（如 6.8.0-90-generic）、架构（如 amd64）、容器运行时（如 containerd://2.2.0）、Kubelet 版本（如 v1.34.2）、GPU 支持（是/否）。
+* **资源配置区域**：CPU 核心数、内存容量、Pod 容量（该节点最大可运行的 Pod 数量）。
+* **网络信息区域**：Pod CIDR（分配给该节点的 Pod 网段）、Pod CIDRs（包含 IPv4 和 IPv6 的完整网段配置）。
+  ![基本信息](https://images.ikubeops.com/static/20260117000732231.png)
+
+### 标签管理
+
+标签（Labels）用于对节点进行分类和选择，是 Kubernetes 中重要的元数据机制。
+
+* **操作功能**：添加标签、刷新标签列表、搜索标签。
+* **标签列表**展示以下信息：键（Key）、值（Value）、类型、操作。
+* **标签类型**分为两种：
+  * 「可管理标签」是用户自定义的标签，可以自由编辑和删除，用于业务需求如节点选择、调度约束等。
+  * 「系统保护标签」由 Kubernetes 系统自动生成和管理，不可修改或删除。常见的系统标签包括 `kubernetes.io/os`（操作系统）、`kubernetes.io/arch`（架构）、`kubernetes.io/hostname`（主机名）、`beta.kubernetes.io/arch`（架构兼容标签）、`beta.kubernetes.io/os`（操作系统兼容标签）。
+    ![image.png](https://images.ikubeops.com/static/20260117000909182.png)
+
+### 注解管理
+
+注解（Annotations）用于存储节点的附加元数据信息，通常由系统组件或工具自动添加。
+
+**操作功能**：添加注解、刷新注解列表、搜索注解、复制注解值。
+
+常见的系统注解包括：`volumes.kubernetes.io/controller-managed-attach-detach`（卷挂载管理）、`csi.volume.kubernetes.io/nodeid`（CSI 节点标识）、`node.alpha.kubernetes.io/ttl`（节点 TTL）、`projectcalico.org/IPv4Address`（Calico 网络 IPv4 地址）。
+
+注解与标签类似，也分为「可管理注解」和「系统保护注解」两种类型。
+![image.png](https://images.ikubeops.com/static/20260117000937974.png)
+
+### 污点管理
+
+污点（Taints）用于控制 Pod 的调度行为，可以阻止特定 Pod 调度到节点上。
+
+**污点效果类型**：
+
+* 「NoSchedule」不允许新的 Pod 调度到该节点，已存在的 Pod 不受影响。这是最常用的污点效果，适用于需要隔离特定工作负载的场景。
+* 「PreferNoSchedule」尽量避免将 Pod 调度到该节点，但不是强制的。当没有其他可用节点时，Pod 仍可能被调度到此节点。
+* 「NoExecute」不允许新的 Pod 调度到该节点，并且驱逐已存在的 Pod。这是最严格的污点效果，适用于节点维护或故障隔离场景。
+
+**操作功能**：添加污点、刷新污点列表、编辑污点、删除污点。
+
+**污点示例**：`nvidia.com/gpu=true:NoSchedule` 表示该节点配置了 GPU 污点，只有带有对应容忍（Toleration）的 Pod 才能调度到此节点，通常用于 GPU 节点的专用调度。
+![image.png](https://images.ikubeops.com/static/20260117001023252.png)
+
+***
+
+## 节点维护操作
+
+### 禁用调度（Cordon）
+
+禁用调度会将节点标记为不可调度状态，新的 Pod 将不会被调度到该节点。
+
+**使用场景**：计划进行节点维护但不需要立即驱逐现有 Pod、临时隔离节点进行问题排查、为后续的 Drain 操作做准备。
+
+**操作方式**：节点卡片菜单 → 禁用调度。
+
+执行后节点的调度状态将从「可调度」变为「禁止调度」。
+
+### 启用调度（Uncordon）
+
+启用调度会将节点恢复为可调度状态。
+
+**使用场景**：节点维护完成后恢复正常调度、问题排查结束后恢复节点服务。
+
+**操作方式**：节点卡片菜单 → 启用调度（当节点处于禁止调度状态时显示）。
+
+### 节点维护（Drain）
+
+节点维护会安全地驱逐节点上的所有 Pod，并将节点设置为不可调度状态。
+
+**使用场景**：节点硬件维护或升级、Kubernetes 版本升级、操作系统更新或重启。
+
+**操作方式**：节点卡片菜单 → 节点维护。
+
+**注意事项**：Drain 操作会尝试优雅终止 Pod，遵守 PodDisruptionBudget 配置；DaemonSet 管理的 Pod 默认会被忽略；维护完成后需要手动执行「启用调度」恢复节点。
+
+---
+
+---
+url: /01.指南/10.使用/02.集群资源管理.md
+---
+
+✨ **特性:**
+
+* StorageClass（存储类）
+* PersistentVolume（持久卷）
+* ClusterRole（集群角色）
+* ClusterRoleBinding（集群角色绑定）
+* IngressClass（入口类）
+  本文档介绍如何在 Kube Nova 平台中管理 Kubernetes 集群级别的资源对象，包括 StorageClass、PersistentVolume、ClusterRole、ClusterRoleBinding 和 IngressClass 等。
+
+**操作路径**：集群管理 → 集群资源 → 选择对应的集群
+
+页面通过标签页组织不同类型的资源：StorageClass（存储类）、PersistentVolume（持久卷）、ClusterRole（集群角色）、ClusterRoleBinding（集群角色绑定）、IngressClass（入口类）。
+
+## StorageClass（存储类）
+
+StorageClass 为管理员提供了一种描述存储"类"的方法，不同的类可能映射到不同的服务质量等级、备份策略或其他策略。
+
+**创建 StorageClass**：点击「创建 StorageClass」按钮创建新的存储类。
+
+**搜索与筛选**：支持按名称搜索，按供应商筛选。
+
+**资源操作**（点击行末操作菜单）：
+
+* 查看 YAML：以 YAML 格式查看存储类的完整配置
+* 查看详情：查看存储类的详细信息
+* 编辑：修改存储类配置
+* 取消默认/设为默认：设置或取消集群默认存储类
+* 删除：删除存储类
+  ![image.png](https://images.ikubeops.com/static/20260117211725505.png)
+
+## PersistentVolume（持久卷）
+
+PersistentVolume（PV）是集群中的一块存储，由管理员配置或使用 StorageClass 动态配置。
+
+**创建 PersistentVolume**：点击「创建 PersistentVolume」按钮手动创建 PV。
+
+**搜索与筛选**：支持按名称搜索，按状态和存储类筛选。
+
+**资源操作**（点击行末操作菜单）：
+
+* 查看 YAML：以 YAML 格式查看 PV 的完整配置
+* Describe：查看 PV 的详细描述信息
+* 使用情况：查看 PV 的使用统计
+* 编辑：修改 PV 配置
+* 删除：删除 PV
+
+![image.png](https://images.ikubeops.com/static/20260117211747624.png)
+
+## ClusterRole（集群角色）
+
+ClusterRole 是集群级别的权限集合，定义了一组对集群资源的访问规则。
+
+**创建 ClusterRole**：点击「创建 ClusterRole」按钮创建新的集群角色。
+
+**搜索**：支持按名称搜索角色。
+
+**资源操作**（点击行末操作菜单）：
+
+* 查看 YAML：以 YAML 格式查看角色的完整配置
+* Describe：查看角色的详细描述信息
+* 使用情况：查看哪些主体绑定了该角色
+* 权限摘要：查看角色包含的所有权限规则摘要
+* 编辑：修改角色配置（系统角色不可编辑）
+* 删除：删除角色（系统角色不可删除）
+  ![image.png](https://images.ikubeops.com/static/20260117211813008.png)
+
+## ClusterRoleBinding（集群角色绑定）
+
+ClusterRoleBinding 将 ClusterRole 中定义的权限授予一个或一组用户，作用于整个集群。
+
+**创建 ClusterRoleBinding**：点击「创建 ClusterRoleBinding」按钮创建新的角色绑定。
+
+**搜索**：支持按名称搜索绑定。
+
+**资源操作**（点击行末操作菜单）：
+
+* 查看 YAML：以 YAML 格式查看绑定的完整配置
+* Describe：查看绑定的详细描述信息
+* 实际权限：查看通过此绑定获得的实际权限列表
+* 编辑：修改绑定配置
+* 删除：删除绑定
+  ![image.png](https://images.ikubeops.com/static/20260117211840154.png)
+
+## IngressClass（入口类）
+
+IngressClass 用于标识 Ingress 控制器的类型，允许在同一集群中运行多个 Ingress 控制器。
+
+**创建 IngressClass**：点击「创建 IngressClass」按钮创建新的入口类。
+
+**搜索**：支持按名称或控制器搜索。
+
+**资源操作**（点击行末操作菜单）：
+
+* 查看 YAML：以 YAML 格式查看入口类的完整配置
+* Describe：查看入口类的详细描述信息
+* 使用情况：查看使用此入口类的 Ingress 资源
+* 控制器状态：查看关联 Ingress 控制器的运行状态
+* 编辑：修改入口类配置
+* 设为默认：将此入口类设置为集群默认
+* 删除：删除入口类
+  ![image.png](https://images.ikubeops.com/static/20260117211855840.png)
+
+---
+
+---
+url: /01.指南/10.使用/07.项目管理.md
+---
+
+✨ **特性:**
+
+* 多租户隔离: 基于项目的资源隔离与权限管理
+* 多集群资源池: 一个项目可绑定多个集群的资源配额
+* 灵活配额管理: 支持 CPU、内存、GPU、存储、Pod 等多维度配额
+* 超分配比例: 支持资源超分配，提高资源利用率
+* Kubernetes 资源限制: 细粒度控制各类 K8s 资源对象数量
+
+## 核心概念
+
+在 Kube Nova 中，**项目（Project）** 是多租户隔离的核心单位。理解项目与集群资源的关系是使用平台的基础。
+
+### 项目与资源池的关系
+
+**项目** 是一个逻辑隔离单元，代表一个租户、团队或业务线。每个项目可以关联多个集群的资源配额，这种关联关系在 Kube Nova 中称为 **资源池（Resource Pool）**。
+
+资源池定义了项目在某个特定集群上可以使用的资源上限。只有当项目拥有某个集群的资源池后，项目管理者才能在该集群上创建工作空间（Namespace）。
+
+这种设计的核心优势在于：集群管理员可以将集群资源按需分配给不同项目，实现资源的精细化管理和成本分摊；同时，项目管理者只能在被授权的集群范围内操作，确保了多租户环境下的安全隔离。
+
+### 资源层级关系
+
+```
+平台 (Kube Nova)
+  └── 集群 (Cluster)
+        └── 资源池 (Resource Pool) ──关联──► 项目 (Project)
+              └── 工作空间 (Workspace / Namespace)
+                    └── 工作负载 (Workload)
+```
+
+***
+
+## 项目管理
+
+项目管理模块用于创建、编辑、删除和查看项目信息。
+
+**操作路径**：项目中心 → 项目管理
+
+### 项目列表
+
+项目列表展示所有已创建的项目，包括以下信息：
+
+**项目名称** 显示项目的显示名称，便于识别和管理。
+
+**项目标识** 系统自动生成的唯一标识符（UUID 格式），用于 API 调用和内部关联。
+
+**描述** 项目的用途说明和备注信息。
+
+**管理员** 显示项目管理员数量，点击可查看管理员列表。
+
+**资源池** 显示项目关联的集群资源池数量，数字链接可跳转至资源池详情。
+
+**创建时间** 项目的创建时间戳。
+
+**操作** 包括成员管理、详情查看、编辑和删除功能。
+
+### 新建项目
+
+点击「+ 新建项目」按钮创建新项目。
+
+**项目名称**（必填）：输入项目的显示名称，建议使用有意义的名称便于识别，例如 `云原生项目`、`大模型平台`、`微服务项目` 等。
+
+**项目描述**（可选）：描述项目的用途、负责团队、业务范围等信息，最多 500 字符。
+
+**项目管理员**（可选）：指定项目的管理员用户，管理员拥有项目内的最高权限，包括资源池分配、工作空间创建、成员管理等。
+
+### 默认项目
+
+系统内置一个「默认项目」，该项目具有特殊属性：未署名项目会默认到此项目下。默认项目不可删除，但可以修改其配置。建议不要将生产业务部署在默认项目中，应为每个业务线创建独立项目。
+
+### 同步全部数据
+
+点击「同步全部数据」按钮可将所有项目及其资源池的最新状态同步到平台，确保数据一致性。当发现资源池数据与实际集群状态不符时，可使用此功能进行同步。
+
+***
+
+## 资源池管理
+
+资源池是项目与集群之间的桥梁，定义了项目在特定集群上的资源配额。
+
+**操作路径**：项目中心 → 资源池
+
+### 分配资源池
+
+点击「+ 分配资源池」按钮为项目分配新的集群资源。
+
+#### 步骤一：选择集群
+
+在集群选择区域，输入集群名称进行搜索或点击「浏览全部」查看所有可用集群。只有已添加到平台且状态正常的集群才会出现在列表中。
+
+选择目标集群后，系统会显示该集群的基本信息（名称、UUID）。一个集群可以被分配给多个项目，但每个项目在同一集群上只能有一个资源池。
+
+#### 步骤二：费用配置
+
+费用配置决定了该资源池的计费方案，用于成本核算和费用分摊。
+
+**计费方案** 从下拉列表选择预设的计费方案：
+
+* **标准计费**（系统内置）：使用平台默认价格体系
+* **不计费**（系统内置）：该资源池不产生费用
+* **自定义计费**：如果已在费用管理模块创建自定义计费方案，可在此选择
+
+**计费开始时间** 设置该资源池开始计费的时间点。留空则从资源池创建时刻开始计费。
+
+**价格预览** 展示所选计费方案的具体价格：
+
+* CPU: ¥0.0500/核/时
+* 内存: ¥0.0150/GiB/时
+* 存储: ¥0.0010/GiB/时
+* GPU: ¥15.0000/卡/时
+* Pod: ¥0.0020/个/时
+* 管理费: ¥3.1000/时
+
+#### 步骤三：资源配额配置
+
+资源配额配置是资源池的核心设置，决定了项目在该集群上可使用的资源上限。
+
+页面顶部的「集群资源概览」区域实时显示目标集群的资源总量和已分配情况，帮助管理员了解可分配空间：
+
+* **CPU 资源**：
+* **内存资源**：
+* **存储资源**：
+* **GPU 资源**：
+
+##### CPU 配额
+
+**限制容量** 设置项目可使用的 CPU 核数上限。单位可选择「核」或「毫核」。
+
+**超分比例** 资源超分配系数，范围 1.0x - 10.0x。例如设置为 4x 时，如果限制容量为 10 核，则项目实际可申请的 CPU requests 总量为 40 核。
+
+**实际容量** 系统自动计算：实际容量 = 限制容量 × 超分比例。这是项目在该集群上可申请的 CPU requests 总和上限。
+
+超分配机制的设计理念：容器的 CPU requests 通常是预留值，实际使用量往往低于申请量。通过合理的超分比例，可以提高集群资源利用率，但需要注意避免超分过高导致资源竞争。
+
+##### 内存配额
+
+**限制容量** 设置项目可使用的内存上限。单位可选择 Gi（GiB）、Mi（MiB）等。
+
+**超分比例** 内存资源的超分配系数，建议比 CPU 更保守（如 1.5x - 3x），因为内存超分可能导致 OOM（Out of Memory）问题。
+
+**实际容量** 系统自动计算的内存 requests 总和上限。
+
+##### 存储配额
+
+**存储容量限制** 设置项目可使用的临时存储（ephemeral storage）上限。单位可选择 Gi、Mi 等。
+
+> \[!NOTE] 存储配额说明
+> 此处配置的是 Kubernetes 临时存储（ephemeral-storage）配额，主要用于控制容器的 emptyDir、日志、容器层写入等临时数据。持久化存储（PVC）的配额通过 PVC 数量限制来控制。
+
+##### GPU 配额
+
+**GPU 数量** 设置项目可使用的 GPU 卡数上限。如果目标集群没有 GPU 资源，此项将显示为禁用状态。
+
+**超分比例** GPU 资源的超分配系数。由于 GPU 资源昂贵且通常用于计算密集型任务，建议谨慎设置超分比例。
+
+##### Pod 配额
+
+**Pod 数量限制** 设置项目可创建的 Pod 总数上限。这是一个重要的安全配额，可防止单个项目创建过多 Pod 影响集群稳定性。
+
+##### 高级配置：Kubernetes 资源限制
+
+展开「高级配置」区域可设置各类 Kubernetes 资源对象的数量限制：
+
+**配置类资源**
+
+* **ConfigMap**：配置映射数量限制，默认 100
+* **Secret**：密钥数量限制，默认 100
+
+**存储类资源**
+
+* **PVC**：持久化存储卷声明数量限制，默认 100
+
+**网络类资源**
+
+* **Service**：服务数量限制，默认 100
+* **Ingress**：入口资源数量限制，默认 50
+* **LoadBalancer**：负载均衡器数量限制，默认 10（云环境中 LB 通常有额外成本）
+* **NodePort**：NodePort 服务数量限制，默认 100
+
+**工作负载类资源**
+
+* **Deployment**：部署数量限制，默认 100
+* **StatefulSet**：有状态集数量限制，默认 50
+* **DaemonSet**：守护进程集数量限制，默认 10
+* **Job**：任务数量限制，默认 100
+* **CronJob**：定时任务数量限制，默认 50
+
+**存储类配置**
+
+* **临时存储**：设置临时存储的总量限制（GiB）
+
+这些限制通过 Kubernetes 的 ResourceQuota 机制实现，当项目内的资源使用达到限制时，新的资源创建请求将被拒绝。
+
+#### 步骤四：确认分配
+
+确认所有配置无误后，点击「分配资源」按钮完成资源池创建。创建成功后，项目管理者即可在该集群上创建工作空间。
+
+***
+
+## 资源池操作
+
+### 编辑资源池
+
+在资源池卡片上点击更多菜单（⋮），选择「编辑」可修改资源池的配额设置。编辑时需注意：
+
+**配额增加** 可随时进行，不影响已有工作负载。
+
+**配额减少** 如果新配额小于当前已使用量，修改将被拒绝。需要先清理资源使用后再降低配额。
+
+**计费方案变更** 变更计费方案将影响后续的费用计算，历史费用不受影响。
+
+### 删除资源池
+
+选择「删除」可移除项目与集群的关联关系。删除前请注意：
+
+**前置条件** 只有当资源池下没有工作空间（Namespace）时才能删除。如果存在工作空间，需要先删除所有工作空间。
+
+**数据影响** 删除资源池后，该项目将无法再在对应集群上创建资源。已产生的历史费用记录不会被删除。
+
+**恢复方式** 如需恢复，可重新为项目分配该集群的资源池。
+
+***
+
+## 工作空间管理
+
+工作空间是 Kubernetes Namespace 在 Kube Nova 中的概念映射，是项目内资源隔离的基本单位。
+
+### 创建工作空间的前提条件
+
+要在某个集群上创建工作空间，必须满足以下条件：
+
+1. **项目已分配该集群的资源池**：项目必须拥有目标集群的资源配额。
+2. **资源配额充足**：资源池中需有足够的剩余配额。
+3. **用户权限**：操作用户需具有项目管理员或相应的创建权限。
+
+### 工作空间与资源池的关系
+
+一个资源池可以包含多个工作空间，所有工作空间共享资源池的配额。这种设计允许项目管理者灵活地组织和隔离不同的应用或环境。
+
+例如，一个「微服务项目」在某集群的资源池配额为 40 CPU、30 GiB 内存，项目管理者可以创建：
+
+* `microservice-prod`：生产环境工作空间
+* `microservice-staging`：预发布环境工作空间
+* `microservice-dev`：开发环境工作空间
+
+三个工作空间共享该资源池的 40 CPU、30 GiB 内存配额。
+
+***
+
+## 最佳实践
+
+### 项目规划建议
+
+**按业务线划分项目** 建议每个独立的业务线或产品创建独立项目，便于资源管理、成本核算和权限控制。
+
+**避免项目粒度过细** 项目数量过多会增加管理复杂度，建议根据组织架构和业务边界合理划分。
+
+**明确项目管理员职责** 为每个项目指定明确的管理员，负责资源池申请、工作空间管理和成员管理。
+
+### 资源配额设置建议
+
+**根据实际需求设置配额** 不要一次性分配过多资源，可根据业务发展逐步增加配额。
+
+**合理设置超分比例**
+
+* CPU 超分比例建议 2x - 4x，适用于 Web 服务等 CPU 使用波动较大的场景
+* 内存超分比例建议 1x - 2x，内存超分风险较高，需谨慎
+* GPU 超分比例建议 1x，GPU 任务通常需要独占使用
+
+**预留缓冲空间** 配额设置时预留 10% - 20% 的缓冲空间，应对突发流量或紧急扩容需求。
+
+**定期审查配额使用** 定期检查资源池的配额使用率，对于长期低使用率的资源池考虑回收或重新分配。
