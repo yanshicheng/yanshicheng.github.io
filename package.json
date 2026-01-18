@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "vitepress-theme-teek-docs-template",
+  "name": "kube-nova",
   "version": "1.0.0",
-  "description": "vitepress-theme-teek 文档模板",
+  "description": "kube-nova 平台文档",
   "type": "module",
   "scripts": {
     "dev": "vitepress dev kube-nova-docs --host",

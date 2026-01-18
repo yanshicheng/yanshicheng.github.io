@@ -10,6 +10,7 @@ const description = [
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  outDir: '../docs',
   rewrites: createRewrites({
     srcDir: './kube-nova-docs'
   }),

@@ -12,6 +12,9 @@ hero:
     - theme: alt
       text: 🎯 在线演示
       link: https://nova.ikubeops.com
+    - theme: alt
+      text: 💬 加入群聊
+      link: "#"
 
 features:
   - icon: |
@@ -88,6 +91,18 @@ features:
     link: /01.指南/01.简介/
 ---
 
+<!-- 微信群二维码弹窗 -->
+<Teleport to="body">
+  <div v-if="showQrModal" class="qr-modal-overlay" @click="closeModal">
+    <div class="qr-modal" @click.stop>
+      <button class="qr-modal-close" @click="closeModal">✕</button>
+      <h3>扫码加入微信群</h3>
+      <img src="https://images.ikubeops.com/common/kube-nova-wechat.png" alt="微信群二维码" />
+      <p>扫描二维码，加入 Kube Nova 交流群</p>
+    </div>
+  </div>
+</Teleport>
+
 <div class="custom-home">
 
 ## 🌟 为什么选择 Kube Nova
@@ -143,11 +158,13 @@ features:
 </div>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { useData } from "vitepress";
 import { readingIcon } from "vitepress-theme-teek"
 
 const { frontmatter } = useData();
+const showQrModal = ref(false);
+
 onMounted(() => {
   const heroTextDom = document.querySelector<HTMLElement>(".VPHero .text");
   const textDom = document.querySelector<HTMLElement>("#hero-text");
@@ -156,7 +173,22 @@ onMounted(() => {
 
   while (heroTextDom.lastChild) heroTextDom.lastChild.remove();
   heroTextDom.append(textDom);
+
+  // 绑定加群按钮点击事件
+  const actionLinks = document.querySelectorAll<HTMLAnchorElement>('.VPHero .actions .VPButton');
+  actionLinks.forEach(link => {
+    if (link.textContent?.includes('加入群聊')) {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        showQrModal.value = true;
+      });
+    }
+  });
 });
+
+const closeModal = () => {
+  showQrModal.value = false;
+};
 </script>
 
 <span id="hero-text" style="display: inline-block; position: relative">
@@ -370,5 +402,95 @@ onMounted(() => {
 
 .VPButton.alt:hover {
   transform: translateY(-2px) !important;
+}
+
+/* 二维码弹窗样式 - 使用 transform 居中 */
+.qr-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  backdrop-filter: blur(4px);
+}
+
+.qr-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--vp-c-bg);
+  border-radius: 16px;
+  padding: 32px;
+  text-align: center;
+  max-width: 360px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--vp-c-divider);
+  animation: modalIn 0.3s ease;
+  z-index: 10000;
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.qr-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: var(--vp-c-bg-soft);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--vp-c-text-2);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qr-modal-close:hover {
+  background: var(--vp-c-brand);
+  color: white;
+}
+
+.qr-modal h3 {
+  margin: 0 0 20px 0;
+  font-size: 1.25rem;
+  color: var(--vp-c-text-1);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.qr-modal img {
+  width: 220px;
+  height: 220px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  margin-left: 30px;
+  border: 1px solid var(--vp-c-divider);
+}
+
+.qr-modal p {
+  margin: 0;
+  color: var(--vp-c-text-2);
+  font-size: 0.9rem;
 }
 </style>
