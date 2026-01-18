@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vitepress dev kube-nova-docs --host",
-    "build": "vitepress build kube-nova-docs ",
+    "build": "vitepress build kube-nova-docs && echo 'wiki.yanshicheng.com' > ./docs/CNAME",
     "preview": "vitepress preview kube-nova-docs"
   },
   "devDependencies": {
