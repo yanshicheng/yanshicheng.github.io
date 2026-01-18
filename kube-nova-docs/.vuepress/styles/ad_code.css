@@ -1,0 +1,8 @@
+/* 选择具有 data-language="ad-tip" 属性的元素 */
+[data-language='ad-tip'] {
+  background-color: red; /* 设置背景颜色为红色 */
+  color: white; /* 设置文本颜色为白色以确保可读性 */
+  padding: 1em; /* 添加一些内边距 */
+  border-radius: 5px; /* 圆角边框 */
+  margin: 1em 0; /* 添加一些外边距 */
+}

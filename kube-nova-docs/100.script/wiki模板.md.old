@@ -1,0 +1,113 @@
+<%*
+// VitePress 智能模板 - Modal Form 版本
+// 功能：弹出表单填写文章信息，自动生成 frontmatter
+// 配合 openForm.js 使用
+
+const currentPath = tp.file.path(true) || "";
+const currentFolder = tp.file.folder(true) || "";
+const currentTitle = tp.file.title || "";
+
+// 调用 Modal Form 表单
+let result = null;
+try {
+  result = await tp.user.openForm("vitepress-post");
+} catch (e) {
+  console.error("openForm error:", e);
+}
+
+// 获取表单数据
+let data = {};
+let permalinkPrefix = "";
+if (result) {
+  if (typeof result.getData === 'function') {
+    data = result.getData();
+  } else {
+    data = result;
+  }
+  // 获取附加的 permalinkPrefix
+  permalinkPrefix = result._permalinkPrefix || "";
+}
+
+// 提取字段值
+const targetFolder = data.targetFolder || currentFolder;
+const fileName = data.fileName || currentTitle || "未命名";
+const cleanTitle = fileName.replace(/^\d+\.\s*/, '');
+
+// 固定作者信息
+const author = "Yan Shicheng";
+const authorLink = "https://www.ikubeops.com";
+
+// 获取用户输入的后缀，用于生成 permalink
+const permalinkSuffix = data.permalinkSuffix || generateTimestamp();
+
+// 生成完整的 permalink
+// 格式: /前缀/后缀  例如: /kube-nova/20250115123456
+function generatePermalink(prefix, suffix) {
+  let pl = "";
+  if (prefix) {
+    pl = prefix;
+  }
+  if (suffix) {
+    pl = pl + "/" + suffix;
+  }
+  // 确保以 / 开头
+  if (pl && !pl.startsWith('/')) {
+    pl = '/' + pl;
+  }
+  // 如果为空，使用默认值
+  if (!pl) {
+    pl = '/posts/' + generateTimestamp();
+  }
+  return pl;
+}
+
+function generateTimestamp() {
+  const now = new Date();
+  const offset = 8 * 60 * 60 * 1000;
+  const localTime = new Date(now.getTime() + offset);
+  return localTime.toISOString().slice(0, 19).replace(/[-:T]/g, '');
+}
+
+const permalink = generatePermalink(permalinkPrefix, permalinkSuffix);
+
+// 分类和标签
+const category = data.category || "未分类";
+const tag = data.tags || "未分类";
+
+// 处理标签 YAML 格式
+const tagsArray = String(tag).split(/[,，]/).map(function(t) { return t.trim(); }).filter(function(t) { return t; });
+const tagsYaml = tagsArray.length > 0 ? tagsArray.map(function(t) { return '  - ' + t; }).join('\n') : '  - 未分类';
+
+// 处理分类 YAML 格式
+const categoriesArray = String(category).split(/[,，]/).map(function(c) { return c.trim(); }).filter(function(c) { return c; });
+const categoriesYaml = categoriesArray.length > 0 ? categoriesArray.map(function(c) { return '  - ' + c; }).join('\n') : '  - 未分类';
+
+// 移动文件到目标文件夹
+const newPath = targetFolder ? targetFolder + '/' + fileName : fileName;
+try {
+  await tp.file.move(newPath);
+} catch (e) {
+  console.log("Move failed:", e);
+  if (fileName !== currentTitle) {
+    try {
+      await tp.file.rename(fileName);
+    } catch (e2) {
+      console.log("Rename failed:", e2);
+    }
+  }
+}
+-%>
+---
+title: <% cleanTitle %>
+author:
+  name: <% author %>
+  link: <% authorLink %>
+date: <% tp.file.creation_date("YYYY-MM-DD HH:mm:ss") %>
+permalink: <% permalink %>
+categories:
+<% categoriesYaml %>
+tags:
+<% tagsYaml %>
+---
+
+<% tp.file.cursor() %>
