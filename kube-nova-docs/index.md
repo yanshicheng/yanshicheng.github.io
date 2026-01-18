@@ -11,7 +11,7 @@ hero:
       link: /nova/intro
     - theme: alt
       text: 🎯 在线演示
-      link: https://nova.ikubeops.com
+      link: https://kube-nova.ikubeops.com
     - theme: alt
       text: 💬 加入群聊
       link: "#"
