@@ -24,8 +24,7 @@ features:
       </svg>
     title: 多集群管理
     details: 统一管理多个 K8s 集群，支持 Kubeconfig/Token/证书等多种认证方式接入
-    linkText: 了解更多
-    link: /01.指南/01.简介/
+
   - icon: |
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
         <defs><linearGradient id="tenant-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#7c3aed"/><stop offset="100%" style="stop-color:#a78bfa"/></linearGradient></defs>
@@ -33,8 +32,7 @@ features:
       </svg>
     title: 多租户隔离
     details: 项目 → 集群配额 → 工作空间三级资源隔离架构，支持 CPU/内存/GPU 超分配置
-    linkText: 了解更多
-    link: /01.指南/01.简介/
+
   - icon: |
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
         <defs><linearGradient id="yaml-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#cb171e"/><stop offset="100%" style="stop-color:#ff6b6b"/></linearGradient></defs>
@@ -42,8 +40,8 @@ features:
       </svg>
     title: YAML 全方位支持
     details: 所有资源均支持 YAML 与表单无缝互相转换，灵活满足不同使用习惯
-    linkText: 了解更多
-    link: /01.指南/10.使用/
+#    linkText: 了解更多
+#    link: /01.指南/10.使用/
   - icon: |
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
         <defs><linearGradient id="audit-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#8b5cf6"/><stop offset="100%" style="stop-color:#a78bfa"/></linearGradient></defs>
@@ -51,8 +49,7 @@ features:
       </svg>
     title: 审计合规
     details: 四级审计日志（集群/项目/工作空间/应用），全链路操作追溯合规无忧
-    linkText: 了解更多
-    link: /01.指南/01.简介/
+
   - icon: |
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
         <defs><linearGradient id="alert-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#f59e0b"/><stop offset="100%" style="stop-color:#fbbf24"/></linearGradient></defs>
@@ -60,8 +57,7 @@ features:
       </svg>
     title: 智能告警
     details: 支持钉钉/企微/飞书/邮件等 8 种通知渠道，告警分组、分级路由智能推送
-    linkText: 了解更多
-    link: /01.指南/01.简介/
+
   - icon: |
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
         <defs><linearGradient id="prom-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#e6522c"/><stop offset="100%" style="stop-color:#ff8c69"/></linearGradient></defs>
@@ -69,8 +65,7 @@ features:
       </svg>
     title: 多维监控
     details: Pod/Node/Namespace/Cluster/Ingress 全方位监控，覆盖从容器到集群的完整视图
-    linkText: 了解更多
-    link: /01.指南/01.简介/
+
   - icon: |
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
         <defs><linearGradient id="pod-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#0ea5e9"/><stop offset="100%" style="stop-color:#38bdf8"/></linearGradient></defs>
@@ -78,8 +73,7 @@ features:
       </svg>
     title: Pod 全方位运维
     details: 日志查看、交互终端、文件管理（浏览/编辑/上传/下载）等全方位容器运维
-    linkText: 了解更多
-    link: /01.指南/01.简介/
+
   - icon: |
       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
         <defs><linearGradient id="harbor-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#60b932"/><stop offset="100%" style="stop-color:#8dd35f"/></linearGradient></defs>
@@ -87,8 +81,7 @@ features:
       </svg>
     title: 镜像管理
     details: Harbor 多仓库统一管理，支持项目级权限隔离、GC 策略、镜像复制
-    linkText: 了解更多
-    link: /01.指南/01.简介/
+
 ---
 
 <!-- 微信群二维码弹窗 -->
